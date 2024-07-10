@@ -9,7 +9,7 @@ public class Stagiaire {
 	private String login;
 	private String password;
 	
-	private Filiere filiere;
+	private Formation formation;
 	
 	private Ordinateur ordinateur;
 	
@@ -17,24 +17,24 @@ public class Stagiaire {
 	}
 
 	public Stagiaire(Integer id, String firstName, String lastName, String email, String login, String password,
-			Filiere filiere) {
+			Formation formation) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.login = login;
 		this.password = password;
-		this.filiere = filiere;
+		this.formation = formation;
 	}
 	
 	public Stagiaire(String firstName, String lastName, String email, String login, String password,
-			Filiere filiere) {
+			Formation formation) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.login = login;
 		this.password = password;
-		this.filiere = filiere;
+		this.formation = formation;
 	}
 
 	public Integer getId() {
@@ -85,12 +85,12 @@ public class Stagiaire {
 		this.password = password;
 	}
 
-	public Filiere getFiliere() {
-		return filiere;
+	public Formation getFormation() {
+		return formation;
 	}
 
-	public void setFiliere(Filiere filiere) {
-		this.filiere = filiere;
+	public void setFormation(Formation formation) {
+		this.formation = formation;
 	}
 
 	public Ordinateur getOrdinateur() {
@@ -104,8 +104,8 @@ public class Stagiaire {
 	@Override
 	public String toString() {
 		return "Stagiaire [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", login=" + login + ", password=" + password + "filiere="
-						+ filiere + "]";
+				+ ", login=" + login + ", password=" + password + "formation="
+						+ formation + "]";
 	}
 	
 	
