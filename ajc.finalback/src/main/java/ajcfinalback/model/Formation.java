@@ -35,12 +35,21 @@ public class Formation {
 	private Formateur formateur;
 	
 	
-	
 	public Formation() {
 		
 	}
 
+	public Formation(String nom, LocalDate dateStart, Gestionnaire gestionnaire, List<Stagiaire> stagiaires,
+			List<MatiereParFormation> matiereParFormation, Formateur formateur) {
+		this.nom = nom;
+		this.dateStart = dateStart;
+		this.gestionnaire = gestionnaire;
+		this.stagiaires = stagiaires;
+		this.matiereParFormation = matiereParFormation;
+		this.formateur = formateur;
+	}
 
+	
 	public Integer getId() {
 		return id;
 	}

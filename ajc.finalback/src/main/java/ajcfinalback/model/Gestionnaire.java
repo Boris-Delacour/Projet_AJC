@@ -29,7 +29,17 @@ public class Gestionnaire {
 	public Gestionnaire() {
 		
 	}
-	
+
+	public Gestionnaire(String lastName, String firstName, String email, String login, String password,
+			List<Formation> formations) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.login = login;
+		this.password = password;
+		this.formations = formations;
+	}
+
 
 	public Integer getId() {
 		return id;
