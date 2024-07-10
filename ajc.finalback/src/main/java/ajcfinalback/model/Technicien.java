@@ -1,8 +1,16 @@
 package ajcfinalback.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Technicien {
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -10,17 +18,17 @@ public class Technicien {
 	public Technicien() {
 	}
 	
-	public Technicien(int id, String firstName, String lastName) {
+	public Technicien(Integer id, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getFirstName() {

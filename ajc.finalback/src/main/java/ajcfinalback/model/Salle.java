@@ -2,12 +2,26 @@ package ajcfinalback.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Salle {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer numemo;
 	private Integer nbPlace;
 	private boolean occuper;
+	@OneToOne
+	@JoinColumn(name="videoprojecteur", nullable = true)
 	private Videoprojecteur videoprojecteur;
+	@OneToMany(mappedBy = "salle")
 	private List<MatiereParFormation> matiereParFormation;
 
 	public Salle() {

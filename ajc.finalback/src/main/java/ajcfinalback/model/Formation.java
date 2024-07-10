@@ -1,16 +1,39 @@
 package ajcfinalback.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "formation")
 public class Formation {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String nom;
 	private LocalDate dateStart;
 	
+	@ManyToOne
+	@JoinColumn(name="gestionnaire")
 	private Gestionnaire gestionnaire;
-	private Stagiaire stagiaire;
-	private MatiereParFormation matiereParFormation;
+	@OneToMany(mappedBy = "formation", fetch = FetchType.LAZY)
+	private List<Stagiaire> stagiaires;
+	@OneToMany(mappedBy = "formation")
+	private List<MatiereParFormation> matiereParFormation;
+	@ManyToOne
+	@JoinColumn(name="referent")
+	private Formateur formateur;
+	
 	
 	
 	public Formation() {
@@ -18,12 +41,12 @@ public class Formation {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -58,23 +81,33 @@ public class Formation {
 	}
 
 
-	public Stagiaire getStagiaire() {
-		return stagiaire;
+	public List<Stagiaire> getStagiaires() {
+		return stagiaires;
 	}
 
 
-	public void setStagiaire(Stagiaire stagiaire) {
-		this.stagiaire = stagiaire;
+	public void setStagiaires(List<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
 	}
 
 
-	public MatiereParFormation getMatiereParFormation() {
+	public List<MatiereParFormation> getMatiereParFormation() {
 		return matiereParFormation;
 	}
 
 
-	public void setMatiereParFormation(MatiereParFormation matiereParFormation) {
+	public void setMatiereParFormation(List<MatiereParFormation> matiereParFormation) {
 		this.matiereParFormation = matiereParFormation;
+	}
+
+
+	public Formateur getFormateur() {
+		return formateur;
+	}
+
+
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
 	}
 	
 	

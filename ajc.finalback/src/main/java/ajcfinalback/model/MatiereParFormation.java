@@ -2,14 +2,33 @@ package ajcfinalback.model;
 
 import java.time.LocalDate;
 
-public class MatiereParFormation {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
+@Entity
+public class MatiereParFormation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDate start;
 	private LocalDate end;
 	
+	@ManyToOne
+	@JoinColumn(name="matiere")
 	private Matiere matiere;
+	@ManyToOne
+	@JoinColumn(name="formation")
 	private Formation formation;
+	@ManyToOne
+	@JoinColumn(name="formateur")
+	private Formateur formateur;
+	@ManyToOne
+	@JoinColumn(name="salle")
 	private Salle salle;
 	
 	public MatiereParFormation() {}
@@ -31,5 +50,13 @@ public class MatiereParFormation {
 
 	public Salle getSalle() { return salle; }
 	public void setSalle(Salle salle) { this.salle = salle; }
+
+	public Formateur getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
+	}
 	
 }

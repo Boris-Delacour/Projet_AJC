@@ -2,14 +2,27 @@ package ajcfinalback.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "gestionnaire")
 public class Gestionnaire {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String lastName;
 	private String firstName;
 	private String email;
 	private String login;
 	private String password;
+	@OneToMany(mappedBy = "gestionnaire", fetch = FetchType.LAZY)
 	private List<Formation> formations;
 	
 	
@@ -18,11 +31,11 @@ public class Gestionnaire {
 	}
 	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

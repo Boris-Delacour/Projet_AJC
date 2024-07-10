@@ -1,11 +1,21 @@
 package ajcfinalback.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Ordinateur {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String marque;
 	private boolean fonctionnel;
 	private String os;
+	@OneToOne(mappedBy = "ordinateur")
 	private Stagiaire stagiaire;
 	
 	public Ordinateur() {}
