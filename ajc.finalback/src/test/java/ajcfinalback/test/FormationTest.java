@@ -21,7 +21,7 @@ class FormationTest {
 	FormationService formationSrv;
 	
 	@Test
-	void testFormation() {
+	void testCrudFormation() {
 		Formation f = new Formation("Spring",LocalDate.now(),null,null,null,null);
 		Formation f2 = new Formation("Angular",LocalDate.now(),null,null,null,null);
 		

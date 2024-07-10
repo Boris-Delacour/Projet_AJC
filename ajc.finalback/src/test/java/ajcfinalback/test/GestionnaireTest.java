@@ -19,7 +19,7 @@ class GestionnaireTest {
 	GestionnaireService gestionnaireSrv;
 	
 	@Test
-	void testFormation() {
+	void testCrudGestionnaire() {
 		Gestionnaire g = new Gestionnaire("John","Doe","bsbsrb","jd","mdp",null);
 		Gestionnaire g2 = new Gestionnaire("Jane","Doe","erqgv","jd","mdp",null);
 		
