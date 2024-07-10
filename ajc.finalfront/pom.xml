@@ -4,4 +4,5 @@
   <artifactId>ajc.finalfront</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>ajc.finalfront</name>
+  <packaging>war</packaging>
 </project>
