@@ -21,8 +21,8 @@ import jakarta.persistence.EntityManagerFactory;
 
 
 @Configuration
-//@ComponentScan("ajcfinalback.service")
-//@EnableJpaRepositories("ajcfinalback.dao")
+@ComponentScan("ajcfinalback.service")
+@EnableJpaRepositories("ajcfinalback.dao")
 @PropertySource("classpath:infos.properties")
 public class AppConfig {
 
