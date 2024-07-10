@@ -2,8 +2,20 @@ package ajcfinalback.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "formateur")
 public class Formateur {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String lastname;
 	private String firstname;
@@ -11,9 +23,16 @@ public class Formateur {
 	private String login;
 	private String password;
 
-	private Formation formation;
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.LAZY)
+	private List<Formation> formations;
+
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.LAZY)
 	private List<Indisponibilite> indisponibilites;
-	private List<Matiere> matieres;
+
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.LAZY)
+	private List<FormateurMatiere> formateurMatieres;
+
+	@OneToMany(mappedBy = "formateur", fetch = FetchType.LAZY)
 	private List<MatiereParFormation> matiereParFormation;
 	
 	public Formateur() {}
@@ -36,14 +55,24 @@ public class Formateur {
 	public String getPassword() { return password; }
 	public void setPassword(String password) { this.password = password; }
 
-	public Formation getFormation() { return formation; }
-	public void setFormation(Formation formation) { this.formation = formation; }
+	public List<Formation> getFormations() {
+		return formations;
+	}
 
+	public void setFormations(List<Formation> formations) {
+		this.formations = formations;
+	}
+	
 	public List<Indisponibilite> getIndisponibilites() { return indisponibilites; }
 	public void setIndisponibilites(List<Indisponibilite> indisponibilites) { this.indisponibilites = indisponibilites; }
 
-	public List<Matiere> getMatieres() { return matieres; }
-	public void setMatieres(List<Matiere> matieres) { this.matieres = matieres; }
+	public List<FormateurMatiere> getFormateurMatieres() {
+		return formateurMatieres;
+	}
+
+	public void setFormateurMatieres(List<FormateurMatiere> formateurMatieres) {
+		this.formateurMatieres = formateurMatieres;
+	}
 
 	public List<MatiereParFormation> getMatiereParFormation() { return matiereParFormation; }
 	public void setMatiereParFormation(List<MatiereParFormation> matiereParFormation) { this.matiereParFormation = matiereParFormation; }

@@ -21,10 +21,12 @@ public class Stagiaire {
 	private String email;
 	private String login;
 	private String password;
+	
 	@ManyToOne
 	@JoinColumn(name="formation")
 	private Formation formation;
-	@OneToOne(mappedBy = "stagiaire")
+	@OneToOne
+	@JoinColumn(name="ordinateur", nullable = true)
 	private Ordinateur ordinateur;
 	
 	public Stagiaire() {

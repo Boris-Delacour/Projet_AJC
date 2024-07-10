@@ -2,8 +2,20 @@ package ajcfinalback.model;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "matiere")
 public class Matiere {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String libelle;
 	private Integer duration;
@@ -11,8 +23,10 @@ public class Matiere {
 	private String prerequisite;
 	private String content;
 	
-	private List<Formateur> formateurs;
+	@OneToMany(mappedBy = "matiere", fetch = FetchType.LAZY)
+	private List<FormateurMatiere> formateurMatieres;
 	
+	@OneToMany(mappedBy = "matiere", fetch = FetchType.LAZY)
 	private List<MatiereParFormation> matieresParFormations;
 
 	public Matiere() {}
@@ -35,8 +49,14 @@ public class Matiere {
 	public String getContent() { return content; }
 	public void setContent(String content) { this.content = content; }
 
-	public List<Formateur> getFormateurs() { return formateurs; }
-	public void setFormateurs(List<Formateur> formateurs) { this.formateurs = formateurs; }
+	
+	public List<FormateurMatiere> getFormateurMatieres() {
+		return formateurMatieres;
+	}
+
+	public void setFormateurMatieres(List<FormateurMatiere> formateurMatieres) {
+		this.formateurMatieres = formateurMatieres;
+	}
 
 	public List<MatiereParFormation> getMatieresParFormations() { return matieresParFormations; }
 	public void setMatieresParFormations(List<MatiereParFormation> matieresParFormations) { this.matieresParFormations = matieresParFormations; }
