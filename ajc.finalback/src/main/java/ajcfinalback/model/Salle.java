@@ -15,7 +15,7 @@ public class Salle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer numemo;
+	private Integer numero;
 	private Integer nbPlace;
 	private boolean occuper;
 	@OneToOne
@@ -27,21 +27,21 @@ public class Salle {
 	public Salle() {
 	}
 
-	public Salle(Integer numemo, Integer nbPlace, boolean occuper, Videoprojecteur videoprojecteur,
+	public Salle(Integer numero, Integer nbPlace, boolean occuper, Videoprojecteur videoprojecteur,
 			List<MatiereParFormation> matiereParFormation) {
-		this.numemo = numemo;
+		this.numero = numero;
 		this.nbPlace = nbPlace;
 		this.occuper = occuper;
 		this.videoprojecteur = videoprojecteur;
 		this.matiereParFormation = matiereParFormation;
 	}
 
-	public Integer getNumemo() {
-		return numemo;
+	public Integer getNumero() {
+		return numero;
 	}
 
-	public void setNumemo(Integer numemo) {
-		this.numemo = numemo;
+	public void setNumemo(Integer numero) {
+		this.numero = numero;
 	}
 
 	public Integer getNbPlace() {
