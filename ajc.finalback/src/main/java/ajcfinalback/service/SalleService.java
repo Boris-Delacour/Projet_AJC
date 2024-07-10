@@ -20,7 +20,7 @@ public class SalleService {
 	{
 		if(id==null) 
 		{
-			throw new RuntimeException("Impossible de find un stagiaire sans id ???");
+			throw new RuntimeException("Impossible de find un salle sans id ???");
 		}
 		Optional<Salle> opt = daoSalle.findById(id);
 		if(opt.isPresent()) 
@@ -54,7 +54,7 @@ public class SalleService {
 	{
 		if(salle.getNumero()==null) 
 		{
-			throw new RuntimeException("Impossible d'update une technicien sans id");
+			throw new RuntimeException("Impossible d'update une salle sans id");
 		}
 		return daoSalle.save(salle);
 	}
@@ -63,7 +63,7 @@ public class SalleService {
 	{
 		if(id==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une technicien sans id ???");
+			throw new RuntimeException("Impossible de supprimer une salle sans id ???");
 		}
 		daoSalle.deleteById(id);
 	}
@@ -72,7 +72,7 @@ public class SalleService {
 	{
 		if(salle.getNumero()==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une technicien sans id ???");
+			throw new RuntimeException("Impossible de supprimer une salle sans id ???");
 		}
 		deleteById(salle.getNumero());
 	}

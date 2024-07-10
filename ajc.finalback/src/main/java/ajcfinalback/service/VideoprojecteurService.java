@@ -18,7 +18,7 @@ public class VideoprojecteurService {
 
 	public Videoprojecteur getById(Integer id) {
 		if (id == null) {
-			throw new RuntimeException("Impossible de find un stagiaire sans id ???");
+			throw new RuntimeException("Impossible de find un videoprojecteur sans id ???");
 		}
 		Optional<Videoprojecteur> opt = daoVideoprojecteur.findById(id);
 		if (opt.isPresent()) {
