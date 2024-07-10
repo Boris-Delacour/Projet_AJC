@@ -11,25 +11,26 @@ public class FormateurMatiereKey implements Serializable{
 
 	@Column(name = "matiere_id")
 	private Integer matiereId;
+	
 	@Column(name = "formateur_id")
 	private Integer formateurId;
 	
-	public Integer getMatiereId() {
-		return matiereId;
-	}
-	public void setMatiereId(Integer matiereId) {
+	public FormateurMatiereKey() {}
+	
+	public FormateurMatiereKey(Integer matiereId, Integer formateurId) {
 		this.matiereId = matiereId;
-	}
-	public Integer getFormateurId() {
-		return formateurId;
-	}
-	public void setFormateurId(Integer formateurId) {
 		this.formateurId = formateurId;
 	}
+	
+	public Integer getMatiereId() { return matiereId; }
+	public void setMatiereId(Integer matiereId) { this.matiereId = matiereId; }
+	
+	public Integer getFormateurId() { return formateurId; }
+	public void setFormateurId(Integer formateurId) { this.formateurId = formateurId; }
+	
 	@Override
-	public int hashCode() {
-		return Objects.hash(formateurId, matiereId);
-	}
+	public int hashCode() { return Objects.hash(formateurId, matiereId); }
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

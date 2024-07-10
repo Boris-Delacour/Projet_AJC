@@ -36,6 +36,14 @@ public class Formateur {
 	private List<MatiereParFormation> matiereParFormation;
 	
 	public Formateur() {}
+	
+	public Formateur(String lastname, String firstname, String email, String login, String password) {
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.email = email;
+		this.login = login;
+		this.password = password;
+	}
 
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }

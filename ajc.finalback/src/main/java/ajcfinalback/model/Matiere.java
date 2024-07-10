@@ -31,6 +31,14 @@ public class Matiere {
 
 	public Matiere() {}
 
+	public Matiere(String libelle, Integer duration, String objective, String prerequisite, String content) {
+		this.libelle = libelle;
+		this.duration = duration;
+		this.objective = objective;
+		this.prerequisite = prerequisite;
+		this.content = content;
+	}
+
 	public Integer getId() { return id; }
 	public void setId(Integer id) { this.id = id; }
 
