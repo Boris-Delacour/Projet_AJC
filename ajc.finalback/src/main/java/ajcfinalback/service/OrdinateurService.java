@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ajcfinalback.dao.IDAOOrdinateur;
 import ajcfinalback.model.Ordinateur;
+import ajcfinalback.model.Stagiaire;
 
 @Service
 public class OrdinateurService {
@@ -23,6 +24,18 @@ public class OrdinateurService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public Ordinateur getByMarque(String marque) {
+		return daoOrdinateur.findByMarque(marque);
+	}
+
+	public Ordinateur getByOs(String os) {
+		return daoOrdinateur.findByOs(os);
+	}
+
+	public Ordinateur getByStagiaire(Stagiaire stagiaire) {
+		return daoOrdinateur.findByStagiaire(stagiaire);
 	}
 
 	public List<Ordinateur> getAll() {

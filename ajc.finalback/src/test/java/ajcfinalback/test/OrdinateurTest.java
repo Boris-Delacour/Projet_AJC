@@ -20,6 +20,7 @@ public class OrdinateurTest {
 	
 	@Test
 	void testInsertUpdate() {
+//		Stagiaire s = new Stagiaire("Test", "Test", "test@test.com", "test", "azerty", null);
 		Ordinateur t = new Ordinateur("asus", true, "Windows", null);
 		Ordinateur t2 = new Ordinateur("MSI", true, "Linux", null);
 		
@@ -27,6 +28,12 @@ public class OrdinateurTest {
 		oSrv.insert(t2);
 		
 		t = oSrv.getById(t.getId());
+		
+		t = oSrv.getByMarque(t.getMarque());
+		
+		t = oSrv.getByOs(t.getOs());
+		
+//		t = oSrv.getByStagiaire(t.getStagiaire());
 		
 		t.setFonctionnel(false);;
 		

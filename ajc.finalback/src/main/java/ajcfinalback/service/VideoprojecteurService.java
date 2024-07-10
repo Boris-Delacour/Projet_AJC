@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ajcfinalback.dao.IDAOVideoprojecteur;
+import ajcfinalback.model.Ordinateur;
+import ajcfinalback.model.Salle;
 import ajcfinalback.model.Videoprojecteur;
 
 @Service
@@ -23,6 +25,14 @@ public class VideoprojecteurService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public Videoprojecteur getByMarque(String marque) {
+		return daoVideoprojecteur.findByMarque(marque);
+	}
+
+	public Videoprojecteur getBySalle(Salle salle) {
+		return daoVideoprojecteur.findBySalle(salle);
 	}
 
 	public List<Videoprojecteur> getAll() {

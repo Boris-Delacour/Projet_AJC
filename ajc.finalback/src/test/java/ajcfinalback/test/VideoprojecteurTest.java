@@ -20,6 +20,7 @@ public class VideoprojecteurTest {
 	
 	@Test
 	void testInsertUpdate() {
+//		Salle s = new Salle(1, 20, false, null, null);
 		Videoprojecteur t = new Videoprojecteur("Toshiba", true, null);
 		Videoprojecteur t2 = new Videoprojecteur("Sony", true, null);
 		
@@ -27,6 +28,10 @@ public class VideoprojecteurTest {
 		vpSrv.insert(t2);
 		
 		t = vpSrv.getById(t.getId());
+		
+		t = vpSrv.getByMarque(t.getMarque());
+		
+//		t = vpSrv.getBySalle(t.getSalle());
 		
 		t.setFonctionnel(false);;
 		
