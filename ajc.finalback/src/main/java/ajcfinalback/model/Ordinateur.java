@@ -20,6 +20,13 @@ public class Ordinateur {
 	
 	public Ordinateur() {}
 
+	public Ordinateur(String marque, boolean fonctionnel, String os, Stagiaire stagiaire) {
+		this.marque = marque;
+		this.fonctionnel = fonctionnel;
+		this.os = os;
+		this.stagiaire = stagiaire;
+	}
+
 	public Ordinateur(Integer id, String marque, boolean fonctionnel, String os, Stagiaire stagiaire) {
 		this.id = id;
 		this.marque = marque;

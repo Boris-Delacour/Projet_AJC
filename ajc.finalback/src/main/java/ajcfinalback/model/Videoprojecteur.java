@@ -19,6 +19,12 @@ public class Videoprojecteur {
 	
 	public Videoprojecteur() {}
 
+	public Videoprojecteur(String marque, boolean fonctionnel, Salle salle) {
+		this.marque = marque;
+		this.fonctionnel = fonctionnel;
+		this.salle = salle;
+	}
+
 	public Videoprojecteur(Integer id, String marque, boolean fonctionnel, Salle salle) {
 		this.id = id;
 		this.marque = marque;
