@@ -48,15 +48,15 @@ public class StagiaireService {
 	{
 		if(stagiaire.getId()==null) 
 		{
-			throw new RuntimeException("Impossible d'update une stagiaire sans id");
+			throw new RuntimeException("Impossible d'update une stagiaireService sans id");
 		}
 		if(stagiaire.getFormation()==null) 
 		{
-			throw new RuntimeException("Impossible d'update un stagiaire sans une formation");
+			throw new RuntimeException("Impossible d'update un stagiaireService sans une formation");
 		}
 		if(stagiaire.getFormation().getId()==null) 
 		{
-			throw new RuntimeException("Impossible d'update un stagiaire avec une formation sans id");
+			throw new RuntimeException("Impossible d'update un stagiaireService avec une formation sans id");
 		}
 		return daoStagiaire.save(stagiaire);
 	}
@@ -65,7 +65,7 @@ public class StagiaireService {
 	{
 		if(id==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une stagiaire sans id ???");
+			throw new RuntimeException("Impossible de supprimer une stagiaireService sans id ???");
 		}
 		daoStagiaire.deleteById(id);
 	}
@@ -74,7 +74,7 @@ public class StagiaireService {
 	{
 		if(stagiaire.getId()==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une stagiaire sans id ???");
+			throw new RuntimeException("Impossible de supprimer une stagiaireService sans id ???");
 		}
 		deleteById(stagiaire.getId());
 	}

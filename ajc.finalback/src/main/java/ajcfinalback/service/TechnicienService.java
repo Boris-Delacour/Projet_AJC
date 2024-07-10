@@ -18,7 +18,7 @@ public class TechnicienService {
 	{
 		if(id==null) 
 		{
-			throw new RuntimeException("Impossible de find un stagiaire sans id ???");
+			throw new RuntimeException("Impossible de find un technicienService sans id ???");
 		}
 		Optional<Technicien> opt = daoTechnicien.findById(id);
 		if(opt.isPresent()) 
@@ -52,7 +52,7 @@ public class TechnicienService {
 	{
 		if(technicien.getId()==null) 
 		{
-			throw new RuntimeException("Impossible d'update une technicien sans id");
+			throw new RuntimeException("Impossible d'update une technicienService sans id");
 		}
 		return daoTechnicien.save(technicien);
 	}
@@ -61,7 +61,7 @@ public class TechnicienService {
 	{
 		if(id==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une technicien sans id ???");
+			throw new RuntimeException("Impossible de supprimer une technicienService sans id ???");
 		}
 		daoTechnicien.deleteById(id);
 	}
@@ -70,7 +70,7 @@ public class TechnicienService {
 	{
 		if(technicien.getId()==null) 
 		{
-			throw new RuntimeException("Impossible de supprimer une technicien sans id ???");
+			throw new RuntimeException("Impossible de supprimer une technicienService sans id ???");
 		}
 		deleteById(technicien.getId());
 	}

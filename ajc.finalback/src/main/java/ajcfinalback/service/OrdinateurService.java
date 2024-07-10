@@ -17,7 +17,7 @@ public class OrdinateurService {
 
 	public Ordinateur getById(Integer id) {
 		if (id == null) {
-			throw new RuntimeException("Impossible de find un stagiaire sans id ???");
+			throw new RuntimeException("Impossible de find un ordinateur sans id ???");
 		}
 		Optional<Ordinateur> opt = daoOrdinateur.findById(id);
 		if (opt.isPresent()) {
