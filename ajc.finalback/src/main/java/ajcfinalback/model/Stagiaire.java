@@ -1,16 +1,30 @@
 package ajcfinalback.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="stagiaire")
 public class Stagiaire {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String login;
 	private String password;
-	
+	@ManyToOne
+	@JoinColumn(name="formation")
 	private Formation formation;
-	
+	@OneToOne(mappedBy = "stagiaire")
 	private Ordinateur ordinateur;
 	
 	public Stagiaire() {
