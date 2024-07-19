@@ -1,10 +1,10 @@
 package com.example.demo.dto.response;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
-import com.example.demo.model.Formation;
 import com.example.demo.model.Gestionnaire;
 
 public class GestionnaireResponse {
@@ -15,13 +15,21 @@ public class GestionnaireResponse {
 	private String email;
 	private String login;
 	private String password;
-	private List<Formation> formations;
+
+	private List<FormationResponse> formations;
     
     public GestionnaireResponse() {
     }
 
-    public GestionnaireResponse(Gestionnaire gestionnaire) {
-        BeanUtils.copyProperties(gestionnaire, this);
+    public GestionnaireResponse(Gestionnaire gestionnaire, boolean bool) {
+        BeanUtils.copyProperties(gestionnaire, this, "formations");
+        if (bool) {
+            if (gestionnaire.getFormations() != null) {
+				this.setFormations(gestionnaire.getFormations().stream()
+						.map(formation -> new FormationResponse(formation, false))
+						.collect(Collectors.toList()));
+			}
+		}
     }
 
     public Integer getId() {
@@ -72,11 +80,11 @@ public class GestionnaireResponse {
         this.password = password;
     }
 
-    public List<Formation> getFormations() {
+    public List<FormationResponse> getFormations() {
         return formations;
     }
 
-    public void setFormations(List<Formation> formations) {
+    public void setFormations(List<FormationResponse> formations) {
         this.formations = formations;
     }
 

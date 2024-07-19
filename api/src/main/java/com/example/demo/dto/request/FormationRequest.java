@@ -2,8 +2,6 @@ package com.example.demo.dto.request;
 
 import java.time.LocalDate;
 
-import com.example.demo.model.Gestionnaire;
-
 public class FormationRequest {
 
 	private String nom;

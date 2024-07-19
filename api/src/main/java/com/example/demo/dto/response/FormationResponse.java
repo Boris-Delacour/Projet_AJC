@@ -2,14 +2,11 @@ package com.example.demo.dto.response;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
-import com.example.demo.model.Formateur;
 import com.example.demo.model.Formation;
-import com.example.demo.model.Gestionnaire;
-import com.example.demo.model.MatiereParFormation;
-import com.example.demo.model.Stagiaire;
 
 public class FormationResponse {
 
@@ -17,16 +14,34 @@ public class FormationResponse {
 	private String nom;
 	private LocalDate dateStart;
 
-    private Gestionnaire gestionnaire;
-    private List<Stagiaire> stagiaires;
-    private List<MatiereParFormation> matiereParFormation;
-    private Formateur formateur;
+    private GestionnaireResponse gestionnaire;
+    private List<StagiaireResponse> stagiaires;
+    private List<MatiereParFormationResponse> matiereParFormations;
+    private FormateurResponse formateur;
 
     public FormationResponse() {
     }
 
-    public FormationResponse(Formation formation) {
-        BeanUtils.copyProperties(formation, this);
+    public FormationResponse(Formation formation, boolean bool) {
+        BeanUtils.copyProperties(formation, this, "gestionnaire", "stagiaires", "matieresParFormations", "formateur");
+        if (bool) {
+            if (formation.getGestionnaire() != null) {
+				this.setGestionnaire(new GestionnaireResponse(formation.getGestionnaire(),false));
+			}
+			if (formation.getStagiaires() != null) {
+				this.setStagiaires(formation.getStagiaires().stream()
+						.map(stagiaire -> new StagiaireResponse(stagiaire, false))
+						.collect(Collectors.toList()));
+			}
+            if (formation.getMatiereParFormation() != null) {
+				this.setMatiereParFormations(formation.getMatiereParFormation().stream()
+						.map(matiereParFormations -> new MatiereParFormationResponse(matiereParFormations, false))
+						.collect(Collectors.toList()));
+			}
+            if (formation.getFormateur() != null) {
+				this.setFormateur(new FormateurResponse(formation.getFormateur(),false));
+			}
+		}
     }
 
     public Integer getId() {
@@ -36,7 +51,7 @@ public class FormationResponse {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getNom() {
         return nom;
     }
@@ -53,37 +68,36 @@ public class FormationResponse {
         this.dateStart = dateStart;
     }
 
-    public Gestionnaire getGestionnaire() {
+    public GestionnaireResponse getGestionnaire() {
         return gestionnaire;
     }
 
-    public void setGestionnaire(Gestionnaire gestionnaire) {
+    public void setGestionnaire(GestionnaireResponse gestionnaire) {
         this.gestionnaire = gestionnaire;
     }
 
-    public List<Stagiaire> getStagiaires() {
+    public List<StagiaireResponse> getStagiaires() {
         return stagiaires;
     }
 
-    public void setStagiaires(List<Stagiaire> stagiaires) {
+    public void setStagiaires(List<StagiaireResponse> stagiaires) {
         this.stagiaires = stagiaires;
     }
 
-    public List<MatiereParFormation> getMatiereParFormation() {
-        return matiereParFormation;
+    public List<MatiereParFormationResponse> getMatiereParFormations() {
+        return matiereParFormations;
     }
 
-    public void setMatiereParFormation(List<MatiereParFormation> matiereParFormation) {
-        this.matiereParFormation = matiereParFormation;
+    public void setMatiereParFormations(List<MatiereParFormationResponse> matiereParFormations) {
+        this.matiereParFormations = matiereParFormations;
     }
 
-    public Formateur getFormateur() {
+    public FormateurResponse getFormateur() {
         return formateur;
     }
 
-    public void setFormateur(Formateur formateur) {
+    public void setFormateur(FormateurResponse formateur) {
         this.formateur = formateur;
     }
-
     
 }

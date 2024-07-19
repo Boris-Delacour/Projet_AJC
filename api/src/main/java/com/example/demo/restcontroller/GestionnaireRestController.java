@@ -39,13 +39,13 @@ public class GestionnaireRestController {
     @GetMapping("/{id}")
 	// @JsonView(CustomJsonViews.StagaireWithFiliere.class)
 	public GestionnaireResponse getById(@PathVariable Integer id) {
-		return new GestionnaireResponse(gSrv.getById(id));
+		return new GestionnaireResponse(gSrv.getById(id), false);
 	}
 
     @GetMapping("")
     // @JsonView(CustomJsonViews.Common.class)
     public List<GestionnaireResponse> getAll() {
-        return gSrv.getAll().stream().map(gestionnaire -> new GestionnaireResponse(gestionnaire))
+        return gSrv.getAll().stream().map(gestionnaire -> new GestionnaireResponse(gestionnaire, false))
                             .collect(Collectors.toList());
     }
 
@@ -58,7 +58,7 @@ public class GestionnaireRestController {
         }
         Gestionnaire gestionnaire = new Gestionnaire();
         BeanUtils.copyProperties(gr, gestionnaire);
-        return new GestionnaireResponse(gSrv.insert(gestionnaire));
+        return new GestionnaireResponse(gSrv.insert(gestionnaire), false);
     }
 
     @PutMapping("/{id}")
@@ -69,7 +69,7 @@ public class GestionnaireRestController {
         }
         Gestionnaire gestionnaire = gSrv.getById(id);
         BeanUtils.copyProperties(gr, gestionnaire);
-        return new GestionnaireResponse(gSrv.update(gestionnaire));
+        return new GestionnaireResponse(gSrv.update(gestionnaire), false);
     }
 
     @DeleteMapping("/{id}")
