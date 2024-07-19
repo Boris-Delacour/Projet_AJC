@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
+import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.model.Videoprojecteur;
 import com.example.demo.model.Salle;
 import com.example.demo.service.VideoprojecteurService;
@@ -60,6 +61,22 @@ public class VideoprojecteurRestController {
     // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
     public List<VideoprojecteurResponse> getByMarque(@PathVariable String marque) {
         return videoprojecteurSrv.getByMarque(marque).stream()
+                .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/fonctionnel")
+    // @JsonView(CustomJsonViews.VideoprojecteurWithStagiaire.class)
+    public List<VideoprojecteurResponse> getByFonctionnel() {
+        return videoprojecteurSrv.getByFonctionnelTrue().stream()
+                .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/non-fontionnel")
+    // @JsonView(CustomJsonViews.VideoprojecteurWithStagiaire.class)
+    public List<VideoprojecteurResponse> getByNonFonctionnel() {
+        return videoprojecteurSrv.getByFonctionnelFalse().stream()
                 .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
                 .collect(Collectors.toList());
     }

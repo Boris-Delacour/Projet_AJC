@@ -13,6 +13,10 @@ public interface IDAOOrdinateur extends JpaRepository<Ordinateur, Integer> {
 
 	public List<Ordinateur> findByOs(String os);
 
+	public List<Ordinateur> findByFonctionnelTrue();
+
+	public List<Ordinateur> findByFonctionnelFalse();
+
 	public Ordinateur findByStagiaire(Stagiaire stagiaire);
 
 }

@@ -70,6 +70,20 @@ public class OrdinateurRestController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/fonctionnel")
+    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    public List<OrdinateurResponse> getByFonctionnel() {
+        return ordinateurSrv.getByFonctionnelTrue().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/non-fontionnel")
+    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    public List<OrdinateurResponse> getByNonFonctionnel() {
+        return ordinateurSrv.getByFonctionnelFalse().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/stagiaire/{id}")
     // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
     public OrdinateurResponse getByStagiaire(@PathVariable Integer id) {

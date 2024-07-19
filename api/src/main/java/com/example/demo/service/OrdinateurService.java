@@ -34,6 +34,14 @@ public class OrdinateurService {
 		return daoOrdinateur.findByOs(os);
 	}
 
+	public List<Ordinateur> getByFonctionnelTrue() {
+		return daoOrdinateur.findByFonctionnelTrue();
+	}
+
+	public List<Ordinateur> getByFonctionnelFalse() {
+		return daoOrdinateur.findByFonctionnelFalse();
+	}
+
 	public Ordinateur getByStagiaire(Stagiaire stagiaire) {
 		return daoOrdinateur.findByStagiaire(stagiaire);
 	}
