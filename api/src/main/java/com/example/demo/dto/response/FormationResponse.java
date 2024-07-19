@@ -6,17 +6,26 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Formation;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class FormationResponse {
 
+	@JsonView(CustomJsonViews.Common.class)
     private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String nom;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateStart;
 
+	@JsonView(CustomJsonViews.FormationWithGestionnaire.class)
     private GestionnaireResponse gestionnaire;
+	@JsonView(CustomJsonViews.FormationWithStagiaires.class)
     private List<StagiaireResponse> stagiaires;
+	@JsonView(CustomJsonViews.FormationWithMatieres.class)
     private List<MatiereParFormationResponse> matiereParFormations;
+	@JsonView(CustomJsonViews.FormationWithFormateur.class)
     private FormateurResponse formateur;
 
     public FormationResponse() {

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.dto.response.VideoprojecteurResponse;
@@ -44,7 +45,7 @@ public class VideoprojecteurRestController {
     private SalleService salleSrv;
 
     @GetMapping("")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les videoprojecteurs")
     public List<VideoprojecteurResponse> getAll() {
         return videoprojecteurSrv.getAll().stream().map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
@@ -52,13 +53,13 @@ public class VideoprojecteurRestController {
     }
 
     @GetMapping("/{id}")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.Common.class)
     public VideoprojecteurResponse getById(@PathVariable Integer id) {
         return new VideoprojecteurResponse(videoprojecteurSrv.getById(id));
     }
 
-    @GetMapping("/marque/{marque}")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @GetMapping("/{marque}")
+    @JsonView(CustomJsonViews.Common.class)
     public List<VideoprojecteurResponse> getByMarque(@PathVariable String marque) {
         return videoprojecteurSrv.getByMarque(marque).stream()
                 .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
@@ -66,7 +67,7 @@ public class VideoprojecteurRestController {
     }
 
     @GetMapping("/fonctionnel")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public List<VideoprojecteurResponse> getByFonctionnel() {
         return videoprojecteurSrv.getByFonctionnelTrue().stream()
                 .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
@@ -74,7 +75,7 @@ public class VideoprojecteurRestController {
     }
 
     @GetMapping("/non-fontionnel")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public List<VideoprojecteurResponse> getByNonFonctionnel() {
         return videoprojecteurSrv.getByFonctionnelFalse().stream()
                 .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
@@ -82,7 +83,7 @@ public class VideoprojecteurRestController {
     }
 
     @GetMapping("/salle/{id}")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.Common.class)
     public VideoprojecteurResponse getBySalle(@PathVariable Integer id) {
         Salle salle = salleSrv.getById(id);
         return new VideoprojecteurResponse(videoprojecteurSrv.getBySalle(salle));
@@ -90,7 +91,7 @@ public class VideoprojecteurRestController {
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.Common.class)
     public VideoprojecteurResponse create(@Valid @RequestBody VideoprojecteurRequest videoprojecteurRequest,
             BindingResult br) {
         if (br.hasErrors()) {
@@ -103,7 +104,7 @@ public class VideoprojecteurRestController {
     }
 
     @PutMapping("/{id}")
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.Common.class)
     public VideoprojecteurResponse update(@Valid @RequestBody VideoprojecteurRequest videoprojecteurRequest,
             BindingResult br,
             @PathVariable Integer id) {

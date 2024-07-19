@@ -5,15 +5,23 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Gestionnaire;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class GestionnaireResponse {
 
+	@JsonView(CustomJsonViews.Common.class)
     private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private String lastName;
+	@JsonView(CustomJsonViews.Common.class)
 	private String firstName;
+	@JsonView(CustomJsonViews.Common.class)
 	private String email;
+	@JsonView(CustomJsonViews.Common.class)
 	private String login;
+	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
 	private List<FormationResponse> formations;

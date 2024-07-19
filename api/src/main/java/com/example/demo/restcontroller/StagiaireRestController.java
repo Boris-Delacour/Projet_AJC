@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.StagiaireRequest;
 import com.example.demo.dto.response.StagiaireResponse;
 import com.example.demo.model.Stagiaire;
@@ -39,18 +40,20 @@ public class StagiaireRestController {
 	private FormationService formationSrv;
 
 	@GetMapping("/{id}")
-	// @JsonView(CustomJsonViews.StagiaireWithFormateur.class)
+	@JsonView(CustomJsonViews.Common.class)
 	public StagiaireResponse getById(@PathVariable Integer id) {
 		return new StagiaireResponse(stagiaireSrv.getById(id));
 	}
 
 	@GetMapping("")
+	@JsonView(CustomJsonViews.Common.class)
 	public List<StagiaireResponse> getAll() {
 		return stagiaireSrv.getAll().stream().map(model -> new StagiaireResponse(model)).collect(Collectors.toList());
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@JsonView(CustomJsonViews.Common.class)
 	public StagiaireResponse create(@Valid @RequestBody StagiaireRequest stagiaireRequest, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -62,6 +65,7 @@ public class StagiaireRestController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
 	public StagiaireResponse update(@Valid @RequestBody StagiaireRequest stagiaireRequest, BindingResult br,
 			@PathVariable Integer id) {
 		if (br.hasErrors()) {

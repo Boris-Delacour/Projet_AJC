@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.OrdinateurRequest;
 import com.example.demo.dto.response.OrdinateurResponse;
 import com.example.demo.model.Ordinateur;
@@ -43,7 +44,7 @@ public class OrdinateurRestController {
     private StagiaireService stagSrv;
 
     @GetMapping("")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les ordinateurs")
     public List<OrdinateurResponse> getAll() {
         return ordinateurSrv.getAll().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
@@ -51,41 +52,41 @@ public class OrdinateurRestController {
     }
 
     @GetMapping("/{id}")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public OrdinateurResponse getById(@PathVariable Integer id) {
         return new OrdinateurResponse(ordinateurSrv.getById(id));
     }
 
-    @GetMapping("/marque/{marque}")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @GetMapping("/{marque}")
+    @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByMarque(@PathVariable String marque) {
         return ordinateurSrv.getByMarque(marque).stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/os/{os}")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @GetMapping("/{os}")
+    @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByOs(@PathVariable String os) {
         return ordinateurSrv.getByOs(os).stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/fonctionnel")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByFonctionnel() {
         return ordinateurSrv.getByFonctionnelTrue().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/non-fontionnel")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByNonFonctionnel() {
         return ordinateurSrv.getByFonctionnelFalse().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/stagiaire/{id}")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public OrdinateurResponse getByStagiaire(@PathVariable Integer id) {
         Stagiaire stagiaire = stagSrv.getById(id);
         return new OrdinateurResponse(ordinateurSrv.getByStagiaire(stagiaire));
@@ -93,7 +94,7 @@ public class OrdinateurRestController {
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public OrdinateurResponse create(@Valid @RequestBody OrdinateurRequest ordinateurRequest, BindingResult br) {
         if (br.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -106,7 +107,7 @@ public class OrdinateurRestController {
     }
 
     @PutMapping("/{id}")
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.Common.class)
     public OrdinateurResponse update(@Valid @RequestBody OrdinateurRequest ordinateurRequest, BindingResult br,
             @PathVariable Integer id) {
         if (br.hasErrors()) {

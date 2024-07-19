@@ -5,21 +5,22 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Salle;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class SalleResponse {
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer id;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer numero;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer nbPlace;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private boolean occuper;
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
     private VideoprojecteurResponse videoprojecteur;
-    // @JsonView(CustomJsonViews.SalleWithAll.class)
+    @JsonView(CustomJsonViews.SalleWithAll.class)
     private List<MatiereParFormationResponse> matiereParFormation;
 
     public SalleResponse() {

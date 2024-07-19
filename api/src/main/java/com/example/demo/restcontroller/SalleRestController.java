@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.SalleRequest;
 import com.example.demo.dto.response.SalleResponse;
 import com.example.demo.model.Salle;
@@ -42,7 +43,7 @@ public class SalleRestController {
     private VideoprojecteurService VideoprojecteurSrv;
 
     @GetMapping("")
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les salles")
     public List<SalleResponse> getAll() {
         return salleSrv.getAll().stream().map(salle -> new SalleResponse(salle))
@@ -50,13 +51,13 @@ public class SalleRestController {
     }
 
     @GetMapping("/{id}")
-    // @JsonView(CustomJsonViews.SalleWithAll.class)
+    @JsonView(CustomJsonViews.Common.class)
     public SalleResponse getById(@PathVariable Integer id) {
         return new SalleResponse(salleSrv.getById(id));
     }
 
     @GetMapping("/occupees")
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les salles occupées")
     public List<SalleResponse> getByOccupe() {
         return salleSrv.getByOccuperTrue().stream().map(salle -> new SalleResponse(salle))
@@ -64,7 +65,7 @@ public class SalleRestController {
     }
 
     @GetMapping("/libres")
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les salles libres")
     public List<SalleResponse> getByLibre() {
         return salleSrv.getByOccuperFalse().stream().map(salle -> new SalleResponse(salle))
@@ -73,7 +74,7 @@ public class SalleRestController {
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.Common.class)
     public SalleResponse create(@Valid @RequestBody SalleRequest salleRequest,
             BindingResult br) {
         if (br.hasErrors()) {
@@ -86,7 +87,7 @@ public class SalleRestController {
     }
 
     @PutMapping("/{id}")
-    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @JsonView(CustomJsonViews.Common.class)
     public SalleResponse update(@Valid @RequestBody SalleRequest salleRequest,
             BindingResult br,
             @PathVariable Integer id) {

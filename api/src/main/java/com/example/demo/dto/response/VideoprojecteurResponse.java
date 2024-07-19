@@ -2,17 +2,18 @@ package com.example.demo.dto.response;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Videoprojecteur;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class VideoprojecteurResponse {
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer id;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private String marque;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private boolean fonctionnel;
-    // @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
     private SalleResponse salle;
 
     public VideoprojecteurResponse() {

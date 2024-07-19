@@ -2,22 +2,20 @@ package com.example.demo.dto.response;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Ordinateur;
-import com.example.demo.model.Stagiaire;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import jakarta.persistence.OneToOne;
-
 public class OrdinateurResponse {
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer id;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private String marque;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private boolean fonctionnel;
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private String os;
-    // @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
     private StagiaireResponse stagiaire;
 
     public OrdinateurResponse() {

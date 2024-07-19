@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.FormationRequest;
 import com.example.demo.dto.response.FormationResponse;
 import com.example.demo.model.Formation;
 import com.example.demo.service.FormateurService;
 import com.example.demo.service.FormationService;
 import com.example.demo.service.GestionnaireService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
@@ -44,13 +46,13 @@ public class FormationRestController {
 
 
     @GetMapping("/{id}")
-	// @JsonView(CustomJsonViews.StagaireWithFiliere.class)
+	@JsonView(CustomJsonViews.Common.class)
 	public FormationResponse getById(@PathVariable Integer id) {
 		return new FormationResponse(foSrv.getById(id), false);
 	}
 
     @GetMapping("")
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     public List<FormationResponse> getAll() {
         return foSrv.getAll().stream().map(formation -> new FormationResponse(formation, false))
                             .collect(Collectors.toList());
@@ -58,7 +60,7 @@ public class FormationRestController {
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     public FormationResponse create(@Valid @RequestBody FormationRequest fr, BindingResult br)  {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -73,7 +75,7 @@ public class FormationRestController {
     }
 
     @PutMapping("/{id}")
-    // @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     public FormationResponse update(@Valid @RequestBody FormationRequest fr, BindingResult br, @PathVariable Integer id) {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

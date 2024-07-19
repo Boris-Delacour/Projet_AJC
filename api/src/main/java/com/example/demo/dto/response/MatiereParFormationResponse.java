@@ -4,11 +4,16 @@ import java.time.LocalDate;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.MatiereParFormation;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class MatiereParFormationResponse {
+	@JsonView(CustomJsonViews.Common.class)
     private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate start;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate end;
     
 
