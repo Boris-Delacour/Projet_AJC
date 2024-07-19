@@ -24,6 +24,8 @@ public class FormateurResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
+	private List<IndisponibiliteResponse> indisponibilites;
+
 	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
 	private List<MatiereResponse> matieres;
     
@@ -41,6 +43,11 @@ public class FormateurResponse {
 			if (formateur.getFormateurMatieres() != null) {
 				this.setMatieres(formateur.getFormateurMatieres().stream()
 						.map(matiere -> new MatiereResponse(matiere.getMatiere()))
+						.collect(Collectors.toList()));
+			}
+			if(formateur.getIndisponibilites() != null) {
+				this.setIndisponibilites(formateur.getIndisponibilites().stream()
+						.map(indisponibilite -> new IndisponibiliteResponse(indisponibilite))
 						.collect(Collectors.toList()));
 			}
 		}
@@ -94,6 +101,14 @@ public class FormateurResponse {
         this.password = password;
     }
 
+	public List<IndisponibiliteResponse> getIndisponibilites() {
+		return indisponibilites;
+	}
+
+	public void setIndisponibilites(List<IndisponibiliteResponse> indisponibilites) {
+		this.indisponibilites = indisponibilites;
+	}
+
 	public List<MatiereResponse> getMatieres() {
 		return matieres;
 	}
@@ -101,7 +116,4 @@ public class FormateurResponse {
 	public void setMatieres(List<MatiereResponse> matieres) {
 		this.matieres = matieres;
 	}
-
-    
-
 }

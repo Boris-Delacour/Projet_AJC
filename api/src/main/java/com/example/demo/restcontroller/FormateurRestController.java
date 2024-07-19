@@ -59,6 +59,12 @@ public class FormateurRestController {
 		return new FormateurResponse(fSrv.getWithMatieres(id), true);
 	}
 
+	@GetMapping("/{id}/indisponibilites")
+	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
+	public FormateurResponse getByFormateurWithIndisponibilites(@PathVariable Integer id) {
+		return new FormateurResponse(fSrv.getWithMatieres(id), true);
+	}
+
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)

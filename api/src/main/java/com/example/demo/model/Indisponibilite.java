@@ -27,6 +27,13 @@ public class Indisponibilite {
 	public Indisponibilite() {
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public LocalDate getStart() {
 		return start;
 	}
@@ -50,5 +57,4 @@ public class Indisponibilite {
 	public void setFormateur(Formateur formateur) {
 		this.formateur = formateur;
 	}
-
 }
