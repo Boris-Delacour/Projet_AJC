@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOFormateur;
+import com.example.demo.dao.IDAOFormateurMatiere;
+import com.example.demo.dao.IDAOIndisponibilite;
 import com.example.demo.model.Formateur;
 
 @Service
@@ -14,6 +16,12 @@ public class FormateurService {
 
 	@Autowired
 	IDAOFormateur daoFormateur;
+
+	@Autowired 
+	IDAOFormateurMatiere daoFormateurMatiere;
+
+	@Autowired 
+	IDAOIndisponibilite daoIndisponibilite;
 
 	public Formateur getById(Integer id) {
 		if (id == null) {
@@ -24,6 +32,20 @@ public class FormateurService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public Formateur getWithMatieres(Integer id) {
+		Formateur res = this.getById(id);
+		res.setFormateurMatieres(daoFormateurMatiere.findByFormateur(res));
+
+		return res;
+	}
+
+	public Formateur getWithIndisponibilite(Integer id) {
+		Formateur res = this.getById(id);
+		res.setIndisponibilites(daoIndisponibilite.findByFormateur(res));
+
+		return res;
 	}
 
 	public List<Formateur> getAll() {

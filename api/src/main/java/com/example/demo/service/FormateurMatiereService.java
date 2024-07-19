@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOFormateurMatiere;
+import com.example.demo.model.Formateur;
 import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.FormateurMatiereKey;
+import com.example.demo.model.Matiere;
 
 @Service
 public class FormateurMatiereService {
@@ -25,6 +27,22 @@ public class FormateurMatiereService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public List<FormateurMatiere> getByFormateur(Formateur formateur) {
+		if(formateur.getId() == null) {
+			throw new RuntimeException("Impossible de find une liste de formateurMatiere via formateur_id sans l'id du formateur");
+		}
+
+		return daoFormateurMatiere.findByFormateur(formateur);
+	}
+
+	public List<FormateurMatiere> getByMatieres(Matiere matiere) {
+		if(matiere.getId() == null) {
+			throw new RuntimeException("Impossible de find une liste de formateurMatiere via matiere_id sans l'id de la matiere");
+		}
+
+		return daoFormateurMatiere.findByMatiere(matiere);
 	}
 
 	public List<FormateurMatiere> getAll() {
