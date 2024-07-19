@@ -15,12 +15,15 @@ public class FormateurResponse {
 	private String email;
 	private String login;
 	private String password;
+	
+	//
     
     public FormateurResponse() {
 
     }
+    
 
-    public FormateurResponse(Formateur formateur) {
+    public FormateurResponse(Formateur formateur, boolean bool) {
         BeanUtils.copyProperties(formateur, this);
     }
 

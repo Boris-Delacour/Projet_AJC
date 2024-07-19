@@ -7,8 +7,47 @@ public class FormateurRequest {
 	private String email;
 	private String login;
 	private String password;
-    
-    public FormateurRequest() {
+	
+	private Integer idMatiere;
+	private Integer idFormation;
+	private Integer idFormateur;
+	private Integer idSalle;
+	
+	
+	
+    public Integer getIdMatiere() {
+		return idMatiere;
+	}
+
+	public void setIdMatiere(Integer idMatiere) {
+		this.idMatiere = idMatiere;
+	}
+
+	public Integer getIdFormation() {
+		return idFormation;
+	}
+
+	public void setIdFormation(Integer idFormation) {
+		this.idFormation = idFormation;
+	}
+
+	public Integer getIdFormateur() {
+		return idFormateur;
+	}
+
+	public void setIdFormateur(Integer idFormateur) {
+		this.idFormateur = idFormateur;
+	}
+
+	public Integer getIdSalle() {
+		return idSalle;
+	}
+
+	public void setIdSalle(Integer idSalle) {
+		this.idSalle = idSalle;
+	}
+
+	public FormateurRequest() {
         
     }
 
