@@ -22,7 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.request.FormationRequest;
 import com.example.demo.dto.response.FormationResponse;
 import com.example.demo.model.Formation;
+import com.example.demo.service.FormateurService;
 import com.example.demo.service.FormationService;
+import com.example.demo.service.GestionnaireService;
 
 import jakarta.validation.Valid;
 
@@ -33,14 +35,26 @@ import jakarta.validation.Valid;
 public class FormationRestController {
 
     @Autowired
-        private FormationService foSrv;
+    private GestionnaireService gSrv;
+
+    @Autowired
+    private FormationService foSrv;
+    @Autowired
+    private FormateurService fSrv;
+
+
+    @GetMapping("/{id}")
+	// @JsonView(CustomJsonViews.StagaireWithFiliere.class)
+	public FormationResponse getById(@PathVariable Integer id) {
+		return new FormationResponse(foSrv.getById(id), false);
+	}
 
     @GetMapping("")
-        // @JsonView(CustomJsonViews.Common.class)
-        public List<FormationResponse> getAll() {
-            return foSrv.getAll().stream().map(formation -> new FormationResponse(formation))
-                                .collect(Collectors.toList());
-        }
+    // @JsonView(CustomJsonViews.Common.class)
+    public List<FormationResponse> getAll() {
+        return foSrv.getAll().stream().map(formation -> new FormationResponse(formation, false))
+                            .collect(Collectors.toList());
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -51,7 +65,11 @@ public class FormationRestController {
         }
         Formation formation = new Formation();
         BeanUtils.copyProperties(fr, formation);
-        return new FormationResponse(foSrv.insert(formation));
+
+        formation.setGestionnaire(gSrv.getById(fr.getIdGestionnaire()));
+        formation.setFormateur(fSrv.getById(fr.getIdFormateur()));
+
+        return new FormationResponse(foSrv.insert(formation), false);
     }
 
     @PutMapping("/{id}")
@@ -62,7 +80,7 @@ public class FormationRestController {
         }
         Formation formation = foSrv.getById(id);
         BeanUtils.copyProperties(fr, formation);
-        return new FormationResponse(foSrv.update(formation));
+        return new FormationResponse(foSrv.update(formation), false);
     }
 
     @DeleteMapping("/{id}")
