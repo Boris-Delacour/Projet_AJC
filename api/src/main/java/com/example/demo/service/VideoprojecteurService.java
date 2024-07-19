@@ -26,7 +26,7 @@ public class VideoprojecteurService {
 		return null;
 	}
 
-	public Videoprojecteur getByMarque(String marque) {
+	public List<Videoprojecteur> getByMarque(String marque) {
 		return daoVideoprojecteur.findByMarque(marque);
 	}
 
