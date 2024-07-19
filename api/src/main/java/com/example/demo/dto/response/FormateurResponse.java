@@ -24,18 +24,27 @@ public class FormateurResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
+
 	private List<IndisponibiliteResponse> indisponibilites;
 
 	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
 	private List<MatiereResponse> matieres;
+
     
     public FormateurResponse() {
 
     }
+    
+
+
 
 	public FormateurResponse(Formateur formateur) {
         this(formateur, false);
     }
+  
+  
+    public FormateurResponse(Formateur formateur, boolean bool) {
+        BeanUtils.copyProperties(formateur, this);
 
     public FormateurResponse(Formateur formateur, Boolean bool) {
         BeanUtils.copyProperties(formateur, this, "formations, indisponibilites, formateurMatiere, matiereParFormation");
@@ -51,6 +60,7 @@ public class FormateurResponse {
 						.collect(Collectors.toList()));
 			}
 		}
+
     }
 
     public Integer getId() {

@@ -4,49 +4,105 @@ import java.time.LocalDate;
 
 import org.springframework.beans.BeanUtils;
 
-import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.MatiereParFormation;
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class MatiereParFormationResponse {
+	
 	@JsonView(CustomJsonViews.Common.class)
     private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate start;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate end;
-    
+	
+	private MatiereResponse matiere;
+	private FormationResponse formation;
+	private SalleResponse salle;
+	
+	private FormateurResponse formateur;
 
-    public MatiereParFormationResponse() {
-    }
+	public MatiereParFormationResponse() {
+	}
+  
+	
+	public MatiereParFormationResponse(MatiereParFormation matiereparformation) {
+		this(matiereparformation, true);
+	}
+	
+	public MatiereParFormationResponse(MatiereParFormation matiereparformation, boolean bool) {
+		BeanUtils.copyProperties(matiereparformation, this , "matiere","formation","salle","formateur");
+		if(bool) {
+			if(matiereparformation.getMatiere() != null) {
+				this.setMatiere(new MatiereResponse(matiereparformation.getMatiere(),false));
+				
+			}
+			if(matiereparformation.getFormation() != null) {
+				this.setFormation(new FormationResponse(matiereparformation.getFormation(),false));
+				
+			}
+			if(matiereparformation.getSalle() != null) {
+				this.setSalle(new SalleResponse(matiereparformation.getSalle(),false));
+				
+			}
+			if(matiereparformation.getFormateur() != null) {
+				this.setFormateur(new FormateurResponse(matiereparformation.getFormateur(),false));
+				
+			}
+			
+		}
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public LocalDate getStart() {
+		return start;
+	}
+	public void setStart(LocalDate start) {
+		this.start = start;
+	}
+	public LocalDate getEnd() {
+		return end;
+	}
+	public void setEnd(LocalDate end) {
+		this.end = end;
+	}
 
-    public MatiereParFormationResponse(MatiereParFormation matiereParFormation, boolean bool) {
-        BeanUtils.copyProperties(matiereParFormation, this);
-    }
+	public MatiereResponse getMatiere() {
+		return matiere;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setMatiere(MatiereResponse matiere) {
+		this.matiere = matiere;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public FormationResponse getFormation() {
+		return formation;
+	}
 
-    public LocalDate getStart() {
-        return start;
-    }
+	public void setFormation(FormationResponse formation) {
+		this.formation = formation;
+	}
 
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
+	public SalleResponse getSalle() {
+		return salle;
+	}
 
-    public LocalDate getEnd() {
-        return end;
-    }
+	public void setSalle(SalleResponse salle) {
+		this.salle = salle;
+	}
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
-    }
-    
-    
+	public FormateurResponse getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(FormateurResponse formateur) {
+		this.formateur = formateur;
+	}
+	
 }
