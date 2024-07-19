@@ -19,78 +19,75 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.demo.dto.request.FormateurRequest;
-import com.example.demo.dto.response.FormateurResponse;
 import com.example.demo.dto.jsonview.CustomJsonViews;
-import com.example.demo.model.Formateur;
+import com.example.demo.dto.request.FormationRequest;
+import com.example.demo.dto.response.FormationResponse;
+import com.example.demo.model.Formation;
 import com.example.demo.service.FormateurService;
+import com.example.demo.service.FormationService;
+import com.example.demo.service.GestionnaireService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
-
-
-
 @RestController
-@RequestMapping("/api/formateur")
+@RequestMapping("/api/formation")
 // @SecurityRequirement(name="basicAuth")
 @CrossOrigin(origins = "*")
-public class FormateurRestController {
+public class FormationRestController {
 
+    @Autowired
+    private GestionnaireService gSrv;
+
+    @Autowired
+    private FormationService foSrv;
     @Autowired
     private FormateurService fSrv;
 
+
+    @GetMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public FormationResponse getById(@PathVariable Integer id) {
+		return new FormationResponse(foSrv.getById(id), false);
+	}
+
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
-    public List<FormateurResponse> getAll() {
-        return fSrv.getAll().stream().map(formateur -> new FormateurResponse(formateur))
+    public List<FormationResponse> getAll() {
+        return foSrv.getAll().stream().map(formation -> new FormationResponse(formation, false))
                             .collect(Collectors.toList());
     }
-
-	@GetMapping("/{id}")
-	@JsonView(CustomJsonViews.Common.class)
-	public FormateurResponse getById(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getById(id));
-	}
-
-	@GetMapping("/{id}/matieres")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithMatieres(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
-
-	@GetMapping("/{id}/indisponibilites")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithIndisponibilites(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse create(@Valid @RequestBody FormateurRequest fr, BindingResult br)  {
+    public FormationResponse create(@Valid @RequestBody FormationRequest fr, BindingResult br)  {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Formateur formateur = new Formateur();
-        BeanUtils.copyProperties(fr, formateur);
-        return new FormateurResponse(fSrv.insert(formateur));
+        Formation formation = new Formation();
+        BeanUtils.copyProperties(fr, formation);
+
+        formation.setGestionnaire(gSrv.getById(fr.getIdGestionnaire()));
+        formation.setFormateur(fSrv.getById(fr.getIdFormateur()));
+
+        return new FormationResponse(foSrv.insert(formation), false);
     }
-    
+
     @PutMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse update(@Valid @RequestBody FormateurRequest fr, BindingResult br, @PathVariable Integer id) {
+    public FormationResponse update(@Valid @RequestBody FormationRequest fr, BindingResult br, @PathVariable Integer id) {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Formateur formateur = fSrv.getById(id);
-        BeanUtils.copyProperties(fr, formateur);
-        return new FormateurResponse(fSrv.update(formateur));
+        Formation formation = foSrv.getById(id);
+        BeanUtils.copyProperties(fr, formation);
+        return new FormationResponse(foSrv.update(formation), false);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id){
-        fSrv.deleteById(id);
+        foSrv.deleteById(id);
     }
 }

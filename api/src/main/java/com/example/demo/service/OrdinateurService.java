@@ -26,12 +26,20 @@ public class OrdinateurService {
 		return null;
 	}
 
-	public Ordinateur getByMarque(String marque) {
+	public List<Ordinateur> getByMarque(String marque) {
 		return daoOrdinateur.findByMarque(marque);
 	}
 
-	public Ordinateur getByOs(String os) {
+	public List<Ordinateur> getByOs(String os) {
 		return daoOrdinateur.findByOs(os);
+	}
+
+	public List<Ordinateur> getByFonctionnelTrue() {
+		return daoOrdinateur.findByFonctionnelTrue();
+	}
+
+	public List<Ordinateur> getByFonctionnelFalse() {
+		return daoOrdinateur.findByFonctionnelFalse();
 	}
 
 	public Ordinateur getByStagiaire(Stagiaire stagiaire) {

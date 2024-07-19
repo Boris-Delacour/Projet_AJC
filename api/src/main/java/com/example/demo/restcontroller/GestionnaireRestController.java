@@ -19,78 +19,64 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.demo.dto.request.FormateurRequest;
-import com.example.demo.dto.response.FormateurResponse;
 import com.example.demo.dto.jsonview.CustomJsonViews;
-import com.example.demo.model.Formateur;
-import com.example.demo.service.FormateurService;
+import com.example.demo.dto.request.GestionnaireRequest;
+import com.example.demo.dto.response.GestionnaireResponse;
+import com.example.demo.model.Gestionnaire;
+import com.example.demo.service.GestionnaireService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
-
-
-
 @RestController
-@RequestMapping("/api/formateur")
+@RequestMapping("/api/gestionnaire")
 // @SecurityRequirement(name="basicAuth")
 @CrossOrigin(origins = "*")
-public class FormateurRestController {
+public class GestionnaireRestController {
 
-    @Autowired
-    private FormateurService fSrv;
+	@Autowired
+    private GestionnaireService gSrv;
+
+
+    @GetMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public GestionnaireResponse getById(@PathVariable Integer id) {
+		return new GestionnaireResponse(gSrv.getById(id), false);
+	}
 
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
-    public List<FormateurResponse> getAll() {
-        return fSrv.getAll().stream().map(formateur -> new FormateurResponse(formateur))
+    public List<GestionnaireResponse> getAll() {
+        return gSrv.getAll().stream().map(gestionnaire -> new GestionnaireResponse(gestionnaire, false))
                             .collect(Collectors.toList());
     }
-
-	@GetMapping("/{id}")
-	@JsonView(CustomJsonViews.Common.class)
-	public FormateurResponse getById(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getById(id));
-	}
-
-	@GetMapping("/{id}/matieres")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithMatieres(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
-
-	@GetMapping("/{id}/indisponibilites")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithIndisponibilites(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse create(@Valid @RequestBody FormateurRequest fr, BindingResult br)  {
+    public GestionnaireResponse create(@Valid @RequestBody GestionnaireRequest gr, BindingResult br)  {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Formateur formateur = new Formateur();
-        BeanUtils.copyProperties(fr, formateur);
-        return new FormateurResponse(fSrv.insert(formateur));
+        Gestionnaire gestionnaire = new Gestionnaire();
+        BeanUtils.copyProperties(gr, gestionnaire);
+        return new GestionnaireResponse(gSrv.insert(gestionnaire), false);
     }
-    
+
     @PutMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse update(@Valid @RequestBody FormateurRequest fr, BindingResult br, @PathVariable Integer id) {
+    public GestionnaireResponse update(@Valid @RequestBody GestionnaireRequest gr, BindingResult br, @PathVariable Integer id) {
         if (br.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Formateur formateur = fSrv.getById(id);
-        BeanUtils.copyProperties(fr, formateur);
-        return new FormateurResponse(fSrv.update(formateur));
+        Gestionnaire gestionnaire = gSrv.getById(id);
+        BeanUtils.copyProperties(gr, gestionnaire);
+        return new GestionnaireResponse(gSrv.update(gestionnaire), false);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id){
-        fSrv.deleteById(id);
+        gSrv.deleteById(id);
     }
 }

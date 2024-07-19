@@ -5,11 +5,16 @@ import java.time.LocalDate;
 import org.springframework.beans.BeanUtils;
 
 import com.example.demo.model.MatiereParFormation;
+import com.example.demo.dto.jsonview.CustomJsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class MatiereParFormationResponse {
 	
-	private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
+    private Integer id;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate start;
+	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate end;
 	
 	private MatiereResponse matiere;
@@ -20,6 +25,7 @@ public class MatiereParFormationResponse {
 
 	public MatiereParFormationResponse() {
 	}
+  
 	
 	public MatiereParFormationResponse(MatiereParFormation matiereparformation) {
 		this(matiereparformation, true);
@@ -98,6 +104,5 @@ public class MatiereParFormationResponse {
 	public void setFormateur(FormateurResponse formateur) {
 		this.formateur = formateur;
 	}
-	
 	
 }

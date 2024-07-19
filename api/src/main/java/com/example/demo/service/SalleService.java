@@ -25,6 +25,14 @@ public class SalleService {
 		return null;
 	}
 
+	public List<Salle> getByOccuperTrue() {
+		return daoSalle.findByOccuperTrue();
+	}
+
+	public List<Salle> getByOccuperFalse() {
+		return daoSalle.findByOccuperFalse();
+	}
+
 	public List<Salle> getAll() {
 		return daoSalle.findAll();
 	}
