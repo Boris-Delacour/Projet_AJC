@@ -55,6 +55,22 @@ public class SalleRestController {
         return new SalleResponse(salleSrv.getById(id));
     }
 
+    @GetMapping("/occupees")
+    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @Operation(summary = "Tout les salles occupées")
+    public List<SalleResponse> getByOccupe() {
+        return salleSrv.getByOccuperTrue().stream().map(salle -> new SalleResponse(salle))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/libres")
+    // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    @Operation(summary = "Tout les salles libres")
+    public List<SalleResponse> getByLibre() {
+        return salleSrv.getByOccuperFalse().stream().map(salle -> new SalleResponse(salle))
+                .collect(Collectors.toList());
+    }
+
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     // @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
