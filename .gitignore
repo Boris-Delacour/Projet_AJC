@@ -7,3 +7,4 @@ target/
 bin/
 Servers/
 infos.properties
+application.yml
