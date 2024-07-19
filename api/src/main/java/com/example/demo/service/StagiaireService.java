@@ -43,12 +43,12 @@ public class StagiaireService {
 		if (stagiaire.getId() == null) {
 			throw new RuntimeException("Impossible d'update une stagiaireService sans id");
 		}
-		if (stagiaire.getFormation() == null) {
-			throw new RuntimeException("Impossible d'update un stagiaireService sans une formation");
-		}
-		if (stagiaire.getFormation().getId() == null) {
-			throw new RuntimeException("Impossible d'update un stagiaireService avec une formation sans id");
-		}
+//		if (stagiaire.getFormation() == null) {
+//			throw new RuntimeException("Impossible d'update un stagiaireService sans une formation");
+//		}
+//		if (stagiaire.getFormation().getId() == null) {
+//			throw new RuntimeException("Impossible d'update un stagiaireService avec une formation sans id");
+//		}
 		return daoStagiaire.save(stagiaire);
 	}
 

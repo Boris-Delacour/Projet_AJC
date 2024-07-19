@@ -13,16 +13,6 @@ public class StagiaireRequest {
 	public StagiaireRequest() {
 
 	}
-	
-	
-	public Integer getIdFormation() {
-		return idFormation;
-	}
-
-
-	public void setIdFormation(Integer idFormation) {
-		this.idFormation = idFormation;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -73,5 +63,13 @@ public class StagiaireRequest {
 		this.password = password;
 	}
 
+	public Integer getIdFormation() {
+		return idFormation;
+	}
+
+
+	public void setIdFormation(Integer idFormation) {
+		this.idFormation = idFormation;
+	}
 	
 }

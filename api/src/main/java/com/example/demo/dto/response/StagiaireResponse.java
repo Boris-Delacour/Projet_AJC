@@ -12,7 +12,7 @@ public class StagiaireResponse {
 	private String email;
 	private String login;
 	private String password;
-	private FormateurResponse formateur;
+	//private FormateurResponse formateur;
 	
 	public StagiaireResponse() {
 
@@ -74,13 +74,13 @@ public class StagiaireResponse {
 		this.password = password;
 	}
 
-	public FormateurResponse getFormateur() {
-		return formateur;
-	}
+//	public FormateurResponse getFormateur() {
+	//		return formateur;
+	//	}
 
-	public void setFormateur(FormateurResponse formateur) {
-		this.formateur = formateur;
-	}
+	//	public void setFormateur(FormateurResponse formateur) {
+	//		this.formateur = formateur;
+	//	}
 	
 	
 
