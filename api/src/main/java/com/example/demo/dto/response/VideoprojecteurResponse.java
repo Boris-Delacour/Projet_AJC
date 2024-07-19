@@ -3,10 +3,7 @@ package com.example.demo.dto.response;
 import org.springframework.beans.BeanUtils;
 
 import com.example.demo.model.Videoprojecteur;
-import com.example.demo.model.Salle;
 import com.fasterxml.jackson.annotation.JsonView;
-
-import jakarta.persistence.OneToOne;
 
 public class VideoprojecteurResponse {
     // @JsonView(CustomJsonViews.Common.class)
