@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOFormateur;
 import com.example.demo.dao.IDAOFormateurMatiere;
+import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOIndisponibilite;
+import com.example.demo.dao.IDAOMatiereParFormation;
 import com.example.demo.model.Formateur;
 
 @Service
@@ -17,11 +19,17 @@ public class FormateurService {
 	@Autowired
 	IDAOFormateur daoFormateur;
 
+	@Autowired
+	IDAOFormation daoFormation;
+
 	@Autowired 
 	IDAOFormateurMatiere daoFormateurMatiere;
 
 	@Autowired 
 	IDAOIndisponibilite daoIndisponibilite;
+
+	@Autowired 
+	IDAOMatiereParFormation daoMatiereParFormation;
 
 	public Formateur getById(Integer id) {
 		if (id == null) {
@@ -34,6 +42,13 @@ public class FormateurService {
 		return null;
 	}
 
+	public Formateur getWithFormations(Integer id) {
+		Formateur res = this.getById(id);
+		res.setFormations(daoFormation.findByFormateur(res));
+
+		return res;
+	}
+
 	public Formateur getWithMatieres(Integer id) {
 		Formateur res = this.getById(id);
 		res.setFormateurMatieres(daoFormateurMatiere.findByFormateur(res));
@@ -44,6 +59,13 @@ public class FormateurService {
 	public Formateur getWithIndisponibilite(Integer id) {
 		Formateur res = this.getById(id);
 		res.setIndisponibilites(daoIndisponibilite.findByFormateur(res));
+
+		return res;
+	}
+
+	public Formateur getWithMatiereParFormations(Integer id) {
+		Formateur res = this.getById(id);
+		res.setMatiereParFormation(daoMatiereParFormation.findByFormateur(res));
 
 		return res;
 	}

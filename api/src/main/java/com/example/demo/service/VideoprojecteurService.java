@@ -6,15 +6,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.IDAOSalle;
 import com.example.demo.dao.IDAOVideoprojecteur;
-import com.example.demo.model.Ordinateur;
-import com.example.demo.model.Salle;
 import com.example.demo.model.Videoprojecteur;
 
 @Service
 public class VideoprojecteurService {
 	@Autowired
 	IDAOVideoprojecteur daoVideoprojecteur;
+
+	@Autowired
+	IDAOSalle daoSalle;
 
 	public Videoprojecteur getById(Integer id) {
 		if (id == null) {
@@ -39,8 +41,11 @@ public class VideoprojecteurService {
 		return daoVideoprojecteur.findByFonctionnelFalse();
 	}
 
-	public Videoprojecteur getBySalle(Salle salle) {
-		return daoVideoprojecteur.findBySalle(salle);
+	public Videoprojecteur getWithSalle(Integer id) {
+		Videoprojecteur res = this.getById(id);
+		res.setSalle(daoSalle.findByVideoprojecteur(res));
+
+		return res;
 	}
 
 	public List<Videoprojecteur> getAll() {

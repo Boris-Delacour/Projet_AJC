@@ -16,5 +16,4 @@ public interface IDAOVideoprojecteur extends JpaRepository<Videoprojecteur, Inte
 	public List<Videoprojecteur> findByFonctionnelFalse();
 
 	public Videoprojecteur findBySalle(Salle salle);
-
 }

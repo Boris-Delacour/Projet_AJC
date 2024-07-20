@@ -22,11 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
-import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.model.Videoprojecteur;
-import com.example.demo.model.Salle;
-import com.example.demo.service.VideoprojecteurService;
 import com.example.demo.service.SalleService;
+import com.example.demo.service.VideoprojecteurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -82,12 +80,11 @@ public class VideoprojecteurRestController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/salle/{id}")
-    @JsonView(CustomJsonViews.Common.class)
-    public VideoprojecteurResponse getBySalle(@PathVariable Integer id) {
-        Salle salle = salleSrv.getById(id);
-        return new VideoprojecteurResponse(videoprojecteurSrv.getBySalle(salle));
-    }
+	@GetMapping("/{id}/salle")
+	@JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+	public Videoprojecteur getWithSalle(@PathVariable Integer id) {
+		return videoprojecteurSrv.getWithSalle(id);
+	}
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)

@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOSalle;
+import com.example.demo.dao.IDAOVideoprojecteur;
 import com.example.demo.model.Salle;
 
 @Service
 public class SalleService {
 	@Autowired
 	IDAOSalle daoSalle;
+
+	@Autowired
+	IDAOVideoprojecteur daoVideoprojecteur;
 
 	public Salle getById(Integer id) {
 		if (id == null) {
@@ -33,21 +37,18 @@ public class SalleService {
 		return daoSalle.findByOccuperFalse();
 	}
 
+	public Salle getWithVideoprojecteur(Integer id) {
+		Salle res = this.getById(id);
+		res.setVideoprojecteur(daoVideoprojecteur.findBySalle(res));
+
+		return res;
+	}
+
 	public List<Salle> getAll() {
 		return daoSalle.findAll();
 	}
 
 	public Salle insert(Salle salle) {
-		// if(stagiaire.getFiliere()==null)
-		// {
-		// throw new RuntimeException("Impossible d'insert un stagiaire sans une
-		// filiere");
-		// }
-		// if(stagiaire.getFiliere().getId()==null)
-		// {
-		// throw new RuntimeException("Impossible d'insert un stagiaire avec une filiere
-		// sans id");
-		// }
 		return daoSalle.save(salle);
 	}
 

@@ -17,6 +17,10 @@ public class MatiereResponse {
 	}
 
 	public MatiereResponse(Matiere matiere) {
+		this(matiere, false);
+	}
+
+	public MatiereResponse(Matiere matiere, boolean bool) {
 		BeanUtils.copyProperties(matiere, this);
 	}
 

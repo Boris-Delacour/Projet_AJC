@@ -53,18 +53,30 @@ public class FormateurRestController {
 		return new FormateurResponse(fSrv.getById(id));
 	}
 
+	@GetMapping("/{id}/formations")
+	@JsonView(CustomJsonViews.FormateurWithFormations.class)
+	public FormateurResponse getWithFormations(@PathVariable("id") Integer id) {
+		return new FormateurResponse(fSrv.getWithFormations(id), true);
+	}
+
 	@GetMapping("/{id}/matieres")
 	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithMatieres(@PathVariable Integer id) {
+	public FormateurResponse getWithMatieres(@PathVariable Integer id) {
 		return new FormateurResponse(fSrv.getWithMatieres(id), true);
 	}
 
 	@GetMapping("/{id}/indisponibilites")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getByFormateurWithIndisponibilites(@PathVariable Integer id) {
+	@JsonView(CustomJsonViews.FormateurWithIndisponibilites.class)
+	public FormateurResponse getWithIndisponibilites(@PathVariable Integer id) {
 		return new FormateurResponse(fSrv.getWithMatieres(id), true);
 	}
 
+	@GetMapping("/{id}/matiereparformations")
+	@JsonView(CustomJsonViews.FormateurWithFormations.class)
+	public FormateurResponse getWithMatiereParFormations(@PathVariable("id") Integer id) {
+		return new FormateurResponse(fSrv.getWithMatiereParFormations(id), true);
+	}
+	
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)

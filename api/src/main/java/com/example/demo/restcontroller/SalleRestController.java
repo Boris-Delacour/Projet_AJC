@@ -44,7 +44,7 @@ public class SalleRestController {
 
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
-    @Operation(summary = "Tout les salles")
+    @Operation(summary = "Toutes les salles")
     public List<SalleResponse> getAll() {
         return salleSrv.getAll().stream().map(salle -> new SalleResponse(salle))
                 .collect(Collectors.toList());
@@ -71,6 +71,12 @@ public class SalleRestController {
         return salleSrv.getByOccuperFalse().stream().map(salle -> new SalleResponse(salle))
                 .collect(Collectors.toList());
     }
+
+	@GetMapping("/{id}/videoprojecteur")
+	@JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+	public Salle getWithVideoprojecteur(@PathVariable("id") Integer id) {
+		return salleSrv.getWithVideoprojecteur(id);
+	}
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)

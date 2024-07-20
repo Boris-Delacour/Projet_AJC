@@ -24,31 +24,35 @@ public class FormateurResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
+	@JsonView(CustomJsonViews.FormateurWithFormations.class)
+	private List<FormationResponse> formations;
 
 	private List<IndisponibiliteResponse> indisponibilites;
 
 	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
 	private List<MatiereResponse> matieres;
 
+	@JsonView(CustomJsonViews.FormateurWithMatiereParFormation.class)
+	private List<MatiereParFormationResponse> matiereParFormation;
     
-    public FormateurResponse() {
-
-    }
-    
-
-
+    public FormateurResponse() {}
 
 	public FormateurResponse(Formateur formateur) {
         this(formateur, false);
     }
   
-  
     public FormateurResponse(Formateur formateur, boolean bool) {
         BeanUtils.copyProperties(formateur, this);
+	}
 
     public FormateurResponse(Formateur formateur, Boolean bool) {
         BeanUtils.copyProperties(formateur, this, "formations, indisponibilites, formateurMatiere, matiereParFormation");
 		if(bool) {
+			if (formateur.getFormations() != null) {
+				this.setFormations(formateur.getFormations().stream()
+						.map(formation -> new FormationResponse(formation))
+						.collect(Collectors.toList()));
+			}
 			if (formateur.getFormateurMatieres() != null) {
 				this.setMatieres(formateur.getFormateurMatieres().stream()
 						.map(matiere -> new MatiereResponse(matiere.getMatiere()))
@@ -57,6 +61,11 @@ public class FormateurResponse {
 			if(formateur.getIndisponibilites() != null) {
 				this.setIndisponibilites(formateur.getIndisponibilites().stream()
 						.map(indisponibilite -> new IndisponibiliteResponse(indisponibilite))
+						.collect(Collectors.toList()));
+			}
+			if(formateur.getMatiereParFormation() != null) {
+				this.setMatiereParFormation(formateur.getMatiereParFormation().stream()
+						.map(matiereParFormation -> new MatiereParFormationResponse(matiereParFormation))
 						.collect(Collectors.toList()));
 			}
 		}
@@ -119,6 +128,14 @@ public class FormateurResponse {
 		this.indisponibilites = indisponibilites;
 	}
 
+	public List<FormationResponse> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(List<FormationResponse> formations) {
+		this.formations = formations;
+	}
+
 	public List<MatiereResponse> getMatieres() {
 		return matieres;
 	}
@@ -126,4 +143,13 @@ public class FormateurResponse {
 	public void setMatieres(List<MatiereResponse> matieres) {
 		this.matieres = matieres;
 	}
+
+	public List<MatiereParFormationResponse> getMatiereParFormation() {
+		return matiereParFormation;
+	}
+
+	public void setMatiereParFormation(List<MatiereParFormationResponse> matiereParFormation) {
+		this.matiereParFormation = matiereParFormation;
+	}
+
 }

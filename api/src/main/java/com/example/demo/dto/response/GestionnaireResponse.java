@@ -29,6 +29,10 @@ public class GestionnaireResponse {
     public GestionnaireResponse() {
     }
 
+	public GestionnaireResponse(Gestionnaire gestionnaire) {
+		this(gestionnaire, false);
+    }
+
     public GestionnaireResponse(Gestionnaire gestionnaire, boolean bool) {
         BeanUtils.copyProperties(gestionnaire, this, "formations");
         if (bool) {

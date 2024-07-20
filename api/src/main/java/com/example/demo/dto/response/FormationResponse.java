@@ -31,6 +31,10 @@ public class FormationResponse {
     public FormationResponse() {
     }
 
+	public FormationResponse(Formation formation) {
+		this(formation, false);
+    }
+
     public FormationResponse(Formation formation, boolean bool) {
         BeanUtils.copyProperties(formation, this, "gestionnaire", "stagiaires", "matieresParFormations", "formateur");
         if (bool) {
