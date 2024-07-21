@@ -63,6 +63,12 @@ public class FormationRestController {
 		return new FormationResponse(foSrv.getWithFormateurs(id), true);
 	}
 
+    @GetMapping("/{id}/gestionnaires")
+	@JsonView(CustomJsonViews.FormationWithGestionnaire.class)
+	public FormationResponse getWithFGestionnaires(@PathVariable("id") Integer id) {
+		return new FormationResponse(foSrv.getWithGestionnaires(id), true);
+	}
+
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
