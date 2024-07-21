@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOOrdinateur;
+import com.example.demo.dao.IDAOStagiaire;
 import com.example.demo.model.Ordinateur;
-import com.example.demo.model.Stagiaire;
 
 @Service
 public class OrdinateurService {
 	@Autowired
-	IDAOOrdinateur daoOrdinateur;
+	private IDAOOrdinateur daoOrdinateur;
+
+	@Autowired
+	private IDAOStagiaire daoStagiaire;
 
 	public Ordinateur getById(Integer id) {
 		if (id == null) {
@@ -42,8 +45,10 @@ public class OrdinateurService {
 		return daoOrdinateur.findByFonctionnelFalse();
 	}
 
-	public Ordinateur getByStagiaire(Stagiaire stagiaire) {
-		return daoOrdinateur.findByStagiaire(stagiaire);
+	public Ordinateur getWithStagiaire(Integer id) {
+		Ordinateur ordinateur = this.getById(id);
+		ordinateur.setStagiaire(daoStagiaire.findByOrdinateur(ordinateur));
+		return ordinateur;
 	}
 
 	public List<Ordinateur> getAll() {

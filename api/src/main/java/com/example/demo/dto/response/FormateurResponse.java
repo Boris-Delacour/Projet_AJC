@@ -27,6 +27,7 @@ public class FormateurResponse {
 	@JsonView(CustomJsonViews.FormateurWithFormations.class)
 	private List<FormationResponse> formations;
 
+	@JsonView(CustomJsonViews.FormateurWithIndisponibilites.class)
 	private List<IndisponibiliteResponse> indisponibilites;
 
 	@JsonView(CustomJsonViews.FormateurWithMatiere.class)

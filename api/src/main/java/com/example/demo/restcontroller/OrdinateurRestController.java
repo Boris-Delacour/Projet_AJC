@@ -23,7 +23,6 @@ import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.OrdinateurRequest;
 import com.example.demo.dto.response.OrdinateurResponse;
 import com.example.demo.model.Ordinateur;
-import com.example.demo.model.Stagiaire;
 import com.example.demo.service.OrdinateurService;
 import com.example.demo.service.StagiaireService;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -85,11 +84,10 @@ public class OrdinateurRestController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/stagiaire/{id}")
+    @GetMapping("/{id}/stagiaire")
     @JsonView(CustomJsonViews.Common.class)
-    public OrdinateurResponse getByStagiaire(@PathVariable Integer id) {
-        Stagiaire stagiaire = stagSrv.getById(id);
-        return new OrdinateurResponse(ordinateurSrv.getByStagiaire(stagiaire));
+    public OrdinateurResponse getWithStagiaire(@PathVariable Integer id) {
+        return new OrdinateurResponse(ordinateurSrv.getWithStagiaire(id), true);
     }
 
     @PostMapping("")
