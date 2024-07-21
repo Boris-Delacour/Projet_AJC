@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
-import com.example.demo.model.Formateur;
 import com.example.demo.model.Gestionnaire;
 
 @Service
