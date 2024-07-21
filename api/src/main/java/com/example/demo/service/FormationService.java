@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.IDAOFormateur;
 import com.example.demo.dao.IDAOFormation;
 import com.example.demo.model.Formation;
 
@@ -13,6 +14,9 @@ import com.example.demo.model.Formation;
 public class FormationService {
 	@Autowired
 	IDAOFormation daoFormation;
+
+	@Autowired
+	IDAOFormateur daoFormateur;
 
 	public Formation getById(Integer id) {
 		if (id == null) {
@@ -23,6 +27,13 @@ public class FormationService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public Formation getWithFormateurs(Integer id) {
+		Formation res = this.getById(id);
+		res.setFormateur(daoFormateur.findByFormation(res));
+
+		return res;
 	}
 
 	public List<Formation> getAll() {
