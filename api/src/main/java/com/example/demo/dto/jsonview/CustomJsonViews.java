@@ -1,5 +1,7 @@
 package com.example.demo.dto.jsonview;
 
+import ajcfinalback.model.Gestionnaire;
+
 public class CustomJsonViews {
 	public static class Common {}
 
@@ -10,6 +12,10 @@ public class CustomJsonViews {
 	public static class FormateurWithIndisponibilites extends Common {}
 
 	public static class FormateurWithMatiereParFormation extends Common {}
+
+	public static class MatiereWithFormateur extends Common {}
+
+	public static class MatiereWithMatiereParFormation extends Common {}
 
 	public static class IndispoWithFormateur extends Common {}
 
@@ -28,4 +34,10 @@ public class CustomJsonViews {
 	public static class FormationWithMatieres {}
 
 	public static class FormationWithFormateur {}
+
+	public static class GestionnaireWithFormation extends Common {}
+
+	public static class StagiaireWithFormation extends Common {}
+
+	public static class StagiaireWithOrdinateur extends Common {}
 }

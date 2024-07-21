@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.IDAOFormation;
+import com.example.demo.dao.IDAOOrdinateur;
 import com.example.demo.dao.IDAOStagiaire;
 import com.example.demo.model.Stagiaire;
 
@@ -14,6 +16,12 @@ public class StagiaireService {
 
 	@Autowired
 	IDAOStagiaire daoStagiaire;
+
+	@Autowired
+	IDAOFormation daoFormation;
+
+	@Autowired
+	IDAOOrdinateur daoOrdinateur;
 
 	public Stagiaire getById(Integer id) {
 		if (id == null) {
@@ -30,10 +38,19 @@ public class StagiaireService {
 		return daoStagiaire.findAll();
 	}
 
-	// public List<Stagiaire> getAllAvailable()
-	// {
-	// return daoStagiaire.findAllAvailable();
-	// }
+	public Stagiaire getWithFormation(Integer id) {
+		Stagiaire res = this.getById(id);
+		res.setFormation(daoFormation.findByStagiaire(res));
+
+		return res;
+	}
+
+	public Stagiaire getWithOrdinateur(Integer id) {
+		Stagiaire res = this.getById(id);
+		res.setOrdinateur(daoOrdinateur.findByStagiaire(res));
+
+		return res;
+	}
 
 	public Stagiaire insert(Stagiaire stagiaire) {
 		return daoStagiaire.save(stagiaire);
@@ -43,12 +60,6 @@ public class StagiaireService {
 		if (stagiaire.getId() == null) {
 			throw new RuntimeException("Impossible d'update une stagiaireService sans id");
 		}
-//		if (stagiaire.getFormation() == null) {
-//			throw new RuntimeException("Impossible d'update un stagiaireService sans une formation");
-//		}
-//		if (stagiaire.getFormation().getId() == null) {
-//			throw new RuntimeException("Impossible d'update un stagiaireService avec une formation sans id");
-//		}
 		return daoStagiaire.save(stagiaire);
 	}
 

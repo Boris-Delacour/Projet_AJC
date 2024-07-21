@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.MatiereParFormationRequest;
 import com.example.demo.dto.response.MatiereParFormationResponse;
 import com.example.demo.model.MatiereParFormation;
@@ -27,6 +28,8 @@ import com.example.demo.service.FormationService;
 import com.example.demo.service.MatiereParFormationService;
 import com.example.demo.service.MatiereService;
 import com.example.demo.service.SalleService;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*")
@@ -34,69 +37,67 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/matiereparformation")
 public class MatiereParFormationRestController {
 	
-		@Autowired
-		private MatiereParFormationService matiereparformationSrv;
-		@Autowired
-		private MatiereService matSrv;
-		@Autowired
-		private FormationService formationSrv;
-		@Autowired
-		private FormateurService formateurSrv;
-		@Autowired
-		private SalleService salleSrv; 
-		
-		@GetMapping("")
-//		@JsonView(CustomJsonViews.Common.class)
-		public List<MatiereParFormationResponse> getAll() {
-			return matiereparformationSrv.getAll().stream().map(matiereparformation -> new MatiereParFormationResponse(matiereparformation, false))
-					.collect(Collectors.toList());
-		}
+	@Autowired
+	private MatiereParFormationService matiereparformationSrv;
+	@Autowired
+	private MatiereService matSrv;
+	@Autowired
+	private FormationService formationSrv;
+	@Autowired
+	private FormateurService formateurSrv;
+	@Autowired
+	private SalleService salleSrv; 
+	
+	@GetMapping("")
+	@JsonView(CustomJsonViews.Common.class)
+	public List<MatiereParFormationResponse> getAll() {
+		return matiereparformationSrv.getAll().stream().map(matiereparformation -> new MatiereParFormationResponse(matiereparformation, false))
+				.collect(Collectors.toList());
+	}
 
-		@PostMapping("")
-		@ResponseStatus(code = HttpStatus.CREATED)
-//		@JsonView(CustomJsonViews.Common.class)
-		public MatiereParFormationResponse create(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br) {
-			if (br.hasErrors()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-			}
-			MatiereParFormation matiereparformation = new MatiereParFormation();
-			BeanUtils.copyProperties(matiereparformationRequest, matiereparformation);
-			matiereparformation.setFormateur(formateurSrv.getById(matiereparformationRequest.getIdFormateur()));
-			matiereparformation.setMatiere(matSrv.getById(matiereparformationRequest.getIdMatiere()));
-			matiereparformation.setFormation(formationSrv.getById(matiereparformationRequest.getIdFormation()));
-			matiereparformation.setSalle(salleSrv.getById(matiereparformationRequest.getIdSalle()));
-			return new MatiereParFormationResponse(matiereparformationSrv.insert(matiereparformation), false);
+	@PostMapping("")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@JsonView(CustomJsonViews.Common.class)
+	public MatiereParFormationResponse create(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
+		MatiereParFormation matiereparformation = new MatiereParFormation();
+		BeanUtils.copyProperties(matiereparformationRequest, matiereparformation);
+		matiereparformation.setFormateur(formateurSrv.getById(matiereparformationRequest.getIdFormateur()));
+		matiereparformation.setMatiere(matSrv.getById(matiereparformationRequest.getIdMatiere()));
+		matiereparformation.setFormation(formationSrv.getById(matiereparformationRequest.getIdFormation()));
+		matiereparformation.setSalle(salleSrv.getById(matiereparformationRequest.getIdSalle()));
+		return new MatiereParFormationResponse(matiereparformationSrv.insert(matiereparformation), false);
+	}
 
-		@GetMapping("/{id}")
-//		@JsonView(CustomJsonViews.Common.class)
-		public MatiereParFormationResponse getById(@PathVariable Integer id) {
-			return new MatiereParFormationResponse(matiereparformationSrv.getById(id), false);
+	@GetMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public MatiereParFormationResponse getById(@PathVariable Integer id) {
+		return new MatiereParFormationResponse(matiereparformationSrv.getById(id), false);
+	}
+	
+	@PutMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public MatiereParFormationResponse update(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br, @PathVariable Integer id) {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		
-		@PutMapping("/{id}")
-//		@JsonView(CustomJsonViews.Common.class)
-		public MatiereParFormationResponse update(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br, @PathVariable Integer id) {
-			if (br.hasErrors()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-			}
-			MatiereParFormation matiereparformation = matiereparformationSrv.getById(id);
-			BeanUtils.copyProperties(matiereparformationRequest, matiereparformation);
-			matiereparformation.setFormateur(formateurSrv.getById(matiereparformationRequest.getIdFormateur()));
-			matiereparformation.setMatiere(matSrv.getById(matiereparformationRequest.getIdMatiere()));
-			matiereparformation.setFormation(formationSrv.getById(matiereparformationRequest.getIdFormation()));
-			matiereparformation.setSalle(salleSrv.getById(matiereparformationRequest.getIdSalle()));
-			matiereparformation.setId(id);
-			return new MatiereParFormationResponse(matiereparformationSrv.insert(matiereparformation), false);
-		}
-		
-		@DeleteMapping("/{id}")
-	    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-		public void deleteById(@PathVariable("id") Integer id){
-	        matiereparformationSrv.deleteById(id);
-	    }
-		
-		
+		MatiereParFormation matiereparformation = matiereparformationSrv.getById(id);
+		BeanUtils.copyProperties(matiereparformationRequest, matiereparformation);
+		matiereparformation.setFormateur(formateurSrv.getById(matiereparformationRequest.getIdFormateur()));
+		matiereparformation.setMatiere(matSrv.getById(matiereparformationRequest.getIdMatiere()));
+		matiereparformation.setFormation(formationSrv.getById(matiereparformationRequest.getIdFormation()));
+		matiereparformation.setSalle(salleSrv.getById(matiereparformationRequest.getIdSalle()));
+		matiereparformation.setId(id);
+		return new MatiereParFormationResponse(matiereparformationSrv.insert(matiereparformation), false);
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteById(@PathVariable("id") Integer id){
+		matiereparformationSrv.deleteById(id);
+	}
 }
 
 		

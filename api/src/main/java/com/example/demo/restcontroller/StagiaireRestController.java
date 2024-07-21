@@ -28,6 +28,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/stagiaire")
@@ -50,6 +52,17 @@ public class StagiaireRestController {
 	public List<StagiaireResponse> getAll() {
 		return stagiaireSrv.getAll().stream().map(model -> new StagiaireResponse(model)).collect(Collectors.toList());
 	}
+
+	@GetMapping("/{id}/formation")
+	public StagiaireResponse getWithFormation(@PathVariable Integer id) {
+		return new StagiaireResponse(stagiaireSrv.getWithFormation(id));
+	}
+
+	@GetMapping("/{id}/ordinateur")
+	public StagiaireResponse getWithOrdinateur(@PathVariable Integer id) {
+		return new StagiaireResponse(stagiaireSrv.getWithOrdinateur(id));
+	}
+	
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)

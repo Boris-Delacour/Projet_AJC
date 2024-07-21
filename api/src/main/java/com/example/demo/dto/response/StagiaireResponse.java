@@ -20,7 +20,12 @@ public class StagiaireResponse {
 	private String login;
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
-	//private FormateurResponse formateur;
+
+	@JsonView(CustomJsonViews.StagiaireWithFormation.class)
+	private FormationResponse formation;
+
+	@JsonView(CustomJsonViews.StagiaireWithOrdinateur.class)
+	private OrdinateurResponse ordinateur;
 	
 	public StagiaireResponse() {
 
@@ -30,8 +35,16 @@ public class StagiaireResponse {
 		this(stagiaire, true);
 	}
 
-	public StagiaireResponse(Stagiaire stagiaireModel, boolean bool) {
-		BeanUtils.copyProperties(stagiaireModel, this, "formateur");
+	public StagiaireResponse(Stagiaire stagiaire, boolean bool) {
+		BeanUtils.copyProperties(stagiaire, this, "formation, ordinateur");
+		if(bool) {
+			if(stagiaire.getFormation() != null) {
+				this.setFormation(new FormationResponse(stagiaire.getFormation()));
+			}
+			if(stagiaire.getOrdinateur() != null) {
+				this.setOrdinateur(new OrdinateurResponse(stagiaire.getOrdinateur()));
+			}
+		}
 	}
 
 	public Integer getId() {
@@ -82,14 +95,19 @@ public class StagiaireResponse {
 		this.password = password;
 	}
 
-//	public FormateurResponse getFormateur() {
-	//		return formateur;
-	//	}
+	public FormationResponse getFormation() {
+		return formation;
+	}
 
-	//	public void setFormateur(FormateurResponse formateur) {
-	//		this.formateur = formateur;
-	//	}
-	
-	
+	public void setFormation(FormationResponse formation) {
+		this.formation = formation;
+	}
 
+	public OrdinateurResponse getOrdinateur() {
+		return ordinateur;
+	}
+
+	public void setOrdinateur(OrdinateurResponse ordinateur) {
+		this.ordinateur = ordinateur;
+	}
 }
