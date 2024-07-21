@@ -24,7 +24,7 @@ public class GestionnaireResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
-	@JsonView(CustomJsonViews.FormationWithGestionnaire.class)
+	@JsonView(CustomJsonViews.GestionnaireWithFormations.class)
 	private List<FormationResponse> formations;
     
     public GestionnaireResponse() {

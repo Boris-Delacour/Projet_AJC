@@ -35,7 +35,7 @@ public class CustomJsonViews {
 
 	public static class FormationWithFormateur {}
 
-	public static class GestionnaireWithFormation extends Common {}
+	public static class GestionnaireWithFormations extends Common {}
 
 	public static class StagiaireWithFormation extends Common {}
 
