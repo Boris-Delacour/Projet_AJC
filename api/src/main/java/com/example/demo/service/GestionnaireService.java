@@ -6,13 +6,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
+import com.example.demo.model.Formateur;
 import com.example.demo.model.Gestionnaire;
 
 @Service
 public class GestionnaireService {
 	@Autowired
 	IDAOGestionnaire daoGestionnaire;
+
+	@Autowired
+	IDAOFormation daoFormation;
 
 	public Gestionnaire getById(Integer id) {
 		if (id == null) {
@@ -23,6 +28,13 @@ public class GestionnaireService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public Gestionnaire getWithFormations(Integer id) {
+		Gestionnaire res = this.getById(id);
+		res.setFormations(daoFormation.findByGestionnaire(res));
+
+		return res;
 	}
 
 	public List<Gestionnaire> getAll() {
