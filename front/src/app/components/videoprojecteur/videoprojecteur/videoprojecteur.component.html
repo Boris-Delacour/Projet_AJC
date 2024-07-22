@@ -11,25 +11,32 @@
 </div>
 }
 <table class="table">
-  @for(o of videoprojecteurs;track o.id) {
-  <tr>
-    <td>{{ o.id }}</td>
-    <td>{{ o.marque }}</td>
-    <td>{{ o.fonctionnel }}</td>
-    <td>{{ o.salle?.numero }} {{ o.salle?.numero }}</td>
-    <td>
-      <a
-        routerLink="/videoprojecteur/edit/{{ o.id }}"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >editer</a
-      >
-    </td>
-    <td>
-      <button (click)="delete(o.id!)" class="btn btn-outline-danger">
-        suprimer
-      </button>
-    </td>
-  </tr>
-  }
+  <thead>
+    <td>Id</td>
+    <td>Marque</td>
+    <td></td>
+    <td></td>
+  </thead>
+  <tbody>
+    @for(o of videoprojecteurs;track o.id) {
+    <tr>
+      <td>{{ o.id }}</td>
+      <td>{{ o.marque }}</td>
+      <td>{{ o.salle?.numero }} {{ o.salle?.numero }}</td>
+      <td>
+        <a
+          routerLink="/videoprojecteur/edit/{{ o.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button (click)="delete(o.id!)" class="btn btn-outline-danger">
+          suprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
 </table>
