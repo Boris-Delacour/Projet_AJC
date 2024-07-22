@@ -37,46 +37,5 @@ export class StagiaireEditComponent implements OnInit {
     public activatedroute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    // this.formationSrv.getAll().subscribe((formations) => {
-    //   this.formations = formations;
-    // });
-    this.formationsObservable = this.formationSrv.getAll();
-    this.ordinateursObservable = this.ordinateurSrv.getAll();
-    this.activatedroute.params.subscribe((params) => {
-      if (params['id']) {
-        this.stagiaireSrv.getById(params['id']).subscribe((stagiaire) => {
-          this.stagiaire = stagiaire;
-        });
-      }
-    });
-  }
-
-  save() {
-    if (this.stagiaire.id) {
-      this.stagiaireSrv.update(this.stagiaire).subscribe((stagiaire) => {
-        this.router.navigateByUrl('/stagiaire?q=update&id=' + stagiaire.id);
-      });
-    } else {
-      this.stagiaireSrv.create(this.stagiaire).subscribe((stagiaire) => {
-        this.router.navigateByUrl('/stagiaire?q=create&id=' + stagiaire.id);
-      });
-    }
-  }
-
-  compareFn(f1: Formation, f2: Formation): boolean {
-    if (f1 && f2) {
-      return f1.id === f2.id;
-    } else {
-      return false;
-    }
-  }
-
-  compareOr(o1: Ordinateur, o2: Ordinateur): boolean {
-    if (o1 && o2) {
-      return o1.id === o2.id;
-    } else {
-      return false;
-    }
-  }
+  ngOnInit() {}
 }
