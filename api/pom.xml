@@ -77,9 +77,8 @@
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>ajc.final</groupId>
-			<artifactId>ajc.finalback</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
 

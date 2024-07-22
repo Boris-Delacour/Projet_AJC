@@ -19,21 +19,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.FormateurRequest;
 import com.example.demo.dto.response.FormateurResponse;
-import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Formateur;
 import com.example.demo.service.FormateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-
-
-
 
 @RestController
 @RequestMapping("/api/formateur")
-// @SecurityRequirement(name="basicAuth")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class FormateurRestController {
 
@@ -44,55 +42,56 @@ public class FormateurRestController {
     @JsonView(CustomJsonViews.Common.class)
     public List<FormateurResponse> getAll() {
         return fSrv.getAll().stream().map(formateur -> new FormateurResponse(formateur))
-                            .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
-	@GetMapping("/{id}")
-	@JsonView(CustomJsonViews.Common.class)
-	public FormateurResponse getById(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getById(id));
-	}
+    @GetMapping("/{id}")
+    @JsonView(CustomJsonViews.Common.class)
+    public FormateurResponse getById(@PathVariable Integer id) {
+        return new FormateurResponse(fSrv.getById(id));
+    }
 
-	@GetMapping("/{id}/formations")
-	@JsonView(CustomJsonViews.FormateurWithFormations.class)
-	public FormateurResponse getWithFormations(@PathVariable("id") Integer id) {
-		return new FormateurResponse(fSrv.getWithFormations(id), true);
-	}
+    @GetMapping("/{id}/formations")
+    @JsonView(CustomJsonViews.FormateurWithFormations.class)
+    public FormateurResponse getWithFormations(@PathVariable("id") Integer id) {
+        return new FormateurResponse(fSrv.getWithFormations(id), true);
+    }
 
-	@GetMapping("/{id}/matieres")
-	@JsonView(CustomJsonViews.FormateurWithMatiere.class)
-	public FormateurResponse getWithMatieres(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
+    @GetMapping("/{id}/matieres")
+    @JsonView(CustomJsonViews.FormateurWithMatiere.class)
+    public FormateurResponse getWithMatieres(@PathVariable Integer id) {
+        return new FormateurResponse(fSrv.getWithMatieres(id), true);
+    }
 
-	@GetMapping("/{id}/indisponibilites")
-	@JsonView(CustomJsonViews.FormateurWithIndisponibilites.class)
-	public FormateurResponse getWithIndisponibilites(@PathVariable Integer id) {
-		return new FormateurResponse(fSrv.getWithMatieres(id), true);
-	}
+    @GetMapping("/{id}/indisponibilites")
+    @JsonView(CustomJsonViews.FormateurWithIndisponibilites.class)
+    public FormateurResponse getWithIndisponibilites(@PathVariable Integer id) {
+        return new FormateurResponse(fSrv.getWithMatieres(id), true);
+    }
 
-	@GetMapping("/{id}/matiereparformations")
-	@JsonView(CustomJsonViews.FormateurWithFormations.class)
-	public FormateurResponse getWithMatiereParFormations(@PathVariable("id") Integer id) {
-		return new FormateurResponse(fSrv.getWithMatiereParFormations(id), true);
-	}
-	
+    @GetMapping("/{id}/matiereparformations")
+    @JsonView(CustomJsonViews.FormateurWithFormations.class)
+    public FormateurResponse getWithMatiereParFormations(@PathVariable("id") Integer id) {
+        return new FormateurResponse(fSrv.getWithMatiereParFormations(id), true);
+    }
+
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse create(@Valid @RequestBody FormateurRequest fr, BindingResult br)  {
-        if (br.hasErrors()){
+    public FormateurResponse create(@Valid @RequestBody FormateurRequest fr, BindingResult br) {
+        if (br.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formateur formateur = new Formateur();
         BeanUtils.copyProperties(fr, formateur);
         return new FormateurResponse(fSrv.insert(formateur));
     }
-    
+
     @PutMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
-    public FormateurResponse update(@Valid @RequestBody FormateurRequest fr, BindingResult br, @PathVariable Integer id) {
-        if (br.hasErrors()){
+    public FormateurResponse update(@Valid @RequestBody FormateurRequest fr, BindingResult br,
+            @PathVariable Integer id) {
+        if (br.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formateur formateur = fSrv.getById(id);
@@ -102,7 +101,7 @@ public class FormateurRestController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable("id") Integer id){
+    public void deleteById(@PathVariable("id") Integer id) {
         fSrv.deleteById(id);
     }
 }
