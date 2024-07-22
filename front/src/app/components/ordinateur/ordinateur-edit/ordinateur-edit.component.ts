@@ -6,17 +6,16 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Ordinateur } from '../../../models/ordinateur';
 import { Observable } from 'rxjs';
-import { StagiaireService } from '../../../services/stagiaire.service';
-import { OrdinateurService } from '../../../services/ordinateur.service';
+import { Ordinateur } from '../../../models/ordinateur';
 import { Stagiaire } from '../../../models/stagiaire';
-import { AsyncPipe } from '@angular/common';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { StagiaireService } from '../../../services/stagiaire.service';
 
 @Component({
   selector: 'app-ordinateur-edit',
   standalone: true,
-  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe],
+  imports: [FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './ordinateur-edit.component.html',
   styleUrl: './ordinateur-edit.component.css',
 })
@@ -54,15 +53,6 @@ export class OrdinateurEditComponent implements OnInit {
       this.ordinateurSrv.create(this.ordinateur).subscribe((ordinateur) => {
         this.router.navigateByUrl('/ordinateur?q=create&id=' + ordinateur.id);
       });
-    }
-  }
-
-  compareFn(f1: Stagiaire, f2: Stagiaire): boolean {
-    //return f1 && f2 ? f1.id === f2.id : false;
-    if (f1 && f2) {
-      return f1.id === f2.id;
-    } else {
-      return false;
     }
   }
 }

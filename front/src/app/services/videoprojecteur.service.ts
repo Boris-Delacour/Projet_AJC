@@ -26,7 +26,7 @@ export class VideoprojecteurService {
   ): any {
     let obj = {
       marque: videoprojecteur.marque,
-      fonctionnel: videoprojecteur.marque,
+      fonctionnel: videoprojecteur.fonctionnel,
       salle: videoprojecteur.salle?.id,
     };
     return obj;
@@ -38,6 +38,10 @@ export class VideoprojecteurService {
 
   public getById(id: number): Observable<Videoprojecteur> {
     return this.httpClient.get<Videoprojecteur>(`${this.url}/${id}`);
+  }
+
+  public getByIdWithSalle(id: number): Observable<Videoprojecteur> {
+    return this.httpClient.get<Videoprojecteur>(`${this.url}/${id}/salle`);
   }
 
   public getByMarque(marque: string): Observable<Videoprojecteur> {

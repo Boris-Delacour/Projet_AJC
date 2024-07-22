@@ -96,7 +96,6 @@ public class VideoprojecteurRestController {
         }
         Videoprojecteur videoprojecteur = new Videoprojecteur();
         BeanUtils.copyProperties(videoprojecteurRequest, videoprojecteur);
-        videoprojecteur.setSalle(salleSrv.getById(videoprojecteurRequest.getIdSalle()));
         return new VideoprojecteurResponse(videoprojecteurSrv.insert(videoprojecteur), false);
     }
 
@@ -110,7 +109,6 @@ public class VideoprojecteurRestController {
         }
         Videoprojecteur videoprojecteur = videoprojecteurSrv.getById(id);
         BeanUtils.copyProperties(videoprojecteurRequest, videoprojecteur);
-        videoprojecteur.setSalle(salleSrv.getById(videoprojecteurRequest.getIdSalle()));
         videoprojecteur.setId((id));
         return new VideoprojecteurResponse(videoprojecteurSrv.update(videoprojecteur), false);
 

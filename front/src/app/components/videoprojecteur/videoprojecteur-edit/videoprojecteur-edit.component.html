@@ -1,1 +1,37 @@
-<p>videoprojecteur-edit works!</p>
+<h1>edition videoprojecteur</h1>
+<div>
+  <div class="form-group">
+    <label for="marque">Marque :</label>
+    <input
+      id="marque"
+      [(ngModel)]="videoprojecteur.marque"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="fonctionnel">Fonctionnel ? :</label>
+    <input
+      type="radio"
+      id="true"
+      value="true"
+      [(ngModel)]="videoprojecteur.fonctionnel"
+    />
+    <label for="true">Oui</label>
+    <input
+      type="radio"
+      id="false"
+      value="false"
+      [(ngModel)]="videoprojecteur.fonctionnel"
+    />
+    <label for="false">Non</label>
+  </div>
+  <div>
+    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <a
+      routerLink="/videoprojecteur"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</div>
