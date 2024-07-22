@@ -44,7 +44,7 @@ public class FormateurResponse {
   
     public FormateurResponse(Formateur formateur, boolean bool) {
         BeanUtils.copyProperties(formateur, this);
-	}
+    }
 
     public FormateurResponse(Formateur formateur, Boolean bool) {
         BeanUtils.copyProperties(formateur, this, "formations, indisponibilites, formateurMatiere, matiereParFormation");
