@@ -4,7 +4,6 @@ public class OrdinateurRequest {
     private String marque;
     private boolean fonctionnel;
     private String os;
-    private Integer idStagiaire;
 
     public OrdinateurRequest() {
     }
@@ -31,14 +30,6 @@ public class OrdinateurRequest {
 
     public void setOs(String os) {
         this.os = os;
-    }
-
-    public Integer getIdStagiaire() {
-        return idStagiaire;
-    }
-
-    public void setIdStagiaire(Integer idStagiaire) {
-        this.idStagiaire = idStagiaire;
     }
 
 }

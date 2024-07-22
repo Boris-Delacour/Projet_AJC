@@ -24,7 +24,6 @@ import com.example.demo.dto.request.OrdinateurRequest;
 import com.example.demo.dto.response.OrdinateurResponse;
 import com.example.demo.model.Ordinateur;
 import com.example.demo.service.OrdinateurService;
-import com.example.demo.service.StagiaireService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,9 +37,6 @@ public class OrdinateurRestController {
 
     @Autowired
     private OrdinateurService ordinateurSrv;
-
-    @Autowired
-    private StagiaireService stagSrv;
 
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
@@ -100,7 +96,6 @@ public class OrdinateurRestController {
         Ordinateur ordinateur = new Ordinateur();
         BeanUtils.copyProperties(ordinateurRequest, ordinateur);
         System.out.println(ordinateurRequest.getMarque());
-        ordinateur.setStagiaire(stagSrv.getById(ordinateurRequest.getIdStagiaire()));
         return new OrdinateurResponse(ordinateurSrv.insert(ordinateur), false);
     }
 
@@ -113,7 +108,6 @@ public class OrdinateurRestController {
         }
         Ordinateur ordinateur = ordinateurSrv.getById(id);
         BeanUtils.copyProperties(ordinateurRequest, ordinateur);
-        ordinateur.setStagiaire(stagSrv.getById(ordinateurRequest.getIdStagiaire()));
         ordinateur.setId((id));
         return new OrdinateurResponse(ordinateurSrv.update(ordinateur), false);
 

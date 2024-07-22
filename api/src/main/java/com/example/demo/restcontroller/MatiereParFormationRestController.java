@@ -32,11 +32,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/matiereparformation")
+@CrossOrigin(origins = "*")
 public class MatiereParFormationRestController {
-	
+
 	@Autowired
 	private MatiereParFormationService matiereparformationSrv;
 	@Autowired
@@ -46,19 +46,21 @@ public class MatiereParFormationRestController {
 	@Autowired
 	private FormateurService formateurSrv;
 	@Autowired
-	private SalleService salleSrv; 
-	
+	private SalleService salleSrv;
+
 	@GetMapping("")
 	@JsonView(CustomJsonViews.Common.class)
 	public List<MatiereParFormationResponse> getAll() {
-		return matiereparformationSrv.getAll().stream().map(matiereparformation -> new MatiereParFormationResponse(matiereparformation, false))
+		return matiereparformationSrv.getAll().stream()
+				.map(matiereparformation -> new MatiereParFormationResponse(matiereparformation, false))
 				.collect(Collectors.toList());
 	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(CustomJsonViews.Common.class)
-	public MatiereParFormationResponse create(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br) {
+	public MatiereParFormationResponse create(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest,
+			BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
@@ -76,10 +78,11 @@ public class MatiereParFormationRestController {
 	public MatiereParFormationResponse getById(@PathVariable Integer id) {
 		return new MatiereParFormationResponse(matiereparformationSrv.getById(id), false);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(CustomJsonViews.Common.class)
-	public MatiereParFormationResponse update(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest, BindingResult br, @PathVariable Integer id) {
+	public MatiereParFormationResponse update(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest,
+			BindingResult br, @PathVariable Integer id) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
@@ -92,13 +95,10 @@ public class MatiereParFormationRestController {
 		matiereparformation.setId(id);
 		return new MatiereParFormationResponse(matiereparformationSrv.insert(matiereparformation), false);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteById(@PathVariable("id") Integer id){
+	public void deleteById(@PathVariable("id") Integer id) {
 		matiereparformationSrv.deleteById(id);
 	}
 }
-
-		
-
