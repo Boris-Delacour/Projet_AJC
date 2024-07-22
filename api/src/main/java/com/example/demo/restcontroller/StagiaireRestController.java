@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,22 +24,26 @@ import com.example.demo.dto.request.StagiaireRequest;
 import com.example.demo.dto.response.StagiaireResponse;
 import com.example.demo.model.Stagiaire;
 import com.example.demo.service.FormationService;
+import com.example.demo.service.OrdinateurService;
 import com.example.demo.service.StagiaireService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/api/stagiaire")
 @SecurityRequirement(name = "basicAuth")
+@CrossOrigin(origins = "*")
 public class StagiaireRestController {
 
 	@Autowired
 	private StagiaireService stagiaireSrv;
 	@Autowired
 	private FormationService formationSrv;
+
+	@Autowired
+	private OrdinateurService ordinateurSrv;
 
 	@GetMapping("/{id}")
 	@JsonView(CustomJsonViews.Common.class)
@@ -58,10 +63,10 @@ public class StagiaireRestController {
 	}
 
 	@GetMapping("/{id}/ordinateur")
+	@JsonView(CustomJsonViews.StagiaireWithOrdinateur.class)
 	public StagiaireResponse getWithOrdinateur(@PathVariable Integer id) {
 		return new StagiaireResponse(stagiaireSrv.getWithOrdinateur(id));
 	}
-	
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -73,6 +78,7 @@ public class StagiaireRestController {
 		Stagiaire model = new Stagiaire();
 		BeanUtils.copyProperties(stagiaireRequest, model);
 		model.setFormation(formationSrv.getById(stagiaireRequest.getIdFormation()));
+		model.setOrdinateur(ordinateurSrv.getById(stagiaireRequest.getIdOrdinateur()));
 		return new StagiaireResponse(stagiaireSrv.insert(model));
 	}
 
@@ -86,8 +92,9 @@ public class StagiaireRestController {
 		Stagiaire model = new Stagiaire();
 		BeanUtils.copyProperties(stagiaireRequest, model);
 		model.setFormation(formationSrv.getById(stagiaireRequest.getIdFormation()));
+		model.setOrdinateur(ordinateurSrv.getById(stagiaireRequest.getIdOrdinateur()));
 		model.setId(id);
-				return new StagiaireResponse(stagiaireSrv.update(model));
+		return new StagiaireResponse(stagiaireSrv.update(model));
 	}
 
 	@DeleteMapping("/{id}")

@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +28,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
-	
-	@RestController
-	@RequestMapping("/api/technicien")
-	public class TechnicienRestController {
+@RestController
+@RequestMapping("/api/technicien")
+@CrossOrigin(origins = "*")
+public class TechnicienRestController {
 
 	@Autowired
 	private TechnicienService tSrv;
@@ -48,24 +49,25 @@ import jakarta.validation.Valid;
 		Technicien t = new Technicien();
 		BeanUtils.copyProperties(tr, t);
 		return new TechnicienResponse(tSrv.insert(t));
-		
+
 	}
 
 	@PutMapping("/{id}")
-    @JsonView(CustomJsonViews.Common.class)
-    public TechnicienResponse update(@Valid @RequestBody TechnicienRequest tr, BindingResult br, @PathVariable Integer id) {
-        if (br.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Technicien technicien = tSrv.getById(id);
-        BeanUtils.copyProperties(tr, technicien);
-        return new TechnicienResponse(tSrv.update(technicien));
-    }
+	@JsonView(CustomJsonViews.Common.class)
+	public TechnicienResponse update(@Valid @RequestBody TechnicienRequest tr, BindingResult br,
+			@PathVariable Integer id) {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		Technicien technicien = tSrv.getById(id);
+		BeanUtils.copyProperties(tr, technicien);
+		return new TechnicienResponse(tSrv.update(technicien));
+	}
 
 	@DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable("id") Integer id){
-        tSrv.deleteById(id);
-    }
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteById(@PathVariable("id") Integer id) {
+		tSrv.deleteById(id);
+	}
 
 }
