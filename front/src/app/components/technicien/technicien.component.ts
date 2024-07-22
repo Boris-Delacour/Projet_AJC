@@ -1,12 +1,31 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { Technicien } from '../../models/technicien';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-technicien',
-  standalone: true,
-  imports: [],
   templateUrl: './technicien.component.html',
-  styleUrl: './technicien.component.css'
+  styleUrls: ['./technicien.component.css'],
+  imports: [FormsModule],
+  standalone: true,
 })
-export class TechnicienComponent {
+export class TechnicienComponent implements OnInit {
+  
+  constructor() { 
+    
+    technicien: Technicien = new Technicien();
 
+    message = '';
+  
+    ok() {
+      if (this.technicien.lastName && this.technicien.firstName) {
+        this.message = this.technicien.infos;
+      } else {
+        this.message = 'Il manque des infos';
+      }
+    }
+  }
+  ngOnInit() {}
+  
 }
