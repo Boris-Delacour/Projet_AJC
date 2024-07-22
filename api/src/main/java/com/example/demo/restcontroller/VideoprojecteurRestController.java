@@ -56,7 +56,7 @@ public class VideoprojecteurRestController {
         return new VideoprojecteurResponse(videoprojecteurSrv.getById(id));
     }
 
-    @GetMapping("/{marque}")
+    @GetMapping("marque/{marque}")
     @JsonView(CustomJsonViews.Common.class)
     public List<VideoprojecteurResponse> getByMarque(@PathVariable String marque) {
         return videoprojecteurSrv.getByMarque(marque).stream()
@@ -80,11 +80,11 @@ public class VideoprojecteurRestController {
                 .collect(Collectors.toList());
     }
 
-	@GetMapping("/{id}/salle")
-	@JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
-	public Videoprojecteur getWithSalle(@PathVariable Integer id) {
-		return videoprojecteurSrv.getWithSalle(id);
-	}
+    @GetMapping("/{id}/salle")
+    @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    public Videoprojecteur getWithSalle(@PathVariable Integer id) {
+        return videoprojecteurSrv.getWithSalle(id);
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
