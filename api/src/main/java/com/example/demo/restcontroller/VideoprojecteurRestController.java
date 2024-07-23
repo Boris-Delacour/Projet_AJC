@@ -23,6 +23,7 @@ import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.model.Videoprojecteur;
+import com.example.demo.service.SalleService;
 import com.example.demo.service.VideoprojecteurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -38,6 +39,9 @@ public class VideoprojecteurRestController {
     @Autowired
     private VideoprojecteurService videoprojecteurSrv;
 
+    @Autowired
+    private SalleService salleSrv;
+
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les videoprojecteurs")
@@ -47,7 +51,7 @@ public class VideoprojecteurRestController {
     }
 
     @GetMapping("/{id}")
-    @JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
     public VideoprojecteurResponse getById(@PathVariable Integer id) {
         return new VideoprojecteurResponse(videoprojecteurSrv.getById(id));
     }
@@ -78,8 +82,32 @@ public class VideoprojecteurRestController {
 
     @GetMapping("/{id}/salle")
     @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
-    public Videoprojecteur getWithSalle(@PathVariable Integer id) {
-        return videoprojecteurSrv.getWithSalle(id);
+    public VideoprojecteurResponse getWithSalle(@PathVariable Integer id) {
+        return new VideoprojecteurResponse(videoprojecteurSrv.getWithSalle(id));
+    }
+
+    @GetMapping("/disponible")
+    @JsonView(CustomJsonViews.Common.class)
+    public List<VideoprojecteurResponse> getWithSalleOnIsNull() {
+        return videoprojecteurSrv.getDisponible().stream()
+                .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+                .collect(Collectors.toList());
+
+        // return videoprojecteurSrv.getAll().stream().filter(v -> v.getSalle() == null)
+        // .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+        // .collect(Collectors.toList());
+    }
+
+    @GetMapping("/disponibleWith/{id}")
+    @JsonView(CustomJsonViews.Common.class)
+    public List<VideoprojecteurResponse> getWithSalleOnIsNull(@PathVariable Integer id) {
+        return videoprojecteurSrv.getDisponibleWith(id).stream()
+                .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+                .collect(Collectors.toList());
+
+        // return videoprojecteurSrv.getAll().stream().filter(v -> v.getSalle() == null)
+        // .map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+        // .collect(Collectors.toList());
     }
 
     @PostMapping("")

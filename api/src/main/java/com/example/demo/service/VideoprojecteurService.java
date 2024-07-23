@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOSalle;
 import com.example.demo.dao.IDAOVideoprojecteur;
+import com.example.demo.model.Salle;
 import com.example.demo.model.Videoprojecteur;
 
 @Service
@@ -44,12 +45,23 @@ public class VideoprojecteurService {
 	public Videoprojecteur getWithSalle(Integer id) {
 		Videoprojecteur res = this.getById(id);
 		res.setSalle(daoSalle.findByVideoprojecteur(res));
-
 		return res;
 	}
 
 	public List<Videoprojecteur> getAll() {
 		return daoVideoprojecteur.findAll();
+	}
+
+	public List<Videoprojecteur> getDisponible() {
+		return daoVideoprojecteur.findBySalleIsNullAndFonctionnelTrue();
+	}
+
+	public List<Videoprojecteur> getDisponibleWith(Integer id) {
+		List<Videoprojecteur> videoprojecteurs = daoVideoprojecteur.findBySalleIsNullAndFonctionnelTrue();
+		if (id != 0) {
+			videoprojecteurs.add(this.getById(id));
+		}
+		return videoprojecteurs;
 	}
 
 	public Videoprojecteur insert(Videoprojecteur videoprojecteur) {

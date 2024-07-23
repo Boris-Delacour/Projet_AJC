@@ -55,6 +55,14 @@ export class VideoprojecteurService {
       `${this.url}/non-fonctionnel`
     );
   }
+  public getByDisponible(): Observable<Videoprojecteur[]> {
+    return this.httpClient.get<Videoprojecteur[]>(`${this.url}/disponible`);
+  }
+  public getByDisponibleWithCurrent(id: number): Observable<Videoprojecteur[]> {
+    return this.httpClient.get<Videoprojecteur[]>(
+      `${this.url}/disponibleWith/${id}`
+    );
+  }
 
   public update(videoprojecteur: Videoprojecteur): Observable<Videoprojecteur> {
     return this.httpClient.put<Videoprojecteur>(

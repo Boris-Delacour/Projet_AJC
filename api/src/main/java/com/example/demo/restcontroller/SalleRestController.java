@@ -72,11 +72,11 @@ public class SalleRestController {
                 .collect(Collectors.toList());
     }
 
-	@GetMapping("/{id}/videoprojecteur")
-	@JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
-	public Salle getWithVideoprojecteur(@PathVariable("id") Integer id) {
-		return salleSrv.getWithVideoprojecteur(id);
-	}
+    @GetMapping("/{id}/videoprojecteur")
+    @JsonView(CustomJsonViews.SalleWithVideoprojecteur.class)
+    public SalleResponse getWithVideoprojecteur(@PathVariable("id") Integer id) {
+        return new SalleResponse(salleSrv.getWithVideoprojecteur(id));
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
