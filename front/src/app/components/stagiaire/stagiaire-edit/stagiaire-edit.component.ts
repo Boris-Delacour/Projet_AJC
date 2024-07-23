@@ -10,10 +10,11 @@ import {
 } from '@angular/router';
 import { FormationService } from '../../../services/formation.service';
 import { Formation } from '../../../models/formation';
-import { OrdinateurService } from '../../../services/ordinateur.service';
+
 import { Ordinateur } from '../../../models/ordinateur';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { OrdinateurService } from '../../../services/ordinateur.service';
 
 @Component({
   selector: 'app-stagiaire-edit',
