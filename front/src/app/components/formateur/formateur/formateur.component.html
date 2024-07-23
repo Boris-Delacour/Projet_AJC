@@ -1,0 +1,21 @@
+<h1>Liste des formateurs</h1>
+
+<a routerLink="/formateur/edit" routerLinkActive="active" class="btn btn-link">Nouveau Formateur</a>
+
+<table class="table">
+    @for(f of formateurs;track f.id) {
+    <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.firstname }}</td>
+        <td>{{ f.lastname }}</td>
+        <td>{{ f.email }}</td>
+        <td>{{ f.login }}</td>
+        <td>
+            <a routerLink="/formateur/edit/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">editer</a>
+        </td>
+        <td>
+            <button (click)="delete(f.id!)" class="btn btn-outline-danger">suprimer</button>
+        </td>
+    </tr>
+    }
+</table>

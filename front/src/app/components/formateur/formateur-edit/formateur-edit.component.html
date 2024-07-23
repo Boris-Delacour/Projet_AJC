@@ -1,0 +1,27 @@
+<h1>Édition de formateur</h1>
+<div>
+    <div class="form-group">
+        <label for="prenom">prenom:</label>
+        <input id="prenom" [(ngModel)]="formateur.firstname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="nom">nom:</label>
+        <input id="nom" [(ngModel)]="formateur.lastname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="email">email:</label>
+        <input id="email" type="email" [(ngModel)]="formateur.email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="login">login:</label>
+        <input id="login" type="text" [(ngModel)]="formateur.login" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe:</label>
+        <input id="password" type="password" [(ngModel)]="formateur.password" class="form-control" />
+    </div>
+    <div>
+        <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+        <a routerLink="/formateur" routerLinkActive="active" class="btn btn-outline-warning">annuler</a>
+    </div>
+</div>

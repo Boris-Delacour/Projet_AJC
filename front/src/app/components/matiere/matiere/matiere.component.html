@@ -1,0 +1,23 @@
+<h1>Liste des matieres</h1>
+
+<a routerLink="/matiere/edit" routerLinkActive="active" class="btn btn-link">Nouveau Formateur</a>
+
+<table class="table">
+    @for(m of matieres;track m.id) {
+    <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.libelle }}</td>
+        <td>{{ m.duration }}</td>
+        <td>{{ m.objective }}</td>
+        <td>{{ m.prerequisite }}</td>
+        <td>{{ m.content }}</td>
+        <td>
+            <a routerLink="/matiere/edit/{{m.id}}" routerLinkActive="active"
+                class="btn btn-outline-primary">editer</a>
+        </td>
+        <td>
+            <button (click)="delete(m.id!)" class="btn btn-outline-danger">suprimer</button>
+        </td>
+    </tr>
+    }
+</table>

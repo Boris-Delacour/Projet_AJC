@@ -1,0 +1,28 @@
+<h1>liste des formations</h1>
+<a routerLink="/formation/edit" routerLinkActive="active" class="btn btn-link"
+  >nouvelle formation</a
+>
+<table class="table">
+  @for(f of formations;track f.id) {
+  <tr>
+    <td>{{ f.id }}</td>
+    <td>{{ f.nom }}</td>
+    <td>{{ f.dateStart }}</td>
+    <td>{{ f.gestionnaire?.firstName }}</td>
+    <td>{{ f.formateur?.firstname }}</td>
+    <td>
+        <a
+        routerLink="/formation/edit/{{ f.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >editer</a
+        >
+    </td>
+    <td>
+      <button (click)="delete(f.id!)" class="btn btn-outline-danger">
+        suprimer
+      </button>
+    </td>
+  </tr>
+  }
+</table>
