@@ -51,9 +51,15 @@ public class FormateurRestController {
         return new FormateurResponse(fSrv.getById(id));
     }
 
+    @GetMapping("/{id}/infos")
+    @JsonView(CustomJsonViews.FormateurWithAll.class)
+    public FormateurResponse getWithAll(@PathVariable Integer id) {
+        return new FormateurResponse(fSrv.getWithAll(id), true);
+    }
+
     @GetMapping("/{id}/formations")
     @JsonView(CustomJsonViews.FormateurWithFormations.class)
-    public FormateurResponse getWithFormations(@PathVariable("id") Integer id) {
+    public FormateurResponse getWithFormations(@PathVariable Integer id) {
         return new FormateurResponse(fSrv.getWithFormations(id), true);
     }
 

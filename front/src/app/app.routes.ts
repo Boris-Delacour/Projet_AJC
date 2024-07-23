@@ -18,13 +18,15 @@ import { TechnicienComponent } from './components/technicien/technicien.componen
 // import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.component';
 // import { SalleComponent } from './components/videoprojecteur/videoprojecteur/videoprojecteur.component';
 // import { SalleEditComponent } from './components/videoprojecteur/videoprojecteur-edit/videoprojecteur-edit.component';
-// import { IndisponibiliteComponent } from './components/indisponibilite/indisponibilite/indisponibilite.component';
-// import { IndisponibiliteEditComponent } from './components/indisponibilite/indisponibilite-edit/indisponibilite-edit.component';
+import { IndisponibiliteComponent } from './components/indisponibilite/indisponibilite/indisponibilite.component';
+import { IndisponibiliteEditComponent } from './components/indisponibilite/indisponibilite-edit/indisponibilite-edit.component';
+import { FormateurDetailsComponent } from './components/formateur/formateur-details/formateur-details.component';
 
 export const routes: Routes = [
     {path: "formateur", component: FormateurComponent},
     {path: "formateur/edit", component: FormateurEditComponent},
     {path: "formateur/edit/:id", component: FormateurEditComponent},
+    {path: "formateur/details/:id", component: FormateurDetailsComponent},
 
     {path: "matiere", component: MatiereComponent},
     {path: "matiere/edit", component: MatiereEditComponent},
@@ -60,7 +62,7 @@ export const routes: Routes = [
     // {path: "videoprojecteur/edit", component: VideoprojecteurEditComponent},
     // {path: "videoprojecteur/edit/:id", component: VideoprojecteurEditComponent},
 
-    // {path: "indisponibilite", component: IndisponibiliteComponent},
-    // {path: "indisponibilite/edit", component: IndisponibiliteEditComponent},
-    // {path: "indisponibilite/edit/:id", component: IndisponibiliteEditComponent},
+    {path: "indisponibilite", component: IndisponibiliteComponent},
+    {path: "indisponibilite/edit", component: IndisponibiliteEditComponent},
+    {path: "indisponibilite/edit/:id", component: IndisponibiliteEditComponent},
 ];

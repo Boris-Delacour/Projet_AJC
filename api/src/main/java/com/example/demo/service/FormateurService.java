@@ -22,13 +22,13 @@ public class FormateurService {
 	@Autowired
 	IDAOFormation daoFormation;
 
-	@Autowired 
+	@Autowired
 	IDAOFormateurMatiere daoFormateurMatiere;
 
-	@Autowired 
+	@Autowired
 	IDAOIndisponibilite daoIndisponibilite;
 
-	@Autowired 
+	@Autowired
 	IDAOMatiereParFormation daoMatiereParFormation;
 
 	public Formateur getById(Integer id) {
@@ -65,6 +65,16 @@ public class FormateurService {
 
 	public Formateur getWithMatiereParFormations(Integer id) {
 		Formateur res = this.getById(id);
+		res.setMatiereParFormation(daoMatiereParFormation.findByFormateur(res));
+
+		return res;
+	}
+
+	public Formateur getWithAll(Integer id) {
+		Formateur res = this.getById(id);
+		res.setFormations(daoFormation.findByFormateur(res));
+		res.setFormateurMatieres(daoFormateurMatiere.findByFormateur(res));
+		res.setIndisponibilites(daoIndisponibilite.findByFormateur(res));
 		res.setMatiereParFormation(daoMatiereParFormation.findByFormateur(res));
 
 		return res;

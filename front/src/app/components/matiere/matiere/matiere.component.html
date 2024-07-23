@@ -1,6 +1,12 @@
 <h1>Liste des matieres</h1>
 
-<a routerLink="/matiere/edit" routerLinkActive="active" class="btn btn-link">Nouveau Formateur</a>
+<a routerLink="/matiere/edit" routerLinkActive="active" class="btn btn-link">Nouvelle Matière</a>
+
+@if(showMessage){
+<div class="alert {{ style }}">
+    {{ message }}
+</div>
+}
 
 <table class="table">
     @for(m of matieres;track m.id) {

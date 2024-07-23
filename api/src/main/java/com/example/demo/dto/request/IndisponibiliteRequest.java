@@ -7,7 +7,7 @@ public class IndisponibiliteRequest {
 	private LocalDate start;
 	private LocalDate end;
 
-	private Integer idFormateur;
+	private Integer formateur;
 
 	public IndisponibiliteRequest() {
 	}
@@ -28,11 +28,11 @@ public class IndisponibiliteRequest {
 		this.end = end;
 	}
 
-	public Integer getIdFormateur() {
-		return idFormateur;
+	public Integer getFormateur() {
+		return formateur;
 	}
 
-	public void setIdFormateur(Integer idFormateur) {
-		this.idFormateur = idFormateur;
+	public void setFormateur(Integer formateur) {
+		this.formateur = formateur;
 	}
 }

@@ -1,0 +1,23 @@
+<h1>Édition d'indisponibilité</h1>
+<div>
+    <div class="form-group">
+        <label for="start">start:</label>
+        <input id="start" type="date" [(ngModel)]="indisponibilite.start" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="end">end:</label>
+        <input id="end" type="date" [(ngModel)]="indisponibilite.end" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="formateur">formateur:</label>
+        <select id="formateur" [(ngModel)]="indisponibilite.formateur" class="form-control" [compareWith]="compareFn">
+            @for (f of formateursObservable|async; track f.id) {
+                <option [ngValue]="f">{{ f.firstname }} {{ f.lastname }}</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+        <a routerLink="/indisponibilite" routerLinkActive="active" class="btn btn-outline-warning">annuler</a>
+    </div>
+</div>

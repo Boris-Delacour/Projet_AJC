@@ -11,6 +11,9 @@
         <td>{{ f.email }}</td>
         <td>{{ f.login }}</td>
         <td>
+            <a routerLink="/formateur/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
+        </td>
+        <td>
             <a routerLink="/formateur/edit/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">editer</a>
         </td>
         <td>

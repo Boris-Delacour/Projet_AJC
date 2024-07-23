@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Matiere } from '../../../models/matiere';
 import { MatiereService } from '../../../services/matiere.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-matiere',
@@ -12,16 +12,34 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class MatiereComponent {
   matieres: Matiere[] = [];
+  message = '';
+  showMessage = false;
+  style = '';
 
-  constructor(public mSrv: MatiereService) {}
+  constructor(public mSrv: MatiereService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.initMatieres();
+    this.initMessage();
   }
 
   initMatieres() {
     this.mSrv.getAll().subscribe((matieres) => {
       this.matieres = matieres
+    });
+  }
+
+  initMessage() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['q']) {
+        if (params['q'] == 'create') {
+          this.message = `Matière ${params['id']} créé `;
+        } else if (params['q'] == 'update') {
+          this.message = `Matière ${params['id']} mis à jour `;
+        }
+      }
+      this.showMessage = true;
+      this.style = 'alert-info';
     });
   }
 

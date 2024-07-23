@@ -1,0 +1,26 @@
+<h1>Liste des indisponibilites</h1>
+
+<a routerLink="/indisponibilite/edit" routerLinkActive="active" class="btn btn-link">Nouvelle Indisponibilité</a>
+
+@if(showMessage){
+<div class="alert {{ style }}">
+    {{ message }}
+</div>
+}
+
+<table class="table">
+    @for(i of indisponibilites;track i.id) {
+    <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.start }}</td>
+        <td>{{ i.end }}</td>
+        <td>{{ i.formateur?.firstname }} {{ i.formateur?.lastname }}</td>
+        <td>
+            <a routerLink="/indisponibilite/edit/{{i.id}}" routerLinkActive="active" class="btn btn-outline-primary">editer</a>
+        </td>
+        <td>
+            <button (click)="delete(i.id!)" class="btn btn-outline-danger">suprimer</button>
+        </td>
+    </tr>
+    }
+</table>
