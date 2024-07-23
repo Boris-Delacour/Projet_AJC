@@ -1,0 +1,43 @@
+<!-- <div>
+  prenom:<input [(ngModel)]="technicien.firstName" /> nom<input
+    [(ngModel)]="technicien.lastName"
+  />
+  <button (click)="ok()">ok</button>
+</div>
+<div>
+  {{ message }}
+</div> -->
+
+<h1>Liste des techniciens</h1>
+
+<a routerLink="/technicien/edit" routerLinkActive="active" class="btn btn-link"
+  >Nouveau technicien</a
+>
+
+<table class="table">
+  @if (techniciens.length==0) {
+  <p>ok</p>
+  } @for (t of techniciens; track t.id) {
+  <tr>
+    <td>{{ t.id }}</td>
+    <td>{{ t.firstName }}</td>
+    <td>{{ t.lastName }}</td>
+    <td>{{ t.email }}</td>
+    <td>{{ t.login }}</td>
+    <td>{{ t.password }}</td>
+    <td>
+      <a
+        routerLink="/technicien/edit/{{ t.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >modifier le technicien</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(t.id!)" class="btn btn-outline-danger">
+        Supprimer le technicien
+      </button>
+    </td>
+  </tr>
+  }
+</table>
