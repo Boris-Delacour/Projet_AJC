@@ -1,19 +1,17 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Salle } from '../../../models/salle';
-import { Observable } from 'rxjs';
-import { Videoprojecteur } from '../../../models/videoprojecteur';
-import { MatiereParFormation } from '../../../models/matiere-par-formation';
-import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
-import { MatiereParFormationService } from '../../../services/matiere-par-formation.service';
+import { FormsModule } from '@angular/forms';
 import {
   ActivatedRoute,
   Router,
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Salle } from '../../../models/salle';
+import { Videoprojecteur } from '../../../models/videoprojecteur';
 import { SalleService } from '../../../services/salle.service';
-import { FormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
+import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
 
 @Component({
   selector: 'app-salle-edit',
@@ -35,12 +33,27 @@ export class SalleEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.videoprojecteurObservable = this.videoprojecteurSrv.getByFonctionnel();
     this.activatedroute.params.subscribe((params) => {
       if (params['id']) {
-        this.salleSrv.getById(params['id']).subscribe((salle) => {
-          this.salle = salle;
-        });
+        this.salleSrv
+          .getByIdWithVideoprojecteur(params['id'])
+          .subscribe((salle) => {
+            this.salle = salle;
+            console.log(salle);
+            if (this.salle.videoprojecteur?.id != null) {
+              console.log('ok');
+              this.videoprojecteurObservable =
+                this.videoprojecteurSrv.getByDisponibleWithCurrent(
+                  this.salle.videoprojecteur.id!
+                );
+            } else {
+              this.videoprojecteurObservable =
+                this.videoprojecteurSrv.getByDisponible();
+            }
+          });
+      } else {
+        this.videoprojecteurObservable =
+          this.videoprojecteurSrv.getByDisponible();
       }
     });
   }
