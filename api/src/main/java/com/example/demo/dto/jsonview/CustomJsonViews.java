@@ -4,6 +4,9 @@ public class CustomJsonViews {
 	public static class Common {
 	}
 
+	public static class FormateurWithAll extends Common {
+	}
+
 	public static class FormateurWithFormations extends Common {
 	}
 

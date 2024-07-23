@@ -8,6 +8,7 @@ import { Formateur } from '../../../models/formateur';
 import { Gestionnaire } from '../../../models/gestionnaire';
 import { AsyncPipe } from '@angular/common';
 import { FormateurService } from '../../../services/formateur.service';
+import { GestionnaireService } from '../../../services/gestionnaire.service';
 
 @Component({
   selector: 'app-formation-edit',
@@ -34,7 +35,7 @@ export class FormationEditComponent {
 
   ngOnInit(): void {
     this.formateurObservable = this.formateurSrv.getAll();
-    this.gestionnaireObservable = this.gestionnaireSrv.getAll();
+    // this.gestionnaireObservable = this.gestionnaireSrv.getAll();
     this.activatedroute.params.subscribe((params) => {
       if (params['id']) {
         this.formationSrv.getById(params['id']).subscribe((formation) => {

@@ -1,0 +1,46 @@
+<h1>Détails du formateur {{ formateur.id }}</h1>
+<div class="container">
+    <div>
+        <div class="form-group">
+            <label for="prenom">prenom:</label>
+            <input id="prenom" [(ngModel)]="formateur.firstname" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label for="nom">nom:</label>
+            <input id="nom" [(ngModel)]="formateur.lastname" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label for="email">email:</label>
+            <input id="email" type="email" [(ngModel)]="formateur.email" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label for="login">login:</label>
+            <input id="login" type="text" [(ngModel)]="formateur.login" class="form-control" disabled />
+        </div>
+    </div>
+    <div>
+        <h2>Matières du formateur {{ formateur.id }}</h2>
+        <table class="table">
+            @for(m of formateur.matieres;track m.id) {
+            <tr>
+                <td>{{ m.libelle }}</td>
+                <td>{{ m.objective }}</td>
+                <td>{{ m.prerequisite}}</td>
+                <td>{{ m.content }}</td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <h2>Indisponibilités du formateur {{ formateur.id }}</h2>
+        <table class="table">
+            @for(i of formateur.indisponibilites;track i.id) {
+            <tr>
+                <td>{{ i.start }}</td>
+                <td>{{ i.end }}</td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+<a routerLink="/formateur" routerLinkActive="active" class="btn btn-outline-warning">retour</a>

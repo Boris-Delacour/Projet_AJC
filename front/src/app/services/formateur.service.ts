@@ -19,6 +19,10 @@ export class FormateurService {
     return this.httpClient.get<Formateur>(`${this.url}/${id}`);
   }
 
+  public getWithAll(id: number): Observable<Formateur> {
+    return this.httpClient.get<Formateur>(`${this.url}/${id}/infos`);
+  }
+
   public create(formateur: Formateur): Observable<Formateur> {
     return this.httpClient.post<Formateur>(
       this.url,
