@@ -42,7 +42,7 @@ export class FormationService {
     );
   }
 
-  public deleteById(id: number): Observable<void> {
+  public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
 

@@ -1,0 +1,40 @@
+<h1>liste des salle</h1>
+<a routerLink="/salle/edit" routerLinkActive="active" class="btn btn-link"
+  >nouveau salle</a
+>
+@if(showMessage){
+<div class="alert {{ style }}">
+  {{ message }}
+</div>
+}
+<table class="table">
+  <thead>
+    <td>Id</td>
+    <td>Numéro</td>
+    <td>Nb place</td>
+    <td></td>
+    <td></td>
+  </thead>
+  <tbody>
+    @for(s of salles;track s.id) {
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.numero }}</td>
+      <td>{{ s.nbPlace }}</td>
+      <td>
+        <a
+          routerLink="/salle/edit/{{ s.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button (click)="delete(s.id!)" class="btn btn-outline-danger">
+          suprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,41 @@
+<h1>liste des ordinateur</h1>
+<a routerLink="/ordinateur/edit" routerLinkActive="active" class="btn btn-link"
+  >nouveau ordinateur</a
+>
+@if(showMessage){
+<div class="alert {{ style }}">
+  {{ message }}
+</div>
+}
+<table class="table">
+  <thead>
+    <td>Id</td>
+    <td>Marque</td>
+    <td>OS</td>
+    <td></td>
+    <td></td>
+  </thead>
+  <tbody>
+    @for(o of ordinateurs;track o.id) {
+    <tr>
+      <td>{{ o.id }}</td>
+      <td>{{ o.marque }}</td>
+      <td>{{ o.os }}</td>
+      <td>{{ o.stagiaire?.firstName }} {{ o.stagiaire?.lastName }}</td>
+      <td>
+        <a
+          routerLink="/ordinateur/edit/{{ o.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button (click)="delete(o.id!)" class="btn btn-outline-danger">
+          suprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

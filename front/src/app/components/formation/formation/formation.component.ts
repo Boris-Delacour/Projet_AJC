@@ -29,7 +29,7 @@ export class FormationComponent  implements OnInit{
   }
 
   delete(id: number) {
-    this.formationSrv.deleteById(id).subscribe(() => {
+    this.formationSrv.delete(id).subscribe(() => {
       this.initFormations();
     });
   }

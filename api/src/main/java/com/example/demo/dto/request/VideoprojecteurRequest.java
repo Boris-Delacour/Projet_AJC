@@ -3,7 +3,6 @@ package com.example.demo.dto.request;
 public class VideoprojecteurRequest {
     private String marque;
     private boolean fonctionnel;
-    private Integer idSalle;
 
     public VideoprojecteurRequest() {
     }
@@ -22,14 +21,6 @@ public class VideoprojecteurRequest {
 
     public void setFonctionnel(boolean fonctionnel) {
         this.fonctionnel = fonctionnel;
-    }
-
-    public Integer getIdSalle() {
-        return idSalle;
-    }
-
-    public void setIdSalle(Integer idSalle) {
-        this.idSalle = idSalle;
     }
 
 }
