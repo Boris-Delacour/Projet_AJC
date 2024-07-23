@@ -31,7 +31,7 @@ export const routes: Routes = [
     {path: "matiere/edit/:id", component: MatiereEditComponent},
 
     {path: "formation", component: FormationComponent},
-    {path: "formation/edit", component: FormateurEditComponent},
+    {path: "formation/edit", component: FormationEditComponent},
     {path: "formation/edit/:id", component: FormationEditComponent},
 
     {path: "matiereparformation", component: MatiereParFormationComponent},

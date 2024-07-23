@@ -19,19 +19,19 @@ public class CustomJsonViews {
 
 	public static class OrdinateurWithStagiaire extends Common {}
 
-	public static class VideoprojecteurWithSalle {}
+	public static class VideoprojecteurWithSalle extends Common {}
 
-	public static class SalleWithVideoprojecteur {}
+	public static class SalleWithVideoprojecteur extends Common {}
 
-	public static class SalleWithAll {}
+	public static class SalleWithAll extends Common {}
 
-	public static class FormationWithGestionnaire {}
+	public static class FormationWithGestionnaire extends Common {}
 
-	public static class FormationWithStagiaires {}
+	public static class FormationWithStagiaires extends Common {}
 
-	public static class FormationWithMatieres {}
+	public static class FormationWithMatieres extends Common {}
 
-	public static class FormationWithFormateur {}
+	public static class FormationWithFormateur extends Common {}
 
 	public static class GestionnaireWithFormations extends Common {}
 
