@@ -44,7 +44,7 @@
       [compareWith]="compareFn"
     >
       @for(f of formationsObservable|async ;track f.id ){
-      <option [ngValue]="f">{{ f.libelle }}</option>
+      <option [ngValue]="f">{{ f.nom }}</option>
       }
     </select>
     <div class="form-group">
@@ -55,8 +55,8 @@
         class="form-control"
         [compareWith]="compareFn"
       >
-        @for(f of ordinateursObservable|async ;track o.id ){
-        <option [ngValue]="o">{{ o.nom }}</option>
+        @for(o of ordinateursObservable|async ;track o.id ){
+        <option [ngValue]="o">{{ o.id }}</option>
         }
       </select>
   </div>
