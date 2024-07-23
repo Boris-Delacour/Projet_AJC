@@ -8,6 +8,7 @@ import { Formateur } from '../../../models/formateur';
 import { Gestionnaire } from '../../../models/gestionnaire';
 import { AsyncPipe } from '@angular/common';
 import { FormateurService } from '../../../services/formateur.service';
+import { GestionnaireService } from '../../../services/gestionnaire.service';
 
 @Component({
   selector: 'app-formation-edit',
