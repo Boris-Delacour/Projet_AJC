@@ -1,1 +1,50 @@
-<p>salle-edit works!</p>
+<h1>edition salle</h1>
+<div>
+  <div class="form-group">
+    <label for="numero">Numéro de salle:</label>
+    <input
+      type="number"
+      id="numero"
+      [(ngModel)]="salle.numero"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="nbPlace">Nombre de place:</label>
+    <input
+      type="number"
+      id="nbPlace"
+      [(ngModel)]="salle.nbPlace"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="occuper">Disponible ? :</label>
+    <input type="radio" id="true" value="true" [(ngModel)]="salle.occuper" />
+    <label for="true">Oui</label>
+    <input type="radio" id="false" value="false" [(ngModel)]="salle.occuper" />
+    <label for="false">Non</label>
+  </div>
+  <div class="form-group">
+    <label for="videoprojecteur">Videoprojecteur:</label>
+    <select
+      id="videoprojecteur"
+      [(ngModel)]="salle.videoprojecteur"
+      class="form-control"
+      [compareWith]="compareVn"
+    >
+      @for(v of videoprojecteurObservable|async ;track v.id ){
+      <option [ngValue]="v">{{ v.id }}</option>
+      }
+    </select>
+  </div>
+  <div>
+    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <a
+      routerLink="/salle"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</div>

@@ -48,10 +48,12 @@ export class VideoprojecteurService {
     return this.httpClient.get<Videoprojecteur>(`${this.url}/${marque}`);
   }
   public getByFonctionnel(): Observable<Videoprojecteur[]> {
-    return this.httpClient.get<Videoprojecteur[]>(`${this.url}/fonctionne`);
+    return this.httpClient.get<Videoprojecteur[]>(`${this.url}/fonctionnel`);
   }
   public getByNonFonctionnel(): Observable<Videoprojecteur[]> {
-    return this.httpClient.get<Videoprojecteur[]>(`${this.url}/non-fonctionne`);
+    return this.httpClient.get<Videoprojecteur[]>(
+      `${this.url}/non-fonctionnel`
+    );
   }
 
   public update(videoprojecteur: Videoprojecteur): Observable<Videoprojecteur> {

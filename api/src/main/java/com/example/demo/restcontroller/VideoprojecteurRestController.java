@@ -23,7 +23,6 @@ import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.model.Videoprojecteur;
-import com.example.demo.service.SalleService;
 import com.example.demo.service.VideoprojecteurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -38,9 +37,6 @@ public class VideoprojecteurRestController {
 
     @Autowired
     private VideoprojecteurService videoprojecteurSrv;
-
-    @Autowired
-    private SalleService salleSrv;
 
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
