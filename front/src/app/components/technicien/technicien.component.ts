@@ -11,13 +11,11 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 })
 export class TechnicienComponent implements OnInit {
-  message: string;
-
   technicien: Technicien;
+  message: string;
 
   constructor() {
     this.technicien = new Technicien();
-
     this.message = '';
   }
 
