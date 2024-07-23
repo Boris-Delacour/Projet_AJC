@@ -17,11 +17,23 @@ public class IndisponibiliteResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate end;
 
+	@JsonView(CustomJsonViews.IndispoWithFormateur.class)
+	private FormateurResponse formateur;
+
 	public IndisponibiliteResponse() {
 	}
 
 	public IndisponibiliteResponse(Indisponibilite indisponibilite) {
+		this(indisponibilite, false);
+	}
+
+	public IndisponibiliteResponse(Indisponibilite indisponibilite, boolean bool) {
 		BeanUtils.copyProperties(indisponibilite, this);
+		if (bool) {
+			if (indisponibilite.getFormateur() != null) {
+				this.setFormateur(new FormateurResponse(indisponibilite.getFormateur()));
+			}
+		}
 	}
 
 	public Integer getId() {
@@ -47,4 +59,13 @@ public class IndisponibiliteResponse {
 	public void setEnd(LocalDate end) {
 		this.end = end;
 	}
+
+	public FormateurResponse getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(FormateurResponse formateur) {
+		this.formateur = formateur;
+	}
+
 }
