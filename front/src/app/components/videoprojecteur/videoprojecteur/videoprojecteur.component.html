@@ -16,6 +16,7 @@
     <td>Marque</td>
     <td></td>
     <td></td>
+    <td></td>
   </thead>
   <tbody>
     @for(o of videoprojecteurs;track o.id) {
@@ -25,15 +26,23 @@
       <td>{{ o.salle?.numero }} {{ o.salle?.numero }}</td>
       <td>
         <a
+          routerLink="/videoprojecteur/{{ o.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Détail</a
+        >
+      </td>
+      <td>
+        <a
           routerLink="/videoprojecteur/edit/{{ o.id }}"
           routerLinkActive="active"
           class="btn btn-outline-primary"
-          >editer</a
+          >Éditer</a
         >
       </td>
       <td>
         <button (click)="delete(o.id!)" class="btn btn-outline-danger">
-          suprimer
+          Supprimer
         </button>
       </td>
     </tr>

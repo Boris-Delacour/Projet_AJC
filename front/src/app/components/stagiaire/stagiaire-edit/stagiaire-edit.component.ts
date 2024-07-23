@@ -66,6 +66,7 @@ export class StagiaireEditComponent implements OnInit {
   }
 
   compareFn(f1: Formation, f2: Formation): boolean {
+    //return f1 && f2 ? f1.id === f2.id : false;
     if (f1 && f2) {
       return f1.id === f2.id;
     } else {
@@ -74,6 +75,7 @@ export class StagiaireEditComponent implements OnInit {
   }
 
   compareOr(o1: Ordinateur, o2: Ordinateur): boolean {
+    //return f1 && f2 ? f1.id === f2.id : false;
     if (o1 && o2) {
       return o1.id === o2.id;
     } else {

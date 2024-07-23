@@ -21,6 +21,9 @@ import { SalleComponent } from './components/salle/salle/salle.component';
 import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.component';
 import { VideoprojecteurComponent } from './components/videoprojecteur/videoprojecteur/videoprojecteur.component';
 import { VideoprojecteurEditComponent } from './components/videoprojecteur/videoprojecteur-edit/videoprojecteur-edit.component';
+import { SalleDetailComponent } from './components/salle/salle-detail/salle-detail.component';
+import { VideoprojecteurDetailComponent } from './components/videoprojecteur/videoprojecteur-detail/videoprojecteur-detail.component';
+import { OrdinateurDetailComponent } from './components/ordinateur/ordinateur-detail/ordinateur-detail.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
@@ -53,14 +56,17 @@ export const routes: Routes = [
   { path: 'ordinateur', component: OrdinateurComponent },
   { path: 'ordinateur/edit', component: OrdinateurEditComponent },
   { path: 'ordinateur/edit/:id', component: OrdinateurEditComponent },
+  { path: 'ordinateur/:id', component: OrdinateurDetailComponent },
 
   { path: 'salle', component: SalleComponent },
   { path: 'salle/edit', component: SalleEditComponent },
   { path: 'salle/edit/:id', component: SalleEditComponent },
+  { path: 'salle/:id', component: SalleDetailComponent },
 
   { path: 'videoprojecteur', component: VideoprojecteurComponent },
   { path: 'videoprojecteur/edit', component: VideoprojecteurEditComponent },
   { path: 'videoprojecteur/edit/:id', component: VideoprojecteurEditComponent },
+  { path: 'videoprojecteur/:id', component: VideoprojecteurDetailComponent },
 
   { path: 'indisponibilite', component: IndisponibiliteComponent },
   { path: 'indisponibilite/edit', component: IndisponibiliteEditComponent },
