@@ -14,6 +14,7 @@
     <td>Nb place</td>
     <td></td>
     <td></td>
+    <td></td>
   </thead>
   <tbody>
     @for(s of salles;track s.id) {
@@ -23,15 +24,23 @@
       <td>{{ s.nbPlace }}</td>
       <td>
         <a
+          routerLink="/salle/{{ s.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Détail</a
+        >
+      </td>
+      <td>
+        <a
           routerLink="/salle/edit/{{ s.id }}"
           routerLinkActive="active"
           class="btn btn-outline-primary"
-          >editer</a
+          >Éditer</a
         >
       </td>
       <td>
         <button (click)="delete(s.id!)" class="btn btn-outline-danger">
-          suprimer
+          Supprimer
         </button>
       </td>
     </tr>

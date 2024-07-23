@@ -1,0 +1,19 @@
+<h2>Détail de l'ordinateur {{ ordinateur.id }}</h2>
+
+<p>Numéro de la ordinateur : {{ ordinateur.id }}</p>
+<p>Nom de la marque : {{ ordinateur.marque }}</p>
+<p>OS installé : {{ ordinateur.os }}</p>
+<p>Ordinateur fonctionnel ? @if (ordinateur.fonctionnel) {Oui}@else {Non}</p>
+@if (ordinateur.fonctionnel) {
+<p>
+  @if (ordinateur.stagiaire) { Utilisé par le stagiaire
+  {{ ordinateur.stagiaire.firstName }} {{ ordinateur.stagiaire.lastName }}
+  }@else {Disponible en reserve}
+</p>
+}
+<a
+  routerLink="/ordinateur"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Retour</a
+>

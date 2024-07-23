@@ -1,0 +1,13 @@
+<h2>Détail de la salle {{ salle.numero }}</h2>
+
+<p>Numéro de la salle : {{ salle.numero }}</p>
+<p>Nombre de place : {{ salle.nbPlace }}</p>
+<p>Salle occuper ? @if (salle.occuper) {Oui}@else {Non}</p>
+<p>
+  Videoprojecteur en place : @if (salle.videoprojecteur) { Numéro
+  {{ salle.videoprojecteur.id }} de marque {{ salle.videoprojecteur.marque }}
+  }@else {aucun présent}
+</p>
+<a routerLink="/salle" routerLinkActive="active" class="btn btn-outline-primary"
+  >Retour</a
+>

@@ -41,7 +41,6 @@ export class SalleEditComponent implements OnInit {
             this.salle = salle;
             console.log(salle);
             if (this.salle.videoprojecteur?.id != null) {
-              console.log('ok');
               this.videoprojecteurObservable =
                 this.videoprojecteurSrv.getByDisponibleWithCurrent(
                   this.salle.videoprojecteur.id!
