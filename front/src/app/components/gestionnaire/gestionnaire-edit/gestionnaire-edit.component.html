@@ -1,1 +1,33 @@
-<p>gestionnaire-edit works!</p>
+<h1>edition gestionnaire</h1>
+<div>
+  <div class="form-group">
+    <label for="lastName">lastName:</label>
+    <input id="lastName" [(ngModel)]="gestionnaire.lastName" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="firstName">firstName:</label>
+    <input id="firstName" [(ngModel)]="gestionnaire.firstName" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="email">email:</label>
+    <input type="email" id="email" [(ngModel)]="gestionnaire.email" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="login">login:</label>
+    <input id="login" [(ngModel)]="gestionnaire.login" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="password">password:</label>
+    <input type="password" id="password" [(ngModel)]="gestionnaire.password" class="form-control" />
+  </div>
+  <div class="form-group">
+  <div>
+    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <a
+      routerLink="/formation"
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+      >annuler</a
+    >
+  </div>
+</div>
