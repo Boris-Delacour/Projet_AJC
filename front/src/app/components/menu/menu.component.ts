@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { ButtonLinkComponent } from '../../component/button-link/button-link.component';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Utilisateur } from '../../models/utilisateur';
 
 @Component({
   selector: 'app-menu',

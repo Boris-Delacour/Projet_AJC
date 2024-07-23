@@ -1,0 +1,51 @@
+<div>
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <div class="form-group">
+      <label for="login">login:</label>
+      <input id="login" class="form-control" formControlName="login" />
+      @if(form.get('login')?.dirty&&form.get('login')?.invalid){
+      <div>*obligatoire</div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="prenom">prenom:</label>
+      <input id="prenom" class="form-control" formControlName="prenom" />
+    </div>
+
+    <div formGroupName="passwordGroup">
+      <div class="form-group">
+        <label for="password">password:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+        />
+        @if(form.get('passwordGroup.password')?.dirty&&form.get('passwordGroup.password')?.invalid){
+        <div>*obligatoire</div>
+        }
+      </div>
+      <div class="form-group">
+        <label for="confirmation">ressaisir le password:</label>
+        <input
+          type="password"
+          id="confirmation"
+          class="form-control"
+          formControlName="confirmation"
+        />
+        @if(form.get('passwordGroup')?.hasError('passwordEtConfirmationNoTEquals')){
+        <div>password et confirmation different</div>
+        }
+      </div>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        envoyer
+      </button>
+    </div>
+  </form>
+</div>
