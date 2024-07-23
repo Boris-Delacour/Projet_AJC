@@ -1,0 +1,50 @@
+import { AsyncPipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
+import { Technicien } from '../../../models/technicien';
+import { TechnicienService } from '../../../services/technicien.service';
+
+@Component({
+  selector: 'app-technicien-edit',
+  standalone: true,
+  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe],
+  templateUrl: './technicien-edit.component.html',
+  styleUrl: './technicien-edit.component.css',
+})
+export class TechnicienEditComponent {
+  technicien: Technicien = new Technicien();
+
+  constructor(
+    public technicienSrv: TechnicienService,
+    private router: Router,
+    public activatedRoute: ActivatedRoute
+  ) {}
+
+  save() {
+    if (this.technicien.id) {
+      this.technicienSrv.update(this.technicien).subscribe((technicien) => {
+        this.router.navigateByUrl('/technicien?q=update&id=' + technicien.id);
+      });
+    } else {
+      this.technicienSrv.create(this.technicien).subscribe((technicien) => {
+        this.router.navigateByUrl('/technicien?q=create&id=' + technicien.id);
+      });
+    }
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id']) {
+        this.technicienSrv.getById(params['id']).subscribe((technicien) => {
+          this.technicien = technicien;
+        });
+      }
+    });
+  }
+}

@@ -2,15 +2,23 @@ package com.example.demo.dto.response;
 
 import org.springframework.beans.BeanUtils;
 
+import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.model.Technicien;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class TechnicienResponse {
-	
+
+		@JsonView(CustomJsonViews.Common.class)
 		private Integer id;
+		@JsonView(CustomJsonViews.Common.class)
 		private String firstName;
+		@JsonView(CustomJsonViews.Common.class)
 		private String lastName;
+		@JsonView(CustomJsonViews.Common.class)
 		private String email;
+		@JsonView(CustomJsonViews.Common.class)
 		private String login;
+		@JsonView(CustomJsonViews.Common.class)
 		private String password;
 
 		public TechnicienResponse() {

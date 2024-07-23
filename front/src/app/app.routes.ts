@@ -10,8 +10,8 @@ import { FormationEditComponent } from './components/formation/formation-edit/fo
 import { MatiereParFormationComponent } from './components/matiere-par-formation/matiere-par-formation.component';
 import { StagiaireComponent } from './components/stagiaire/stagiaire/stagiaire.component';
 import { StagiaireEditComponent } from './components/stagiaire/stagiaire-edit/stagiaire-edit.component';
-import { TechnicienComponent } from './components/technicien/technicien.component';
-// import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
+import { TechnicienComponent } from './components/technicien/technicien/technicien.component';
+import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
 import { IndisponibiliteComponent } from './components/indisponibilite/indisponibilite/indisponibilite.component';
 import { IndisponibiliteEditComponent } from './components/indisponibilite/indisponibilite-edit/indisponibilite-edit.component';
 import { FormateurDetailsComponent } from './components/formateur/formateur-details/formateur-details.component';
@@ -46,8 +46,8 @@ export const routes: Routes = [
   { path: 'stagiaire/edit/:id', component: StagiaireEditComponent },
 
   { path: 'technicien', component: TechnicienComponent },
-  // {path: "technicien/edit", component: TechnicienEditComponent},
-  // {path: "technicien/edit/:id", component: TechnicienEditComponent},
+  { path: 'technicien/edit', component: TechnicienEditComponent },
+  { path: 'technicien/edit/:id', component: TechnicienEditComponent },
 
   { path: 'gestionnaire', component: GestionnaireComponent },
   { path: 'gestionnaire/edit', component: GestionnaireEditComponent },

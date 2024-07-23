@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './matiere-par-formation.component.html',
-  styleUrl: './matiere-par-formation.component.css'
+  styleUrl: './matiere-par-formation.component.css',
 })
-export class MatiereParFormationComponent {
-
-}
+export class MatiereParFormationComponent {}
