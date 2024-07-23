@@ -61,6 +61,13 @@ public class MatiereRestController {
 		return new MatiereResponse(mSrv.getWithMatiereParFormation(id), true);
 	}
 
+	@GetMapping("/withoutformateur/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public List<MatiereResponse> getWithoutFormateur(@PathVariable Integer id) {
+		return mSrv.getWithoutFormateur(id).stream().map(matiere -> new MatiereResponse(matiere))
+				.collect(Collectors.toList());
+	}
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public MatiereResponse create(@Valid @RequestBody MatiereRequest mr, BindingResult br) {
