@@ -3,6 +3,13 @@
 <a routerLink="/formateur/edit" routerLinkActive="active" class="btn btn-link">Nouveau Formateur</a>
 
 <table class="table">
+    <tr>
+        <th>ID</th>
+        <th>PRÉNOM</th>
+        <th>NOM</th>
+        <th>E-MAIL</th>
+        <th>LOGIN</th>
+    </tr>
     @for(f of formateurs;track f.id) {
     <tr>
         <td>{{ f.id }}</td>
@@ -10,6 +17,9 @@
         <td>{{ f.lastname }}</td>
         <td>{{ f.email }}</td>
         <td>{{ f.login }}</td>
+        <td>
+            <a routerLink="/formateur/ajoutermatiere/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">Ajouter une matière</a>
+        </td>
         <td>
             <a routerLink="/formateur/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
         </td>

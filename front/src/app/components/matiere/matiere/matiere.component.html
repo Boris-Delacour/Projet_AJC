@@ -9,6 +9,14 @@
 }
 
 <table class="table">
+    <tr>
+        <th>ID</th>
+        <th>LIBELLÉ</th>
+        <th>DURÉE</th>
+        <th>OBJECTIF</th>
+        <th>PREREQUIS</th>
+        <th>CONTENU</th>
+    </tr>
     @for(m of matieres;track m.id) {
     <tr>
         <td>{{ m.id }}</td>

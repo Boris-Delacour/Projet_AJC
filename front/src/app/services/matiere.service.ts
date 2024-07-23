@@ -27,8 +27,9 @@ export class MatiereService {
     );
   }
 
-   private matiereToMatiereRequest(matiere: Matiere): any {
+  public matiereToMatiereRequest(matiere: Matiere): any {
     let obj = {
+      id: matiere.id,
       libelle: matiere.libelle,
       duration: matiere.duration,
       objective: matiere.objective,
@@ -36,6 +37,10 @@ export class MatiereService {
       content: matiere.content
     };
     return obj;
+  }
+
+  public getWithoutFormateur(id: number): any {
+
   }
 
   public update(matiere: Matiere): Observable<Matiere> {

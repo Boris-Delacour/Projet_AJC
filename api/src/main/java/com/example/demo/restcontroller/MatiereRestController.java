@@ -79,7 +79,7 @@ public class MatiereRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 		Matiere matiere = mSrv.getById(id);
-		BeanUtils.copyProperties(mr, matiere);
+		BeanUtils.copyProperties(mr, matiere, "id");
 		return new MatiereResponse(mSrv.update(matiere));
 	}
 

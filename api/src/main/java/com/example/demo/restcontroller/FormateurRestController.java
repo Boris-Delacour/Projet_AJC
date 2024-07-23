@@ -21,9 +21,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.FormateurRequest;
+import com.example.demo.dto.request.MatiereRequest;
 import com.example.demo.dto.response.FormateurResponse;
 import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
+import com.example.demo.model.Matiere;
+import com.example.demo.service.FormateurMatiereService;
 import com.example.demo.service.FormateurService;
+import com.example.demo.service.MatiereService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -37,6 +42,12 @@ public class FormateurRestController {
 
     @Autowired
     private FormateurService fSrv;
+
+    @Autowired
+    private MatiereService mSrv;
+
+    @Autowired
+    private FormateurMatiereService fmSrv;
 
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
@@ -89,8 +100,9 @@ public class FormateurRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formateur formateur = new Formateur();
-        BeanUtils.copyProperties(fr, formateur);
-        return new FormateurResponse(fSrv.insert(formateur));
+        BeanUtils.copyProperties(fr, formateur, "id");
+        FormateurResponse res = new FormateurResponse(fSrv.insert(formateur));
+        return res;
     }
 
     @PutMapping("/{id}")
@@ -103,6 +115,19 @@ public class FormateurRestController {
         Formateur formateur = fSrv.getById(id);
         BeanUtils.copyProperties(fr, formateur);
         return new FormateurResponse(fSrv.update(formateur));
+    }
+
+    @PutMapping("/{id}/matiere")
+    @JsonView(CustomJsonViews.Common.class)
+    public void addMatiere(@Valid @RequestBody MatiereRequest mr, BindingResult br,
+            @PathVariable Integer id) {
+        if (br.hasErrors()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        Formateur formateur = fSrv.getWithAll(id);
+        Matiere matiere = mSrv.getById(mr.getId());
+
+        fmSrv.insert(new FormateurMatiere(matiere, formateur));
     }
 
     @DeleteMapping("/{id}")

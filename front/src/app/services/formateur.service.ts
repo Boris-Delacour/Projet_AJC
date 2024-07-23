@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Formateur } from '../models/formateur';
+import { Matiere } from '../models/matiere';
+import { MatiereService } from './matiere.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,10 @@ import { Formateur } from '../models/formateur';
 export class FormateurService {
   url = 'http://localhost:8080/ajcfinal/api/formateur';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private mSrv: MatiereService
+  ) {}
 
   public getAll(): Observable<Formateur[]> {
     return this.httpClient.get<Formateur[]>(this.url);
@@ -30,8 +35,9 @@ export class FormateurService {
     );
   }
 
-   private formateurToFormateurRequest(formateur: Formateur): any {
+   public formateurToFormateurRequest(formateur: Formateur): any {
     let obj = {
+      id: formateur.id,
       firstname: formateur.firstname,
       lastname: formateur.lastname,
       email: formateur.email,
@@ -45,6 +51,13 @@ export class FormateurService {
     return this.httpClient.put<Formateur>(
       `${this.url}/${formateur.id}`,
       this.formateurToFormateurRequest(formateur)
+    );
+  }
+
+  public addMatiere(formateur: Formateur, matiere: Matiere) {
+    return this.httpClient.put<Formateur>(
+      `${this.url}/${formateur.id}/matiere`,
+      this.mSrv.matiereToMatiereRequest(matiere)
     );
   }
 

@@ -21,12 +21,14 @@ import { SalleComponent } from './components/salle/salle/salle.component';
 import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.component';
 import { VideoprojecteurComponent } from './components/videoprojecteur/videoprojecteur/videoprojecteur.component';
 import { VideoprojecteurEditComponent } from './components/videoprojecteur/videoprojecteur-edit/videoprojecteur-edit.component';
+import { FormateurAjoutMatiereComponent } from './components/formateur/formateur-ajout-matiere/formateur-ajout-matiere.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
   { path: 'formateur/edit', component: FormateurEditComponent },
   { path: 'formateur/edit/:id', component: FormateurEditComponent },
   { path: 'formateur/details/:id', component: FormateurDetailsComponent },
+  { path: 'formateur/ajoutermatiere/:id', component: FormateurAjoutMatiereComponent },
 
   { path: 'matiere', component: MatiereComponent },
   { path: 'matiere/edit', component: MatiereEditComponent },
