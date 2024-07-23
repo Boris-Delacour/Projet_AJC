@@ -11,21 +11,23 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 })
 export class TechnicienComponent implements OnInit {
-  
-  constructor() { 
-    
-    technicien: Technicien = new Technicien();
+  message: string;
 
-    message = '';
-  
-    ok() {
-      if (this.technicien.lastName && this.technicien.firstName) {
-        this.message = this.technicien.infos;
-      } else {
-        this.message = 'Il manque des infos';
-      }
+  technicien: Technicien;
+
+  constructor() {
+    this.technicien = new Technicien();
+
+    this.message = '';
+  }
+
+  ok() {
+    if (this.technicien.lastName && this.technicien.firstName) {
+      this.message = this.technicien.infos;
+    } else {
+      this.message = 'Il manque des infos';
     }
   }
+
   ngOnInit() {}
-  
 }
