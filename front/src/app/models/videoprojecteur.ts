@@ -4,7 +4,7 @@ export class Videoprojecteur {
   constructor(
     public id?: number,
     public marque?: string,
-    fonctionnel?: boolean,
+    public fonctionnel?: boolean,
     public salle?: Salle
   ) {}
 }

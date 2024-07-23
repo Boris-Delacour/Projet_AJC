@@ -23,7 +23,6 @@ import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.VideoprojecteurRequest;
 import com.example.demo.dto.response.VideoprojecteurResponse;
 import com.example.demo.model.Videoprojecteur;
-import com.example.demo.service.SalleService;
 import com.example.demo.service.VideoprojecteurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -39,9 +38,6 @@ public class VideoprojecteurRestController {
     @Autowired
     private VideoprojecteurService videoprojecteurSrv;
 
-    @Autowired
-    private SalleService salleSrv;
-
     @GetMapping("")
     @JsonView(CustomJsonViews.Common.class)
     @Operation(summary = "Tout les videoprojecteurs")
@@ -56,7 +52,7 @@ public class VideoprojecteurRestController {
         return new VideoprojecteurResponse(videoprojecteurSrv.getById(id));
     }
 
-    @GetMapping("/{marque}")
+    @GetMapping("marque/{marque}")
     @JsonView(CustomJsonViews.Common.class)
     public List<VideoprojecteurResponse> getByMarque(@PathVariable String marque) {
         return videoprojecteurSrv.getByMarque(marque).stream()
@@ -80,11 +76,11 @@ public class VideoprojecteurRestController {
                 .collect(Collectors.toList());
     }
 
-	@GetMapping("/{id}/salle")
-	@JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
-	public Videoprojecteur getWithSalle(@PathVariable Integer id) {
-		return videoprojecteurSrv.getWithSalle(id);
-	}
+    @GetMapping("/{id}/salle")
+    @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    public Videoprojecteur getWithSalle(@PathVariable Integer id) {
+        return videoprojecteurSrv.getWithSalle(id);
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -96,7 +92,6 @@ public class VideoprojecteurRestController {
         }
         Videoprojecteur videoprojecteur = new Videoprojecteur();
         BeanUtils.copyProperties(videoprojecteurRequest, videoprojecteur);
-        videoprojecteur.setSalle(salleSrv.getById(videoprojecteurRequest.getIdSalle()));
         return new VideoprojecteurResponse(videoprojecteurSrv.insert(videoprojecteur), false);
     }
 
@@ -110,7 +105,6 @@ public class VideoprojecteurRestController {
         }
         Videoprojecteur videoprojecteur = videoprojecteurSrv.getById(id);
         BeanUtils.copyProperties(videoprojecteurRequest, videoprojecteur);
-        videoprojecteur.setSalle(salleSrv.getById(videoprojecteurRequest.getIdSalle()));
         videoprojecteur.setId((id));
         return new VideoprojecteurResponse(videoprojecteurSrv.update(videoprojecteur), false);
 

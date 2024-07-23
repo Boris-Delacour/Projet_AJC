@@ -52,14 +52,14 @@ public class OrdinateurRestController {
         return new OrdinateurResponse(ordinateurSrv.getById(id));
     }
 
-    @GetMapping("/{marque}")
+    @GetMapping("marque/{marque}")
     @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByMarque(@PathVariable String marque) {
         return ordinateurSrv.getByMarque(marque).stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{os}")
+    @GetMapping("os/{os}")
     @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getByOs(@PathVariable String os) {
         return ordinateurSrv.getByOs(os).stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
