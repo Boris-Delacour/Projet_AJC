@@ -1,7 +1,4 @@
 <h1>liste des gestionnaires</h1>
-<a routerLink="/gestionnaire/edit" routerLinkActive="active" class="btn btn-link"
-  >nouveau gestionnaire</a
->
 <table class="table">
   <tr>
     <th>ID</th>
@@ -17,7 +14,6 @@
     <td>{{ g.firstName }}</td>
     <td>{{ g.email }}</td>
     <td>{{ g.login }}</td>
-    <td>{{ g.password }}</td>
     <td>
       <a routerLink="/gestionnaire/details/{{g.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
     </td>
@@ -37,3 +33,6 @@
   </tr>
   }
 </table>
+<a routerLink="/gestionnaire/edit" routerLinkActive="active" class="btn btn-outline-primary"
+  >nouveau gestionnaire</a
+>
