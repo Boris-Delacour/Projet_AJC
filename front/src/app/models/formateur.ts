@@ -1,3 +1,4 @@
+import { Formation } from "./formation";
 import { Indisponibilite } from "./indisponibilite";
 import { Matiere } from "./matiere";
 
@@ -9,7 +10,8 @@ export class Formateur {
     public email?: string,
     public login?: string,
     public password?: string,
+    public formations?: Formation[],
     public indisponibilites?: Indisponibilite[],
-    public matieres?: Matiere[]
+    public matieres?: Matiere[],
   ) {}
 }

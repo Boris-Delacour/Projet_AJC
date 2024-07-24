@@ -13,8 +13,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 export class MatiereComponent {
   matieres: Matiere[] = [];
   message = '';
-  showMessage = false;
-  style = '';
+  showMessage: boolean = false;
 
   constructor(public mSrv: MatiereService, private activatedRoute: ActivatedRoute) {}
 
@@ -39,7 +38,6 @@ export class MatiereComponent {
         }
       }
       this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 

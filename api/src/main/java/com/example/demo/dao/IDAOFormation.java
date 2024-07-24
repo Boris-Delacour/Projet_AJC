@@ -17,6 +17,9 @@ public interface IDAOFormation extends JpaRepository<Formation, Integer> {
 
 	public List<Formation> findByGestionnaire(Gestionnaire gestionnaire);
 
+	@Query("select f from Formation f where f.formateur is null")
+	public List<Formation> findWithouFormateur();
+
 	public Formation findByMatiereParFormation(MatiereParFormation matiereParFormation);
 
 	@Query("select f from Formation f where :stagiaire member of f.stagiaires")

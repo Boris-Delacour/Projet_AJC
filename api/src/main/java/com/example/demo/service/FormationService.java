@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,10 @@ import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
 import com.example.demo.dao.IDAOMatiereParFormation;
 import com.example.demo.dao.IDAOStagiaire;
+import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.Formation;
+import com.example.demo.model.Matiere;
 
 @Service
 public class FormationService {
@@ -29,6 +33,9 @@ public class FormationService {
 
 	@Autowired
 	IDAOMatiereParFormation daoMatiereParFormation;
+
+	@Autowired
+	FormateurService fSrv;
 
 	public Formation getById(Integer id) {
 		if (id == null) {
@@ -69,7 +76,7 @@ public class FormationService {
 		return res;
 	}
 
-	public Formation getWithAll(Integer id){
+	public Formation getWithAll(Integer id) {
 		Formation res = this.getById(id);
 		res.setFormateur(daoFormateur.findByFormation(res));
 		res.setGestionnaire(daoGestionnaire.findByFormation(res));
@@ -77,6 +84,12 @@ public class FormationService {
 		res.setMatiereParFormation(daoMatiereParFormation.findByFormation(res));
 
 		return res;
+	}
+
+	public List<Formation> getWithoutFormateur() {
+		List<Formation> formations = daoFormation.findWithouFormateur();
+
+		return formations;
 	}
 
 	public List<Formation> getAll() {
