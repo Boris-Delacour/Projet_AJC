@@ -47,7 +47,7 @@ export class FormateurDetailsComponent implements OnInit {
   }
 
   add() {
-    if(this.matiere) {
+    if(this.matiere.id != undefined) {
       this.fSrv.addMatiere(this.formateur, this.matiere).subscribe((formateur) => {
         this.router.navigateByUrl(`/formateur/details/${this.formateur.id}`);
         this.ngOnInit();
