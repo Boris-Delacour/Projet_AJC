@@ -8,15 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demo.model.Formateur;
 import com.example.demo.model.Formation;
 import com.example.demo.model.Gestionnaire;
+import com.example.demo.model.MatiereParFormation;
 import com.example.demo.model.Stagiaire;
-
-
 
 public interface IDAOFormation extends JpaRepository<Formation, Integer> {
 
 	public List<Formation> findByFormateur(Formateur formateur);
 
 	public List<Formation> findByGestionnaire(Gestionnaire gestionnaire);
+
+	public Formation findByMatiereParFormation(MatiereParFormation matiereParFormation);
 
 	@Query("select f from Formation f where :stagiaire member of f.stagiaires")
 	public Formation findByStagiaire(Stagiaire stagiaire);

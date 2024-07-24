@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.IDAOSalle;
 import com.example.demo.dao.IDAOVideoprojecteur;
-import com.example.demo.model.Salle;
 import com.example.demo.model.Videoprojecteur;
 
 @Service

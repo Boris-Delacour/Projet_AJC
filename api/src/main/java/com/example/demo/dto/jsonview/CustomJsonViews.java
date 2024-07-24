@@ -60,4 +60,7 @@ public class CustomJsonViews {
 
 	public static class StagiaireWithOrdinateur extends Common {
 	}
+
+	public static class MatiereParFormationWithAll extends Common {
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demo.model.Formateur;
 import com.example.demo.model.Formation;
 import com.example.demo.model.Indisponibilite;
+import com.example.demo.model.MatiereParFormation;
 
 public interface IDAOFormateur extends JpaRepository<Formateur, Integer> {
 
@@ -14,4 +15,6 @@ public interface IDAOFormateur extends JpaRepository<Formateur, Integer> {
 
     @Query("select f from Formateur f where :indisponibilite member of f.indisponibilites")
     public Formateur findByIndisponibilite(Indisponibilite indisponibilite);
+
+    public Formateur findByMatiereParFormation(MatiereParFormation matiereParFormation);
 }
