@@ -67,6 +67,12 @@ public class StagiaireRestController {
 	public StagiaireResponse getWithOrdinateur(@PathVariable Integer id) {
 		return new StagiaireResponse(stagiaireSrv.getWithOrdinateur(id));
 	}
+	
+	@GetMapping("/{id}/all")
+	@JsonView(CustomJsonViews.StagiaireWithAll.class)
+	public StagiaireResponse getWithAll(@PathVariable Integer id) {
+		return new StagiaireResponse(stagiaireSrv.getWithAll(id));
+	}
 
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)

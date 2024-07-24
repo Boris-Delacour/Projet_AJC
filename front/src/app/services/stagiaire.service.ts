@@ -15,6 +15,10 @@ public getAll(): Observable<Stagiaire[]> {
   return this.httpClient.get<Stagiaire[]>(this.url);
 }
 
+public getWithAll(id:number): Observable<Stagiaire> {
+  return this.httpClient.get<Stagiaire>(`${this.url}/${id}/all`);
+}
+
 public create(stagiaire: Stagiaire): Observable<Stagiaire> {
   return this.httpClient.post<Stagiaire>(
     this.url,

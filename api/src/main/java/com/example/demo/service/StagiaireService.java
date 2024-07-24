@@ -51,6 +51,13 @@ public class StagiaireService {
 
 		return res;
 	}
+	
+	public Stagiaire getWithAll(Integer id) {
+		Stagiaire res = this.getById(id);
+		res.setFormation(daoFormation.findByStagiaire(res));
+		res.setOrdinateur(daoOrdinateur.findByStagiaire(res));	
+		return res;
+	}
 
 	public Stagiaire insert(Stagiaire stagiaire) {
 		return daoStagiaire.save(stagiaire);
