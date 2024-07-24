@@ -1,38 +1,49 @@
-<h1>liste des gestionnaires</h1>
+<h1>Liste des Gestionnaires</h1>
+
+@if(showMessage){
+  <div class="alert {{ style }}">
+    {{ message }}
+  </div>
+}
+
 <table class="table">
-  <tr>
-    <th>ID</th>
-    <th>PRÉNOM</th>
-    <th>NOM</th>
-    <th>E-MAIL</th>
-    <th>LOGIN</th>
-  </tr>
-  @for(g of gestionnaires;track g.id) {
-  <tr>
-    <td>{{ g.id }}</td>
-    <td>{{ g.lastName }}</td>
-    <td>{{ g.firstName }}</td>
-    <td>{{ g.email }}</td>
-    <td>{{ g.login }}</td>
-    <td>
-      <a routerLink="/gestionnaire/details/{{g.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
-    </td>
-    <td>
-        <a
-        routerLink="/gestionnaire/edit/{{ g.id }}"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >editer</a
-        >
-    </td>
-    <td>
-      <button (click)="delete(g.id!)" class="btn btn-outline-danger">
-        supprimer
-      </button>
-    </td>
-  </tr>
-  }
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>PRÉNOM</th>
+      <th>NOM</th>
+      <th>E-MAIL</th>
+      <th>LOGIN</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(g of gestionnaires;track g.id) {
+    <tr>
+      <td>{{ g.id }}</td>
+      <td>{{ g.lastName }}</td>
+      <td>{{ g.firstName }}</td>
+      <td>{{ g.email }}</td>
+      <td>{{ g.login }}</td>
+      <td>
+        <a routerLink="/gestionnaire/details/{{g.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
+      </td>
+      <td>
+          <a
+          routerLink="/gestionnaire/edit/{{ g.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+          >Editer</a
+          >
+      </td>
+      <td>
+        <button (click)="delete(g.id!)" class="btn btn-outline-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+    }
+</tbody>
 </table>
-<a routerLink="/gestionnaire/edit" routerLinkActive="active" class="btn btn-outline-primary"
-  >nouveau gestionnaire</a
+<a routerLink="/gestionnaire/edit" routerLinkActive="active" class="btn btn-outline-success"
+  >Ajouter</a
 >

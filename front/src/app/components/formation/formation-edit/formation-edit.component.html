@@ -1,15 +1,15 @@
-<h1>edition formation</h1>
+<h1>Edition Formation</h1>
 <div>
   <div class="form-group">
-    <label for="nom">nom:</label>
+    <label for="nom">Nom:</label>
     <input id="nom" [(ngModel)]="formation.nom" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="dateStart">date debut:</label>
+    <label for="dateStart">Date de début:</label>
     <input id="dateStart" type="date" [(ngModel)]="formation.dateStart" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="formateur">formateur:</label>
+    <label for="formateur">Formateur:</label>
     <select
       id="formateur"
       [(ngModel)]="formation.formateur"
@@ -22,7 +22,7 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="gestionnaire">gestionnaire:</label>
+    <label for="gestionnaire">Gestionnaire:</label>
     <select
       id="gestionnaire"
       [(ngModel)]="formation.gestionnaire"
@@ -36,12 +36,12 @@
   </div>
   <div class="form-group">
   <div>
-    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <button class="btn btn-outline-info" (click)="save()">Enregistrer</button>
     <a
       routerLink="/formation"
       routerLinkActive="active"
       class="btn btn-outline-warning"
-      >annuler</a
+      >Annuler</a
     >
   </div>
 </div>
