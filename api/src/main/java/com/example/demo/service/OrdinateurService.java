@@ -50,6 +50,10 @@ public class OrdinateurService {
 		ordinateur.setStagiaire(daoStagiaire.findByOrdinateur(ordinateur));
 		return ordinateur;
 	}
+	
+	public List<Ordinateur> getAvailable() {
+	    return daoOrdinateur.findAvailable();
+	}
 
 	public List<Ordinateur> getAll() {
 		return daoOrdinateur.findAll();

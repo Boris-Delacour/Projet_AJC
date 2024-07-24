@@ -14,6 +14,10 @@ export class OrdinateurService {
     return this.httpClient.get<Ordinateur[]>(this.url);
   }
 
+  public getAvailable(): Observable<Ordinateur[]> {
+    return this.httpClient.get<Ordinateur[]>(`${this.url}/available`);
+  }
+
   public create(ordinateur: Ordinateur): Observable<Ordinateur> {
     return this.httpClient.post<Ordinateur>(
       this.url,
