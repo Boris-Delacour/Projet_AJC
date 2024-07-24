@@ -9,8 +9,8 @@ import { FormationComponent } from './components/formation/formation/formation.c
 import { FormationEditComponent } from './components/formation/formation-edit/formation-edit.component';
 import { StagiaireComponent } from './components/stagiaire/stagiaire/stagiaire.component';
 import { StagiaireEditComponent } from './components/stagiaire/stagiaire-edit/stagiaire-edit.component';
-import { TechnicienComponent } from './components/technicien/technicien.component';
-// import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
+import { TechnicienComponent } from './components/technicien/technicien/technicien.component';
+import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
 import { IndisponibiliteComponent } from './components/indisponibilite/indisponibilite/indisponibilite.component';
 import { IndisponibiliteEditComponent } from './components/indisponibilite/indisponibilite-edit/indisponibilite-edit.component';
 import { FormateurDetailsComponent } from './components/formateur/formateur-details/formateur-details.component';
@@ -26,12 +26,17 @@ import { OrdinateurDetailComponent } from './components/ordinateur/ordinateur-de
 import { MatiereParFormationComponent } from './components/matiereParFormation/matiere-par-formation/matiere-par-formation.component';
 import { MatiereParFormationEditComponent } from './components/matiereParFormation/matiere-par-formation-edit/matiere-par-formation-edit.component';
 import { MatiereParFormationDetailComponent } from './components/matiereParFormation/matiere-par-formation-detail/matiere-par-formation-detail.component';
+import { FormateurAjoutMatiereComponent } from './components/formateur/formateur-ajout-matiere/formateur-ajout-matiere.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
   { path: 'formateur/edit', component: FormateurEditComponent },
   { path: 'formateur/edit/:id', component: FormateurEditComponent },
   { path: 'formateur/details/:id', component: FormateurDetailsComponent },
+  {
+    path: 'formateur/ajoutermatiere/:id',
+    component: FormateurAjoutMatiereComponent,
+  },
 
   { path: 'matiere', component: MatiereComponent },
   { path: 'matiere/edit', component: MatiereEditComponent },
@@ -60,8 +65,8 @@ export const routes: Routes = [
   { path: 'stagiaire/edit/:id', component: StagiaireEditComponent },
 
   { path: 'technicien', component: TechnicienComponent },
-  // {path: "technicien/edit", component: TechnicienEditComponent},
-  // {path: "technicien/edit/:id", component: TechnicienEditComponent},
+  { path: 'technicien/edit', component: TechnicienEditComponent },
+  { path: 'technicien/edit/:id', component: TechnicienEditComponent },
 
   { path: 'gestionnaire', component: GestionnaireComponent },
   { path: 'gestionnaire/edit', component: GestionnaireEditComponent },
