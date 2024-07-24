@@ -124,6 +124,10 @@ public class FormationRestController {
         }
         Formation formation = foSrv.getById(id);
         BeanUtils.copyProperties(fr, formation);
+
+        formation.setGestionnaire(gSrv.getById(fr.getIdGestionnaire()));
+        formation.setFormateur(fSrv.getById(fr.getIdFormateur()));
+        
         return new FormationResponse(foSrv.update(formation), false);
     }
 

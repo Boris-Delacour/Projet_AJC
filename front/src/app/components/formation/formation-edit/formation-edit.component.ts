@@ -38,7 +38,7 @@ export class FormationEditComponent {
     this.gestionnaireObservable = this.gestionnaireSrv.getAll();
     this.activatedroute.params.subscribe((params) => {
       if (params['id']) {
-        this.formationSrv.getById(params['id']).subscribe((formation) => {
+        this.formationSrv.getWithAll(params['id']).subscribe((formation) => {
           this.formation = formation;
         });
       }
