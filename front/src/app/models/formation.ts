@@ -1,6 +1,6 @@
 import { Formateur } from './formateur';
 import { Gestionnaire } from './gestionnaire';
-import { MatiereParFormation } from './matiere-par-formation';
+import { Matiere } from './matiere';
 import { Stagiaire } from './stagiaire';
 
 export class Formation {
@@ -11,6 +11,6 @@ export class Formation {
     public gestionnaire?: Gestionnaire,
     public formateur?: Formateur,
     public stagiaires?: Stagiaire[],
-    public matiereParFOrmation?: MatiereParFormation[]
+    public matieres?: Matiere[]
   ) {}
 }
