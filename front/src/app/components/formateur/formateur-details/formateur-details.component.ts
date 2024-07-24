@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Formateur } from '../../../models/formateur';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormateurService } from '../../../services/formateur.service';
+import { Matiere } from '../../../models/matiere';
+import { MatiereService } from '../../../services/matiere.service';
 
 @Component({
   selector: 'app-formateur-details',
@@ -13,10 +15,13 @@ import { FormateurService } from '../../../services/formateur.service';
 })
 export class FormateurDetailsComponent implements OnInit {
   formateur: Formateur = new Formateur();
-
+  matieres: Matiere[] = [];
+  matiere: Matiere = new Matiere();
+  
   constructor(
     private router: Router,
     public fSrv: FormateurService,
+    public mSrv: MatiereService,
     public activatedroute: ActivatedRoute
   ) {}
 
@@ -26,7 +31,26 @@ export class FormateurDetailsComponent implements OnInit {
         this.fSrv.getWithAll(params['id']).subscribe((formateur) => {
           this.formateur = formateur;
         });
+        this.mSrv.getWithoutFormateur(params['id']).subscribe((matieres: Matiere[]) => {
+            this.matieres = matieres;
+        });
       }
+    });
+  }
+
+  add() {
+    if(this.matiere) {
+      this.fSrv.addMatiere(this.formateur, this.matiere).subscribe((formateur) => {
+        this.router.navigateByUrl(`/formateur/details/${this.formateur.id}`);
+        this.ngOnInit();
+      });
+    }
+  }
+
+  remove(id: number) {
+    this.mSrv.deleteFromFormateur(id, this.formateur.id!).subscribe((formateur) => {
+      this.router.navigateByUrl(`/formateur/details/${this.formateur.id}`);
+      this.ngOnInit();
     });
   }
 }

@@ -1,7 +1,5 @@
 package com.example.demo.dto.request;
 
-import java.util.List;
-
 public class FormateurRequest {
 
 	private String lastname;

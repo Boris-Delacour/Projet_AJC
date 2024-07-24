@@ -42,6 +42,10 @@ export class MatiereService {
     return this.httpClient.get<Matiere[]>(`${this.url}/withoutformateur/${id}`);
   }
 
+  public deleteFromFormateur(idM: number, idF: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.url}/${idM}/${idF}`);
+  }
+
   public update(matiere: Matiere): Observable<Matiere> {
     return this.httpClient.put<Matiere>(
       `${this.url}/${matiere.id}`,

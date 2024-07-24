@@ -35,9 +35,18 @@
                 <td>{{ m.objective }}</td>
                 <td>{{ m.prerequisite}}</td>
                 <td>{{ m.content }}</td>
+                <td><button (click)="remove(m.id!)">Supprimer</button></td>
             </tr>
             }
         </table>
+        <div>
+            <select id="matiere" [(ngModel)]="matiere" class="form-control">
+                @for (m of matieres; track m.id) {
+                <option [ngValue]="m">{{ m.libelle }}</option>
+                }
+            </select>
+            <button class="btn btn-outline-info" (click)="add()">Ajouter</button>
+        </div>
     </div>
     <div>
         <h2>Indisponibilités du formateur n°{{ formateur.id }}</h2>
