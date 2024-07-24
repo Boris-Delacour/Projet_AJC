@@ -4,10 +4,9 @@ import { Matiere } from '../models/matiere';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MatiereService {
-
   url = 'http://localhost:8080/ajcfinal/api/matiere';
 
   constructor(private httpClient: HttpClient) {}
@@ -27,15 +26,24 @@ export class MatiereService {
     );
   }
 
-   private matiereToMatiereRequest(matiere: Matiere): any {
+  public matiereToMatiereRequest(matiere: Matiere): any {
     let obj = {
+      id: matiere.id,
       libelle: matiere.libelle,
       duration: matiere.duration,
       objective: matiere.objective,
       prerequisite: matiere.prerequisite,
-      content: matiere.content
+      content: matiere.content,
     };
     return obj;
+  }
+
+  public getWithoutFormateur(id: number): Observable<Matiere[]> {
+    return this.httpClient.get<Matiere[]>(`${this.url}/withoutformateur/${id}`);
+  }
+
+  public deleteFromFormateur(idM: number, idF: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.url}/${idM}/${idF}`);
   }
 
   public update(matiere: Matiere): Observable<Matiere> {

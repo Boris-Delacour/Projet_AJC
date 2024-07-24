@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 import { FormateurService } from '../../../services/formateur.service';
 import { Formateur } from '../../../models/formateur';
 import { FormsModule } from '@angular/forms';
+import { Matiere } from '../../../models/matiere';
+import { MatiereService } from '../../../services/matiere.service';
 
 @Component({
   selector: 'app-formateur-edit',
@@ -13,10 +15,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormateurEditComponent {
   formateur: Formateur = new Formateur();
+  matieres: Matiere[] = [];
 
   constructor(
     private router: Router,
     public fSrv: FormateurService,
+    public mSrv: MatiereService,
     public activatedroute: ActivatedRoute
   ) {}
 

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.IDAOFormateurMatiere;
 import com.example.demo.dao.IDAOMatiere;
 import com.example.demo.dao.IDAOMatiereParFormation;
+import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.Matiere;
 
 @Service
@@ -22,6 +25,9 @@ public class MatiereService {
 
 	@Autowired 
 	IDAOMatiereParFormation daoMatiereParFormation;
+
+	@Autowired
+	FormateurService fSrv;
 
 	public Matiere getById(Integer id) {
 		if (id == null) {
@@ -50,6 +56,19 @@ public class MatiereService {
 		res.setMatieresParFormations(daoMatiereParFormation.findByMatiere(res));
 
 		return res;
+	}
+
+	public List<Matiere> getWithoutFormateur(Integer id) {
+		Formateur formateur = fSrv.getById(id);
+		List<Matiere> matieres = daoMatiere.findAll();
+		List<Matiere> matiereRetirer = new ArrayList<Matiere>();
+		List<FormateurMatiere> fms = daoFormateurMatiere.findByFormateur(formateur);
+
+		for(FormateurMatiere fm : fms) { matiereRetirer.add(fm.getMatiere()); }
+
+		for(Matiere m : matiereRetirer) { matieres.remove(m); }
+
+		return matieres;
 	}
 
 	public Matiere insert(Matiere matiere) {

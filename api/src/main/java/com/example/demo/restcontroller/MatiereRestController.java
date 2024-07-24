@@ -22,7 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.MatiereRequest;
 import com.example.demo.dto.response.MatiereResponse;
+import com.example.demo.model.FormateurMatiereKey;
 import com.example.demo.model.Matiere;
+import com.example.demo.service.FormateurMatiereService;
 import com.example.demo.service.MatiereService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -35,6 +37,9 @@ public class MatiereRestController {
 
 	@Autowired
 	private MatiereService mSrv;
+
+	@Autowired
+	private FormateurMatiereService fmSrv;
 
 	@GetMapping("")
 	@JsonView(CustomJsonViews.Common.class)
@@ -61,6 +66,13 @@ public class MatiereRestController {
 		return new MatiereResponse(mSrv.getWithMatiereParFormation(id), true);
 	}
 
+	@GetMapping("/withoutformateur/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public List<MatiereResponse> getWithoutFormateur(@PathVariable Integer id) {
+		return mSrv.getWithoutFormateur(id).stream().map(matiere -> new MatiereResponse(matiere))
+				.collect(Collectors.toList());
+	}
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public MatiereResponse create(@Valid @RequestBody MatiereRequest mr, BindingResult br) {
@@ -79,7 +91,7 @@ public class MatiereRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 		Matiere matiere = mSrv.getById(id);
-		BeanUtils.copyProperties(mr, matiere);
+		BeanUtils.copyProperties(mr, matiere, "id");
 		return new MatiereResponse(mSrv.update(matiere));
 	}
 
@@ -87,5 +99,11 @@ public class MatiereRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable("id") Integer id) {
 		mSrv.deleteById(id);
+	}
+
+	@DeleteMapping("/{id_m}/{id_f}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteFromFormateur(@PathVariable("id_m") Integer idM, @PathVariable("id_f") Integer idF) {
+		fmSrv.deleteById(new FormateurMatiereKey(idM, idF));
 	}
 }

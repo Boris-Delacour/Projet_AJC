@@ -1,4 +1,4 @@
-<h1>Détails du formateur {{ formateur.id }}</h1>
+<h1>Détails du formateur n°{{ formateur.id }}</h1>
 <div class="container">
     <div>
         <div class="form-group">
@@ -19,22 +19,43 @@
         </div>
     </div>
     <div>
-        <h2>Matières du formateur {{ formateur.id }}</h2>
+        <h2>Matières du formateur n°{{ formateur.id }}</h2>
         <table class="table">
+            <tr>
+                <th>LIBELLÉ</th>
+                <th>DURÉE</th>
+                <th>OBJECTIF</th>
+                <th>PREREQUIS</th>
+                <th>CONTENU</th>
+            </tr>
             @for(m of formateur.matieres;track m.id) {
             <tr>
                 <td>{{ m.libelle }}</td>
+                <td>{{ m.duration }}</td>
                 <td>{{ m.objective }}</td>
                 <td>{{ m.prerequisite}}</td>
                 <td>{{ m.content }}</td>
+                <td><button (click)="remove(m.id!)">Supprimer</button></td>
             </tr>
             }
         </table>
+        <div>
+            <select id="matiere" [(ngModel)]="matiere" class="form-control">
+                @for (m of matieres; track m.id) {
+                <option [ngValue]="m">{{ m.libelle }}</option>
+                }
+            </select>
+            <button class="btn btn-outline-info" (click)="add()">Ajouter</button>
+        </div>
     </div>
     <div>
-        <h2>Indisponibilités du formateur {{ formateur.id }}</h2>
+        <h2>Indisponibilités du formateur n°{{ formateur.id }}</h2>
         <table class="table">
-            @for(i of formateur.indisponibilites;track i.id) {
+            <tr>
+                <th>DEBUT</th>
+                <th>FIN</th>
+            </tr>
+            @for(i of formateur.indisponibilites; track i.id) {
             <tr>
                 <td>{{ i.start }}</td>
                 <td>{{ i.end }}</td>
