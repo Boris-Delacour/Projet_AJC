@@ -57,5 +57,20 @@
             }
         </table>
     </div>
+    <div>
+        <h2>Matieres</h2>
+        <table class="table">
+            <tr>
+                <th>LIBELLE</th>
+                <th>DUREE</th>
+            </tr>
+            @for(m of formation.matieres; track m.id) {
+            <tr>
+                <td>{{ m.libelle }}</td>
+                <td>{{ m.duration }}</td>
+            </tr>
+            }
+        </table>
+    </div>
 </div>
 <a routerLink="/formation" routerLinkActive="active" class="btn btn-outline-warning">retour</a>

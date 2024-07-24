@@ -24,7 +24,7 @@ public class FormationResponse {
 	@JsonView(CustomJsonViews.FormationWithAll.class)
     private List<StagiaireResponse> stagiaires;
 	@JsonView(CustomJsonViews.FormationWithAll.class)
-    private List<MatiereParFormationResponse> matiereParFormations;
+    private List<MatiereResponse> matieres;
 	@JsonView(CustomJsonViews.FormationWithAll.class)
     private FormateurResponse formateur;
 
@@ -47,8 +47,8 @@ public class FormationResponse {
 						.collect(Collectors.toList()));
 			}
             if (formation.getMatiereParFormation() != null) {
-				this.setMatiereParFormations(formation.getMatiereParFormation().stream()
-						.map(matiereParFormations -> new MatiereParFormationResponse(matiereParFormations, false))
+				this.setMatieres(formation.getMatiereParFormation().stream()
+						.map(matiere -> new MatiereResponse(matiere.getMatiere()))
 						.collect(Collectors.toList()));
 			}
             if (formation.getFormateur() != null) {
@@ -97,13 +97,13 @@ public class FormationResponse {
         this.stagiaires = stagiaires;
     }
 
-    public List<MatiereParFormationResponse> getMatiereParFormations() {
-        return matiereParFormations;
-    }
+    // public List<MatiereParFormationResponse> getMatiereParFormations() {
+    //     return matiereParFormations;
+    // }
 
-    public void setMatiereParFormations(List<MatiereParFormationResponse> matiereParFormations) {
-        this.matiereParFormations = matiereParFormations;
-    }
+    // public void setMatiereParFormations(List<MatiereParFormationResponse> matiereParFormations) {
+    //     this.matiereParFormations = matiereParFormations;
+    // }
 
     public FormateurResponse getFormateur() {
         return formateur;
@@ -112,5 +112,13 @@ public class FormationResponse {
     public void setFormateur(FormateurResponse formateur) {
         this.formateur = formateur;
     }
+
+    public List<MatiereResponse> getMatieres() {
+		return matieres;
+	}
+
+	public void setMatieres(List<MatiereResponse> matieres) {
+		this.matieres = matieres;
+	}
     
 }
