@@ -44,7 +44,7 @@ public class GestionnaireRestController {
 		return new GestionnaireResponse(gSrv.getById(id), false);
 	}
 
-    @GetMapping("/{id}/formations")
+    @GetMapping("/{id}/infos")
 	@JsonView(CustomJsonViews.GestionnaireWithFormations.class)
 	public GestionnaireResponse getWithFormations(@PathVariable("id") Integer id) {
 		return new GestionnaireResponse(gSrv.getWithFormations(id), true);

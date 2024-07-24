@@ -3,6 +3,13 @@
   >nouveau gestionnaire</a
 >
 <table class="table">
+  <tr>
+    <th>ID</th>
+    <th>PRÉNOM</th>
+    <th>NOM</th>
+    <th>E-MAIL</th>
+    <th>LOGIN</th>
+  </tr>
   @for(g of gestionnaires;track g.id) {
   <tr>
     <td>{{ g.id }}</td>
@@ -11,6 +18,9 @@
     <td>{{ g.email }}</td>
     <td>{{ g.login }}</td>
     <td>{{ g.password }}</td>
+    <td>
+      <a routerLink="/gestionnaire/details/{{g.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
+    </td>
     <td>
         <a
         routerLink="/gestionnaire/edit/{{ g.id }}"
@@ -21,7 +31,7 @@
     </td>
     <td>
       <button (click)="delete(g.id!)" class="btn btn-outline-danger">
-        suprimer
+        supprimer
       </button>
     </td>
   </tr>
