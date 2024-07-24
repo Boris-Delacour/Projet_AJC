@@ -88,8 +88,8 @@ public class OrdinateurRestController {
     
     @GetMapping("/available")
     @JsonView(CustomJsonViews.Common.class)
-    public List<OrdinateurResponse> getAvailable() {
-        return ordinateurSrv.getAvailable().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
+    public List<OrdinateurResponse> getAvailableAndFonctionnel() {
+        return ordinateurSrv.getAvailableAndFonctionnel().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
                 .collect(Collectors.toList());
     }
 

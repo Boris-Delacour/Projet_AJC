@@ -51,8 +51,8 @@ public class OrdinateurService {
 		return ordinateur;
 	}
 	
-	public List<Ordinateur> getAvailable() {
-	    return daoOrdinateur.findAvailable();
+	public List<Ordinateur> getAvailableAndFonctionnel() {
+	    return daoOrdinateur.findAvailableAndFonctionnel();
 	}
 
 	public List<Ordinateur> getAll() {

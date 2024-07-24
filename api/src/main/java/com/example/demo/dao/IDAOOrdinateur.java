@@ -20,7 +20,7 @@ public interface IDAOOrdinateur extends JpaRepository<Ordinateur, Integer> {
 
 	public Ordinateur findByStagiaire(Stagiaire stagiaire);
 	
-	 @Query("SELECT o FROM Ordinateur o WHERE o.stagiaire IS NULL")
-	    List<Ordinateur> findAvailable();
+	 @Query("SELECT o FROM Ordinateur o WHERE o.stagiaire IS NULL AND o.fonctionnel = true")
+	    List<Ordinateur> findAvailableAndFonctionnel();
 
 }
