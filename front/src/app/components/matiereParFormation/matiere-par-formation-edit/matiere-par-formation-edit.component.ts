@@ -16,18 +16,19 @@ import {
 import { MatiereParFormationService } from '../../../services/matiere-par-formation.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe, formatDate } from '@angular/common';
 import { MatiereParFormation } from '../../../models/matiere-par-formation';
 
 @Component({
   selector: 'app-matiere-par-formation-edit',
   standalone: true,
-  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe],
+  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe, DatePipe],
   templateUrl: './matiere-par-formation-edit.component.html',
   styleUrl: './matiere-par-formation-edit.component.css',
 })
 export class MatiereParFormationEditComponent implements OnInit {
   matiereParFormation: MatiereParFormation = new MatiereParFormation();
+  response: any = {};
 
   formateurObservable!: Observable<Formateur[]>;
   formationObservable!: Observable<Formation[]>;
@@ -60,10 +61,35 @@ export class MatiereParFormationEditComponent implements OnInit {
     });
   }
 
+  addDays(date: Date, days: number): Date {
+    var myDate = date;
+    var youpi = new Date(myDate);
+    var dat = new Date(myDate); // pour se fixer sur la date de base et non sur la date du jour.
+    dat.setDate(youpi.getDate() + days);
+    return new Date(dat);
+  }
+
   save() {
-    if (this.matiereParFormation.id) {
+    this.response = {
+      id: this.matiereParFormation.id,
+      start: this.matiereParFormation.start,
+      end: formatDate(
+        this.addDays(
+          this.matiereParFormation.start!,
+          this.matiereParFormation.matiere?.duration!
+        ),
+        'yyyy-MM-dd',
+        'en-US'
+      ),
+      matiere: this.matiereParFormation.matiere,
+      formateur: this.matiereParFormation.formateur,
+      formation: this.matiereParFormation.formation,
+      salle: this.matiereParFormation.salle,
+    };
+
+    if (this.response.id) {
       this.matiereParFormationSrv
-        .update(this.matiereParFormation)
+        .update(this.response)
         .subscribe((matiereParFormation) => {
           this.router.navigateByUrl(
             '/matiereparformation?q=update&id=' + matiereParFormation.id
@@ -71,7 +97,7 @@ export class MatiereParFormationEditComponent implements OnInit {
         });
     } else {
       this.matiereParFormationSrv
-        .create(this.matiereParFormation)
+        .create(this.response)
         .subscribe((matiereParFormation) => {
           this.router.navigateByUrl(
             '/matiereparformation?q=create&id=' + matiereParFormation.id
