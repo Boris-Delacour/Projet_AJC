@@ -26,7 +26,6 @@ import { OrdinateurDetailComponent } from './components/ordinateur/ordinateur-de
 import { MatiereParFormationComponent } from './components/matiereParFormation/matiere-par-formation/matiere-par-formation.component';
 import { MatiereParFormationEditComponent } from './components/matiereParFormation/matiere-par-formation-edit/matiere-par-formation-edit.component';
 import { MatiereParFormationDetailComponent } from './components/matiereParFormation/matiere-par-formation-detail/matiere-par-formation-detail.component';
-import { FormateurAjoutMatiereComponent } from './components/formateur/formateur-ajout-matiere/formateur-ajout-matiere.component';
 import { FormationDetailsComponent } from './components/formation/formation-details/formation-details.component';
 
 export const routes: Routes = [
