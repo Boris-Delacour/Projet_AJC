@@ -1,9 +1,9 @@
-<h1>liste des videoprojecteur</h1>
+<h1>Liste des matieres par formation</h1>
 <a
-  routerLink="/videoprojecteur/edit"
+  routerLink="/matiereparformation/edit"
   routerLinkActive="active"
   class="btn btn-link"
-  >Nouveau videoprojecteur</a
+  >Nouvelle matiereParFormation</a
 >
 @if(showMessage){
 <div class="alert {{ style }}">
@@ -13,20 +13,21 @@
 <table class="table">
   <thead>
     <td>Id</td>
-    <td>Marque</td>
+    <td>Date de début</td>
+    <td>Date de fin</td>
     <td></td>
     <td></td>
     <td></td>
   </thead>
   <tbody>
-    @for(o of videoprojecteurs;track o.id) {
+    @for(m of matiereParFormations;track m.id) {
     <tr>
-      <td>{{ o.id }}</td>
-      <td>{{ o.marque }}</td>
-      <td>{{ o.salle?.numero }} {{ o.salle?.numero }}</td>
+      <td>{{ m.id }}</td>
+      <td>{{ m.start }}</td>
+      <td>{{ m.end }}</td>
       <td>
         <a
-          routerLink="/videoprojecteur/{{ o.id }}"
+          routerLink="/matiereparformation/{{ m.id }}"
           routerLinkActive="active"
           class="btn btn-outline-primary"
           >Détail</a
@@ -34,14 +35,14 @@
       </td>
       <td>
         <a
-          routerLink="/videoprojecteur/edit/{{ o.id }}"
+          routerLink="/matiereparformation/edit/{{ m.id }}"
           routerLinkActive="active"
           class="btn btn-outline-primary"
           >Éditer</a
         >
       </td>
       <td>
-        <button (click)="delete(o.id!)" class="btn btn-outline-danger">
+        <button (click)="delete(m.id!)" class="btn btn-outline-danger">
           Supprimer
         </button>
       </td>

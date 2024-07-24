@@ -7,7 +7,6 @@ import { GestionnaireComponent } from './components/gestionnaire/gestionnaire/ge
 import { GestionnaireEditComponent } from './components/gestionnaire/gestionnaire-edit/gestionnaire-edit.component';
 import { FormationComponent } from './components/formation/formation/formation.component';
 import { FormationEditComponent } from './components/formation/formation-edit/formation-edit.component';
-import { MatiereParFormationComponent } from './components/matiere-par-formation/matiere-par-formation.component';
 import { StagiaireComponent } from './components/stagiaire/stagiaire/stagiaire.component';
 import { StagiaireEditComponent } from './components/stagiaire/stagiaire-edit/stagiaire-edit.component';
 import { TechnicienComponent } from './components/technicien/technicien.component';
@@ -24,6 +23,9 @@ import { VideoprojecteurEditComponent } from './components/videoprojecteur/video
 import { SalleDetailComponent } from './components/salle/salle-detail/salle-detail.component';
 import { VideoprojecteurDetailComponent } from './components/videoprojecteur/videoprojecteur-detail/videoprojecteur-detail.component';
 import { OrdinateurDetailComponent } from './components/ordinateur/ordinateur-detail/ordinateur-detail.component';
+import { MatiereParFormationComponent } from './components/matiereParFormation/matiere-par-formation/matiere-par-formation.component';
+import { MatiereParFormationEditComponent } from './components/matiereParFormation/matiere-par-formation-edit/matiere-par-formation-edit.component';
+import { MatiereParFormationDetailComponent } from './components/matiereParFormation/matiere-par-formation-detail/matiere-par-formation-detail.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
@@ -40,6 +42,18 @@ export const routes: Routes = [
   { path: 'formation/edit/:id', component: FormationEditComponent },
 
   { path: 'matiereparformation', component: MatiereParFormationComponent },
+  {
+    path: 'matiereparformation/edit',
+    component: MatiereParFormationEditComponent,
+  },
+  {
+    path: 'matiereparformation/edit/:id',
+    component: MatiereParFormationEditComponent,
+  },
+  {
+    path: 'matiereparformation/:id',
+    component: MatiereParFormationDetailComponent,
+  },
 
   { path: 'stagiaire', component: StagiaireComponent },
   { path: 'stagiaire/edit', component: StagiaireEditComponent },
