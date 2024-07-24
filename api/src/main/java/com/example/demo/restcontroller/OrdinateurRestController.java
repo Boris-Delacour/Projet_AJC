@@ -85,6 +85,13 @@ public class OrdinateurRestController {
     public OrdinateurResponse getWithStagiaire(@PathVariable Integer id) {
         return new OrdinateurResponse(ordinateurSrv.getWithStagiaire(id), true);
     }
+    
+    @GetMapping("/available")
+    @JsonView(CustomJsonViews.Common.class)
+    public List<OrdinateurResponse> getAvailable() {
+        return ordinateurSrv.getAvailable().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
+                .collect(Collectors.toList());
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)

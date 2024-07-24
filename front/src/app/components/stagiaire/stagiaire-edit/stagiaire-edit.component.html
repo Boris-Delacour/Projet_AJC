@@ -53,10 +53,10 @@
         id="ordinateur"
         [(ngModel)]="stagiaire.ordinateur"
         class="form-control"
-        [compareWith]="compareFn"
+        [compareWith]="compareOr"
       >
-        @for(o of ordinateursObservable|async ;track o.id ){
-        <option [ngValue]="o">{{ o.id }}</option>
+          @for(o of availableOrdinateurs$ | async ;track o.id ){
+          <option [ngValue]="o">{{ o.id }}</option>
         }
       </select>
   </div>
