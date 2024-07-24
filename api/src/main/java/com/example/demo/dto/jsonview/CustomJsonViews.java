@@ -25,6 +25,9 @@ public class CustomJsonViews {
 	public static class MatiereWithMatiereParFormation extends Common {
 	}
 
+	public static class MatiereWithAll extends Common {
+	}
+
 	public static class IndispoWithFormateur extends Common {
 	}
 
@@ -63,7 +66,7 @@ public class CustomJsonViews {
 
 	public static class StagiaireWithOrdinateur extends Common {
 	}
-	
+
 	public static class StagiaireWithAll extends Common {
 	}
 

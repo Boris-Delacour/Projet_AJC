@@ -2,6 +2,7 @@ package com.example.demo.dto.request;
 
 public class FormateurRequest {
 
+	private Integer id;
 	private String lastname;
 	private String firstname;
 	private String email;
@@ -10,6 +11,14 @@ public class FormateurRequest {
 
 	public FormateurRequest() {
 
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLastname() {

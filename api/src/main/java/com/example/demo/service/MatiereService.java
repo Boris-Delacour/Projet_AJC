@@ -18,16 +18,13 @@ import com.example.demo.model.Matiere;
 public class MatiereService {
 
 	@Autowired
-	IDAOMatiere daoMatiere;
-
-	@Autowired 
-	IDAOFormateurMatiere daoFormateurMatiere;
-
-	@Autowired 
-	IDAOMatiereParFormation daoMatiereParFormation;
+	private IDAOMatiere daoMatiere;
 
 	@Autowired
-	FormateurService fSrv;
+	private IDAOFormateurMatiere daoFormateurMatiere;
+
+	@Autowired
+	private IDAOMatiereParFormation daoMatiereParFormation;
 
 	public Matiere getById(Integer id) {
 		if (id == null) {
@@ -58,15 +55,26 @@ public class MatiereService {
 		return res;
 	}
 
-	public List<Matiere> getWithoutFormateur(Integer id) {
-		Formateur formateur = fSrv.getById(id);
+	public Matiere getWithAll(Integer id) {
+		Matiere res = this.getById(id);
+		res.setFormateurMatieres(daoFormateurMatiere.findByMatiere(res));
+		res.setMatieresParFormations(daoMatiereParFormation.findByMatiere(res));
+
+		return res;
+	}
+
+	public List<Matiere> getWithoutFormateur(Formateur formateur) {
 		List<Matiere> matieres = daoMatiere.findAll();
 		List<Matiere> matiereRetirer = new ArrayList<Matiere>();
 		List<FormateurMatiere> fms = daoFormateurMatiere.findByFormateur(formateur);
 
-		for(FormateurMatiere fm : fms) { matiereRetirer.add(fm.getMatiere()); }
+		for (FormateurMatiere fm : fms) {
+			matiereRetirer.add(fm.getMatiere());
+		}
 
-		for(Matiere m : matiereRetirer) { matieres.remove(m); }
+		for (Matiere m : matiereRetirer) {
+			matieres.remove(m);
+		}
 
 		return matieres;
 	}

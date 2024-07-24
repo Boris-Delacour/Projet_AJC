@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.dto.jsonview.CustomJsonViews;
+import com.example.demo.dto.request.FormateurRequest;
 import com.example.demo.dto.request.MatiereRequest;
 import com.example.demo.dto.response.MatiereResponse;
+import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.FormateurMatiereKey;
 import com.example.demo.model.Matiere;
 import com.example.demo.service.FormateurMatiereService;
+import com.example.demo.service.FormateurService;
 import com.example.demo.service.MatiereService;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -37,6 +41,9 @@ public class MatiereRestController {
 
 	@Autowired
 	private MatiereService mSrv;
+
+	@Autowired
+	private FormateurService fSrv;
 
 	@Autowired
 	private FormateurMatiereService fmSrv;
@@ -66,10 +73,17 @@ public class MatiereRestController {
 		return new MatiereResponse(mSrv.getWithMatiereParFormation(id), true);
 	}
 
+	@GetMapping("/{id}/all")
+	@JsonView(CustomJsonViews.MatiereWithAll.class)
+	public MatiereResponse getWithAll(@PathVariable Integer id) {
+		return new MatiereResponse(mSrv.getWithAll(id), true);
+	}
+
 	@GetMapping("/withoutformateur/{id}")
 	@JsonView(CustomJsonViews.Common.class)
 	public List<MatiereResponse> getWithoutFormateur(@PathVariable Integer id) {
-		return mSrv.getWithoutFormateur(id).stream().map(matiere -> new MatiereResponse(matiere))
+		Formateur formateur = fSrv.getById(id);
+		return mSrv.getWithoutFormateur(formateur).stream().map(matiere -> new MatiereResponse(matiere))
 				.collect(Collectors.toList());
 	}
 
@@ -93,6 +107,19 @@ public class MatiereRestController {
 		Matiere matiere = mSrv.getById(id);
 		BeanUtils.copyProperties(mr, matiere, "id");
 		return new MatiereResponse(mSrv.update(matiere));
+	}
+
+	@PutMapping("/{id}/formateur")
+	@JsonView(CustomJsonViews.Common.class)
+	public void addFormateur(@Valid @RequestBody FormateurRequest fr, BindingResult br,
+			@PathVariable Integer id) {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		Matiere matiere = mSrv.getWithAll(id);
+		Formateur formateur = fSrv.getById(fr.getId());
+
+		fmSrv.insert(new FormateurMatiere(matiere, formateur));
 	}
 
 	@DeleteMapping("/{id}")

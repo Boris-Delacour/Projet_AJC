@@ -1,3 +1,5 @@
+import { Formateur } from "./formateur";
+
 export class Matiere {
   constructor(
     public id?: number,
@@ -5,6 +7,7 @@ export class Matiere {
     public duration?: number,
     public objective?: string,
     public prerequisite?: string,
-    public content?: string
+    public content?: string,
+    public formateurs?: Formateur[]
   ) {}
 }
