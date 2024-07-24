@@ -10,8 +10,8 @@ import { FormationEditComponent } from './components/formation/formation-edit/fo
 import { MatiereParFormationComponent } from './components/matiere-par-formation/matiere-par-formation.component';
 import { StagiaireComponent } from './components/stagiaire/stagiaire/stagiaire.component';
 import { StagiaireEditComponent } from './components/stagiaire/stagiaire-edit/stagiaire-edit.component';
-import { TechnicienComponent } from './components/technicien/technicien.component';
-// import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
+import { TechnicienComponent } from './components/technicien/technicien/technicien.component';
+import { TechnicienEditComponent } from './components/technicien/technicien-edit/technicien-edit.component';
 import { IndisponibiliteComponent } from './components/indisponibilite/indisponibilite/indisponibilite.component';
 import { IndisponibiliteEditComponent } from './components/indisponibilite/indisponibilite-edit/indisponibilite-edit.component';
 import { FormateurDetailsComponent } from './components/formateur/formateur-details/formateur-details.component';
@@ -21,6 +21,9 @@ import { SalleComponent } from './components/salle/salle/salle.component';
 import { SalleEditComponent } from './components/salle/salle-edit/salle-edit.component';
 import { VideoprojecteurComponent } from './components/videoprojecteur/videoprojecteur/videoprojecteur.component';
 import { VideoprojecteurEditComponent } from './components/videoprojecteur/videoprojecteur-edit/videoprojecteur-edit.component';
+import { SalleDetailComponent } from './components/salle/salle-detail/salle-detail.component';
+import { VideoprojecteurDetailComponent } from './components/videoprojecteur/videoprojecteur-detail/videoprojecteur-detail.component';
+import { OrdinateurDetailComponent } from './components/ordinateur/ordinateur-detail/ordinateur-detail.component';
 import { FormateurAjoutMatiereComponent } from './components/formateur/formateur-ajout-matiere/formateur-ajout-matiere.component';
 
 export const routes: Routes = [
@@ -45,8 +48,8 @@ export const routes: Routes = [
   { path: 'stagiaire/edit/:id', component: StagiaireEditComponent },
 
   { path: 'technicien', component: TechnicienComponent },
-  // {path: "technicien/edit", component: TechnicienEditComponent},
-  // {path: "technicien/edit/:id", component: TechnicienEditComponent},
+  { path: 'technicien/edit', component: TechnicienEditComponent },
+  { path: 'technicien/edit/:id', component: TechnicienEditComponent },
 
   { path: 'gestionnaire', component: GestionnaireComponent },
   { path: 'gestionnaire/edit', component: GestionnaireEditComponent },
@@ -55,14 +58,17 @@ export const routes: Routes = [
   { path: 'ordinateur', component: OrdinateurComponent },
   { path: 'ordinateur/edit', component: OrdinateurEditComponent },
   { path: 'ordinateur/edit/:id', component: OrdinateurEditComponent },
+  { path: 'ordinateur/:id', component: OrdinateurDetailComponent },
 
   { path: 'salle', component: SalleComponent },
   { path: 'salle/edit', component: SalleEditComponent },
   { path: 'salle/edit/:id', component: SalleEditComponent },
+  { path: 'salle/:id', component: SalleDetailComponent },
 
   { path: 'videoprojecteur', component: VideoprojecteurComponent },
   { path: 'videoprojecteur/edit', component: VideoprojecteurEditComponent },
   { path: 'videoprojecteur/edit/:id', component: VideoprojecteurEditComponent },
+  { path: 'videoprojecteur/:id', component: VideoprojecteurDetailComponent },
 
   { path: 'indisponibilite', component: IndisponibiliteComponent },
   { path: 'indisponibilite/edit', component: IndisponibiliteEditComponent },

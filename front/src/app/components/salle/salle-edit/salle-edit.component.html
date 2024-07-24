@@ -20,9 +20,14 @@
   </div>
   <div class="form-group">
     <label for="occuper">Disponible ? :</label>
-    <input type="radio" id="true" value="true" [(ngModel)]="salle.occuper" />
+    <input type="radio" id="true" [value]="true" [(ngModel)]="salle.occuper" />
     <label for="true">Oui</label>
-    <input type="radio" id="false" value="false" [(ngModel)]="salle.occuper" />
+    <input
+      type="radio"
+      id="false"
+      [value]="false"
+      [(ngModel)]="salle.occuper"
+    />
     <label for="false">Non</label>
   </div>
   <div class="form-group">

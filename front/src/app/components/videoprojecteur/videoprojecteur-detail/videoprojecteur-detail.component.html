@@ -1,0 +1,21 @@
+<h2>Détail du videoprojecteur {{ videoprojecteur.id }}</h2>
+
+<p>Numéro de la videoprojecteur : {{ videoprojecteur.id }}</p>
+<p>Nom de la marque : {{ videoprojecteur.marque }}</p>
+<p>
+  Videoprojecteur fonctionnel ? @if (videoprojecteur.fonctionnel) {Oui}@else
+  {Non}
+</p>
+@if (videoprojecteur.fonctionnel) {
+<p>
+  @if (videoprojecteur.salle) { Positionné en salle
+  {{ videoprojecteur.salle.numero }}
+  }@else {Disponible en reserve}
+</p>
+}
+<a
+  routerLink="/videoprojecteur"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Retour</a
+>
