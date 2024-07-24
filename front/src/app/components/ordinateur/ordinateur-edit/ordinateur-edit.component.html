@@ -1,4 +1,4 @@
-<h1>edition ordinateur</h1>
+<h1>Édition de l'ordinateur {{ ordinateur.id }}</h1>
 <div>
   <div class="form-group">
     <label for="marque">Marque :</label>
@@ -11,6 +11,7 @@
   <div class="form-group">
     <label for="fonctionnel">Fonctionnel ? :</label>
     <input
+      class="mx-2"
       type="radio"
       id="true"
       [value]="true"
@@ -18,6 +19,7 @@
     />
     <label for="true">Oui</label>
     <input
+      class="mx-2"
       type="radio"
       id="false"
       [value]="false"
@@ -26,12 +28,12 @@
     <label for="false">Non</label>
   </div>
   <div>
-    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <button class="btn btn-outline-info" (click)="save()">Enregistrer</button>
     <a
       routerLink="/ordinateur"
       routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
+      class="btn btn-outline-warning mx-2"
+      >Annuler</a
     >
   </div>
 </div>

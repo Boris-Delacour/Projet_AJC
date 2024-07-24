@@ -14,6 +14,10 @@ export class VideoprojecteurService {
     return this.httpClient.get<Videoprojecteur[]>(this.url);
   }
 
+  public getAllWithAll(): Observable<Videoprojecteur[]> {
+    return this.httpClient.get<Videoprojecteur[]>(`${this.url}/all`);
+  }
+
   public create(videoprojecteur: Videoprojecteur): Observable<Videoprojecteur> {
     return this.httpClient.post<Videoprojecteur>(
       this.url,

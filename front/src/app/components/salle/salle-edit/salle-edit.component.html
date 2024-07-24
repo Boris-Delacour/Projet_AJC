@@ -1,4 +1,4 @@
-<h1>edition salle</h1>
+<h1>Édition de la salle {{ salle.numero }}</h1>
 <div>
   <div class="form-group">
     <label for="numero">Numéro de salle:</label>
@@ -44,12 +44,12 @@
     </select>
   </div>
   <div>
-    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
+    <button class="btn btn-outline-info" (click)="save()">Enregistrer</button>
     <a
       routerLink="/salle"
       routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
+      class="btn btn-outline-warning mx-2"
+      >Annuler</a
     >
   </div>
 </div>

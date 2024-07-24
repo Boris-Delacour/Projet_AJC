@@ -1,7 +1,11 @@
-<h1>liste des ordinateur</h1>
-<a routerLink="/ordinateur/edit" routerLinkActive="active" class="btn btn-link"
-  >Nouvel ordinateur</a
->
+<h1>Liste des ordinateurs</h1>
+
+<section>
+  <p>Nombre d'ordinateur : {{ ordinateurs.length }}</p>
+  <p>|</p>
+  <p>Ordinateur en reserve :</p>
+</section>
+
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
@@ -9,12 +13,14 @@
 }
 <table class="table">
   <thead>
-    <td>Id</td>
-    <td>Marque</td>
-    <td>OS</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <tr>
+      <th>Id</th>
+      <th>Marque</th>
+      <th>OS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     @for(o of ordinateurs;track o.id) {
@@ -23,7 +29,7 @@
       <td>{{ o.marque }}</td>
       <td>{{ o.os }}</td>
       <td>{{ o.stagiaire?.firstName }} {{ o.stagiaire?.lastName }}</td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/ordinateur/{{ o.id }}"
           routerLinkActive="active"
@@ -31,15 +37,15 @@
           >Détail</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/ordinateur/edit/{{ o.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Éditer</a
+          class="btn btn-outline-warning"
+          >Modifier</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <button (click)="delete(o.id!)" class="btn btn-outline-danger">
           Supprimer
         </button>
@@ -48,3 +54,9 @@
     }
   </tbody>
 </table>
+<a
+  routerLink="/ordinateur/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Nouvel ordinateur</a
+>
