@@ -28,6 +28,14 @@ export class FormateurService {
     return this.httpClient.get<Formateur>(`${this.url}/${id}/infos`);
   }
 
+  public getWithoutMatiere(id: number): Observable<Formateur[]> {
+    return this.httpClient.get<Formateur[]>(`${this.url}/withoutmatiere/${id}`);
+  }
+
+  public deleteFromMatiere(idF: number, idM: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.url}/${idF}/${idM}`);
+  }
+
   public create(formateur: Formateur): Observable<Formateur> {
     return this.httpClient.post<Formateur>(
       this.url,
@@ -35,7 +43,7 @@ export class FormateurService {
     );
   }
 
-   public formateurToFormateurRequest(formateur: Formateur): any {
+   private formateurToFormateurRequest(formateur: Formateur): any {
     let obj = {
       id: formateur.id,
       firstname: formateur.firstname,
@@ -43,6 +51,18 @@ export class FormateurService {
       email: formateur.email,
       login: formateur.login,
       password: formateur.password
+    };
+    return obj;
+  }
+
+  private matiereToMatiereRequest(matiere: Matiere): any {
+    let obj = {
+      id: matiere.id,
+      libelle: matiere.libelle,
+      duration: matiere.duration,
+      objective: matiere.objective,
+      prerequisite: matiere.prerequisite,
+      content: matiere.content,
     };
     return obj;
   }
@@ -57,7 +77,7 @@ export class FormateurService {
   public addMatiere(formateur: Formateur, matiere: Matiere) {
     return this.httpClient.put<Formateur>(
       `${this.url}/${formateur.id}/matiere`,
-      this.mSrv.matiereToMatiereRequest(matiere)
+      this.matiereToMatiereRequest(matiere)
     );
   }
 

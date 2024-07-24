@@ -39,8 +39,8 @@ export class FormationService {
     );
   }
 
-  public getWithoutFormateur(): Observable<Formation[]> {
-    return this.httpClient.get<Formation[]>(`${this.url}/withoutformateur`);
+  public getWithoutFormateur(id: number): Observable<Formation[]> {
+    return this.httpClient.get<Formation[]>(`${this.url}/withoutformateur/${id}`);
   }
 
   public update(formation: Formation): Observable<Formation> {

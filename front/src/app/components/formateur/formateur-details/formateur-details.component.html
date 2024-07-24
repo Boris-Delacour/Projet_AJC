@@ -70,16 +70,6 @@
                     }
                 </tbody>
             </table>
-            <div class="input-group container">
-                <select id="formation" [(ngModel)]="formation" class="form-control">
-                    @for (f of formations; track f.id) {
-                    <option [ngValue]="f">{{ f.nom }}</option>
-                    }
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-info" (click)="add()">Ajouter</button>
-                </div>
-            </div>
         </div>
         <div style="min-width: 25vw;">
             <h2>Indisponibilités</h2>

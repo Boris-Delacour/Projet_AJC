@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,8 @@ import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOIndisponibilite;
 import com.example.demo.dao.IDAOMatiereParFormation;
 import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
+import com.example.demo.model.Matiere;
 
 @Service
 public class FormateurService {
@@ -68,6 +71,22 @@ public class FormateurService {
 		res.setMatiereParFormation(daoMatiereParFormation.findByFormateur(res));
 
 		return res;
+	}
+
+	public List<Formateur> getWithoutMatiere(Matiere matiere) {
+		List<Formateur> formateurs = daoFormateur.findAll();
+		List<Formateur> formateurRetirer = new ArrayList<Formateur>();
+		List<FormateurMatiere> fms = daoFormateurMatiere.findByMatiere(matiere);
+
+		for (FormateurMatiere fm : fms) {
+			formateurRetirer.add(fm.getFormateur());
+		}
+
+		for (Formateur f : formateurRetirer) {
+			formateurs.remove(f);
+		}
+
+		return formateurs;
 	}
 
 	public Formateur getWithAll(Integer id) {

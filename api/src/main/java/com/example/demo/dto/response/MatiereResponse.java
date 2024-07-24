@@ -24,10 +24,10 @@ public class MatiereResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String content;
 
-	@JsonView(CustomJsonViews.MatiereWithFormateur.class)
+	@JsonView(CustomJsonViews.MatiereWithAll.class)
 	private List<FormateurResponse> formateurs;
 
-	@JsonView(CustomJsonViews.MatiereWithMatiereParFormation.class)
+	@JsonView(CustomJsonViews.MatiereWithAll.class)
 	private List<MatiereParFormationResponse> matiereParFormations;
 
 	public MatiereResponse() {
@@ -39,13 +39,13 @@ public class MatiereResponse {
 
 	public MatiereResponse(Matiere matiere, boolean bool) {
 		BeanUtils.copyProperties(matiere, this);
-		if(bool) {
-			if(matiere.getFormateurMatieres() != null) {
+		if (bool) {
+			if (matiere.getFormateurMatieres() != null) {
 				this.setFormateurs(matiere.getFormateurMatieres().stream()
 						.map(formateur -> new FormateurResponse(formateur.getFormateur()))
 						.collect(Collectors.toList()));
 			}
-			if(matiere.getMatieresParFormations() != null) {
+			if (matiere.getMatieresParFormations() != null) {
 				this.setMatiereParFormations(matiere.getMatieresParFormations().stream()
 						.map(matiereParFormation -> new MatiereParFormationResponse(matiereParFormation))
 						.collect(Collectors.toList()));
@@ -56,36 +56,47 @@ public class MatiereResponse {
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getLibelle() {
 		return libelle;
 	}
+
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
 	public Integer getDuration() {
 		return duration;
 	}
+
 	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
+
 	public String getObjective() {
 		return objective;
 	}
+
 	public void setObjective(String objective) {
 		this.objective = objective;
 	}
+
 	public String getPrerequisite() {
 		return prerequisite;
 	}
+
 	public void setPrerequisite(String prerequisite) {
 		this.prerequisite = prerequisite;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}

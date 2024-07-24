@@ -26,8 +26,11 @@
         <td>{{ m.prerequisite }}</td>
         <td>{{ m.content }}</td>
         <td>
+            <a routerLink="/matiere/details/{{m.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
+        </td>
+        <td>
             <a routerLink="/matiere/edit/{{m.id}}" routerLinkActive="active"
-                class="btn btn-outline-primary">editer</a>
+                class="btn btn-outline-warning">modifier</a>
         </td>
         <td>
             <button (click)="delete(m.id!)" class="btn btn-outline-danger">suprimer</button>

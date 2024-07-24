@@ -1,12 +1,12 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Formateur } from '../../../models/formateur';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Formateur } from '../../../models/formateur';
 import { FormateurService } from '../../../services/formateur.service';
 import { Matiere } from '../../../models/matiere';
 import { MatiereService } from '../../../services/matiere.service';
-import { FormationService } from '../../../services/formation.service';
 import { Formation } from '../../../models/formation';
+import { FormationService } from '../../../services/formation.service';
 
 @Component({
   selector: 'app-formateur-details',
@@ -39,7 +39,7 @@ export class FormateurDetailsComponent implements OnInit {
         this.mSrv.getWithoutFormateur(params['id']).subscribe((matieres: Matiere[]) => {
             this.matieres = matieres;
         });
-        this.foSrv.getWithoutFormateur().subscribe((formations: Formation[]) => {
+        this.foSrv.getWithoutFormateur(params['id']).subscribe((formations: Formation[]) => {
           this.formations = formations;
         })
       }

@@ -25,6 +25,7 @@ import com.example.demo.dto.request.MatiereRequest;
 import com.example.demo.dto.response.FormateurResponse;
 import com.example.demo.model.Formateur;
 import com.example.demo.model.FormateurMatiere;
+import com.example.demo.model.FormateurMatiereKey;
 import com.example.demo.model.Matiere;
 import com.example.demo.service.FormateurMatiereService;
 import com.example.demo.service.FormateurService;
@@ -92,6 +93,14 @@ public class FormateurRestController {
         return new FormateurResponse(fSrv.getWithMatiereParFormations(id), true);
     }
 
+    @GetMapping("/withoutmatiere/{id}")
+    @JsonView(CustomJsonViews.Common.class)
+    public List<FormateurResponse> getWithoutMatiere(@PathVariable("id") Integer id) {
+        Matiere matiere = mSrv.getById(id);
+        return fSrv.getWithoutMatiere(matiere).stream().map(formateur -> new FormateurResponse(formateur))
+                .collect(Collectors.toList());
+    }
+
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
@@ -134,5 +143,11 @@ public class FormateurRestController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id) {
         fSrv.deleteById(id);
+    }
+
+    @DeleteMapping("/{id_f}/{id_m}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteFromFormateur(@PathVariable("id_f") Integer idF, @PathVariable("id_m") Integer idM) {
+        fmSrv.deleteById(new FormateurMatiereKey(idM, idF));
     }
 }

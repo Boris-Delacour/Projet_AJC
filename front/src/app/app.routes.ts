@@ -27,6 +27,7 @@ import { MatiereParFormationComponent } from './components/matiereParFormation/m
 import { MatiereParFormationEditComponent } from './components/matiereParFormation/matiere-par-formation-edit/matiere-par-formation-edit.component';
 import { MatiereParFormationDetailComponent } from './components/matiereParFormation/matiere-par-formation-detail/matiere-par-formation-detail.component';
 import { FormationDetailsComponent } from './components/formation/formation-details/formation-details.component';
+import { MatiereDetailsComponent } from './components/matiere/matiere-details/matiere-details.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
   { path: 'matiere', component: MatiereComponent },
   { path: 'matiere/edit', component: MatiereEditComponent },
   { path: 'matiere/edit/:id', component: MatiereEditComponent },
+  { path: 'matiere/details/:id', component: MatiereDetailsComponent },
 
   { path: 'formation', component: FormationComponent },
   { path: 'formation/edit', component: FormationEditComponent },
