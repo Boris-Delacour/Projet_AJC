@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 import { FormateurService } from '../../../services/formateur.service';
 import { Matiere } from '../../../models/matiere';
 import { MatiereService } from '../../../services/matiere.service';
+import { FormationService } from '../../../services/formation.service';
+import { Formation } from '../../../models/formation';
 
 @Component({
   selector: 'app-formateur-details',
@@ -17,11 +19,14 @@ export class FormateurDetailsComponent implements OnInit {
   formateur: Formateur = new Formateur();
   matieres: Matiere[] = [];
   matiere: Matiere = new Matiere();
+  formations: Formation[] = [];
+  formation: Formation = new Formation();
   
   constructor(
     private router: Router,
     public fSrv: FormateurService,
     public mSrv: MatiereService,
+    public foSrv: FormationService,
     public activatedroute: ActivatedRoute
   ) {}
 
@@ -34,6 +39,9 @@ export class FormateurDetailsComponent implements OnInit {
         this.mSrv.getWithoutFormateur(params['id']).subscribe((matieres: Matiere[]) => {
             this.matieres = matieres;
         });
+        this.foSrv.getWithoutFormateur().subscribe((formations: Formation[]) => {
+          this.formations = formations;
+        })
       }
     });
   }

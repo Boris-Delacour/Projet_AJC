@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.IDAOFormateur;
 import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
+import com.example.demo.model.Formateur;
+import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.Formation;
+import com.example.demo.model.Matiere;
 
 @Service
 public class FormationService {
@@ -21,6 +25,9 @@ public class FormationService {
 
 	@Autowired
 	IDAOGestionnaire daoGestionnaire;
+
+	@Autowired
+	FormateurService fSrv;
 
 	public Formation getById(Integer id) {
 		if (id == null) {
@@ -45,6 +52,12 @@ public class FormationService {
 		res.setGestionnaire(daoGestionnaire.findByFormation(res));
 
 		return res;
+	}
+
+	public List<Formation> getWithoutFormateur() {
+		List<Formation> formations = daoFormation.findWithouFormateur();
+
+		return formations;
 	}
 
 	public List<Formation> getAll() {

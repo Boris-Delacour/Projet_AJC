@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.FormationRequest;
 import com.example.demo.dto.response.FormationResponse;
+import com.example.demo.dto.response.MatiereResponse;
 import com.example.demo.model.Formation;
 import com.example.demo.service.FormateurService;
 import com.example.demo.service.FormationService;
@@ -48,32 +49,39 @@ public class FormationRestController {
     @JsonView(CustomJsonViews.Common.class)
     public List<FormationResponse> getAll() {
         return foSrv.getAll().stream().map(formation -> new FormationResponse(formation, false))
-                            .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-	@JsonView(CustomJsonViews.Common.class)
-	public FormationResponse getById(@PathVariable Integer id) {
-		return new FormationResponse(foSrv.getById(id), false);
-	}
+    @JsonView(CustomJsonViews.Common.class)
+    public FormationResponse getById(@PathVariable Integer id) {
+        return new FormationResponse(foSrv.getById(id), false);
+    }
 
     @GetMapping("/{id}/formateurs")
-	@JsonView(CustomJsonViews.FormationWithFormateur.class)
-	public FormationResponse getWithFormateurs(@PathVariable("id") Integer id) {
-		return new FormationResponse(foSrv.getWithFormateurs(id), true);
-	}
+    @JsonView(CustomJsonViews.FormationWithFormateur.class)
+    public FormationResponse getWithFormateurs(@PathVariable("id") Integer id) {
+        return new FormationResponse(foSrv.getWithFormateurs(id), true);
+    }
 
     @GetMapping("/{id}/gestionnaires")
-	@JsonView(CustomJsonViews.FormationWithGestionnaire.class)
-	public FormationResponse getWithFGestionnaires(@PathVariable("id") Integer id) {
-		return new FormationResponse(foSrv.getWithGestionnaires(id), true);
-	}
+    @JsonView(CustomJsonViews.FormationWithGestionnaire.class)
+    public FormationResponse getWithFGestionnaires(@PathVariable("id") Integer id) {
+        return new FormationResponse(foSrv.getWithGestionnaires(id), true);
+    }
+
+    @GetMapping("/withoutformateur/{id}")
+    @JsonView(CustomJsonViews.Common.class)
+    public List<FormationResponse> getWithoutFormateur(@PathVariable Integer id) {
+        return foSrv.getWithoutFormateur().stream().map(formation -> new FormationResponse(formation))
+                .collect(Collectors.toList());
+    }
 
     @PostMapping("")
     @ResponseStatus(code = HttpStatus.CREATED)
     @JsonView(CustomJsonViews.Common.class)
-    public FormationResponse create(@Valid @RequestBody FormationRequest fr, BindingResult br)  {
-        if (br.hasErrors()){
+    public FormationResponse create(@Valid @RequestBody FormationRequest fr, BindingResult br) {
+        if (br.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formation formation = new Formation();
@@ -87,8 +95,9 @@ public class FormationRestController {
 
     @PutMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
-    public FormationResponse update(@Valid @RequestBody FormationRequest fr, BindingResult br, @PathVariable Integer id) {
-        if (br.hasErrors()){
+    public FormationResponse update(@Valid @RequestBody FormationRequest fr, BindingResult br,
+            @PathVariable Integer id) {
+        if (br.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Formation formation = foSrv.getById(id);
@@ -98,7 +107,7 @@ public class FormationRestController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable("id") Integer id){
+    public void deleteById(@PathVariable("id") Integer id) {
         foSrv.deleteById(id);
     }
 }
