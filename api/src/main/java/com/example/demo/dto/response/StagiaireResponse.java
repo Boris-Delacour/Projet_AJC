@@ -21,10 +21,10 @@ public class StagiaireResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private String password;
 
-	@JsonView(CustomJsonViews.StagiaireWithFormation.class)
+	@JsonView(CustomJsonViews.StagiaireWithAll.class)
 	private FormationResponse formation;
 
-	@JsonView(CustomJsonViews.StagiaireWithOrdinateur.class)
+	@JsonView(CustomJsonViews.StagiaireWithAll.class)
 	private OrdinateurResponse ordinateur;
 	
 	public StagiaireResponse() {

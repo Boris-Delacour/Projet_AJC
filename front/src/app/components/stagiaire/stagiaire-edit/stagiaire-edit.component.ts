@@ -46,7 +46,7 @@ export class StagiaireEditComponent implements OnInit {
     this.ordinateursObservable = this.ordinateurSrv.getAll();
     this.activatedroute.params.subscribe((params) => {
       if (params['id']) {
-        this.stagiaireSrv.getById(params['id']).subscribe((stagiaire) => {
+        this.stagiaireSrv.getWithAll(params['id']).subscribe((stagiaire) => {
           this.stagiaire = stagiaire;
         });
       }
