@@ -6,13 +6,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.IDAOFormateur;
+import com.example.demo.dao.IDAOFormation;
+import com.example.demo.dao.IDAOMatiere;
 import com.example.demo.dao.IDAOMatiereParFormation;
+import com.example.demo.dao.IDAOSalle;
 import com.example.demo.model.MatiereParFormation;
+import com.example.demo.model.Salle;
 
 @Service
 public class MatiereParFormationService {
 	@Autowired
 	IDAOMatiereParFormation daoMatiereParFormation;
+
+	@Autowired
+	IDAOFormateur daoFormateur;
+
+	@Autowired
+	IDAOFormation daoFormation;
+
+	@Autowired
+	IDAOMatiere daoMatiere;
+
+	@Autowired
+	IDAOSalle daoSalle;
 
 	public MatiereParFormation getById(Integer id) {
 		if (id == null) {
@@ -23,6 +40,15 @@ public class MatiereParFormationService {
 			return opt.get();
 		}
 		return null;
+	}
+
+	public MatiereParFormation getByIdWithAll(Integer id) {
+		MatiereParFormation res = this.getById(id);
+		res.setFormateur(daoFormateur.findByMatiereParFormation(res));
+		res.setFormation(daoFormation.findByMatiereParFormation(res));
+		res.setMatiere(daoMatiere.findByMatieresParFormations(res));
+		res.setSalle(daoSalle.findByMatiereParFormation(res));
+		return res;
 	}
 
 	public List<MatiereParFormation> getAll() {

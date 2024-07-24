@@ -58,6 +58,17 @@ public class FormationRestController {
         return new FormationResponse(foSrv.getById(id), false);
     }
 
+    @GetMapping("/{id}/infos")
+    @JsonView(CustomJsonViews.FormationWithAll.class)
+    public FormationResponse getWithAll(@PathVariable Integer id) {
+        return new FormationResponse(foSrv.getWithAll(id), true);
+    }
+
+    @JsonView(CustomJsonViews.Common.class)
+    public FormationResponse getById(@PathVariable Integer id) {
+        return new FormationResponse(foSrv.getById(id), false);
+    }
+
     @GetMapping("/{id}/formateurs")
     @JsonView(CustomJsonViews.FormationWithFormateur.class)
     public FormationResponse getWithFormateurs(@PathVariable("id") Integer id) {
@@ -65,6 +76,22 @@ public class FormationRestController {
     }
 
     @GetMapping("/{id}/gestionnaires")
+    @JsonView(CustomJsonViews.FormationWithGestionnaire.class)
+    public FormationResponse getWithGestionnaires(@PathVariable("id") Integer id) {
+        return new FormationResponse(foSrv.getWithGestionnaires(id), true);
+    }
+
+    @GetMapping("/{id}/stagiaires")
+    @JsonView(CustomJsonViews.FormationWithStagiaires.class)
+    public FormationResponse getWithStagiaires(@PathVariable("id") Integer id) {
+        return new FormationResponse(foSrv.getWithStagiaires(id), true);
+    }
+
+    // @GetMapping("/{id}/matieres")
+    // @JsonView(CustomJsonViews.FormationWithMatieres.class)
+    // public FormationResponse getWithMatieres(@PathVariable("id") Integer id) {
+    // return new FormationResponse(foSrv.getWithMatieres(id), true);
+    // }
     @JsonView(CustomJsonViews.FormationWithGestionnaire.class)
     public FormationResponse getWithFGestionnaires(@PathVariable("id") Integer id) {
         return new FormationResponse(foSrv.getWithGestionnaires(id), true);

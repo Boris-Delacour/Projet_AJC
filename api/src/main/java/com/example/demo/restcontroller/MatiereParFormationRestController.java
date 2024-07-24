@@ -79,6 +79,12 @@ public class MatiereParFormationRestController {
 		return new MatiereParFormationResponse(matiereparformationSrv.getById(id), false);
 	}
 
+	@GetMapping("/{id}/all")
+	@JsonView(CustomJsonViews.MatiereParFormationWithAll.class)
+	public MatiereParFormationResponse getByIdWithAll(@PathVariable Integer id) {
+		return new MatiereParFormationResponse(matiereparformationSrv.getByIdWithAll(id), true);
+	}
+
 	@PutMapping("/{id}")
 	@JsonView(CustomJsonViews.Common.class)
 	public MatiereParFormationResponse update(@Valid @RequestBody MatiereParFormationRequest matiereparformationRequest,

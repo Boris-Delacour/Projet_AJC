@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.IDAOFormateur;
 import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
+import com.example.demo.dao.IDAOMatiereParFormation;
+import com.example.demo.dao.IDAOStagiaire;
 import com.example.demo.model.Formateur;
 import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.Formation;
@@ -25,6 +27,12 @@ public class FormationService {
 
 	@Autowired
 	IDAOGestionnaire daoGestionnaire;
+
+	@Autowired
+	IDAOStagiaire daoStagiaire;
+
+	@Autowired
+	IDAOMatiereParFormation daoMatiereParFormation;
 
 	@Autowired
 	FormateurService fSrv;
@@ -50,6 +58,30 @@ public class FormationService {
 	public Formation getWithGestionnaires(Integer id) {
 		Formation res = this.getById(id);
 		res.setGestionnaire(daoGestionnaire.findByFormation(res));
+
+		return res;
+	}
+
+	public Formation getWithStagiaires(Integer id) {
+		Formation res = this.getById(id);
+		res.setStagiaires(daoStagiaire.findByFormation(res));
+
+		return res;
+	}
+
+	public Formation getWithMatieresParFormation(Integer id) {
+		Formation res = this.getById(id);
+		res.setMatiereParFormation(daoMatiereParFormation.findByFormation(res));
+
+		return res;
+	}
+
+	public Formation getWithAll(Integer id) {
+		Formation res = this.getById(id);
+		res.setFormateur(daoFormateur.findByFormation(res));
+		res.setGestionnaire(daoGestionnaire.findByFormation(res));
+		res.setStagiaires(daoStagiaire.findByFormation(res));
+		res.setMatiereParFormation(daoMatiereParFormation.findByFormation(res));
 
 		return res;
 	}

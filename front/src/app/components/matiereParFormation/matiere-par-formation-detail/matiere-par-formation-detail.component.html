@@ -1,0 +1,31 @@
+<h2>Détail de la matiere par formation du {{ matiereParFormation.start }}</h2>
+
+<p>Date de début : {{ matiereParFormation.start }}</p>
+<p>Date de fin : {{ matiereParFormation.end }}</p>
+<p>
+  Formateur : @if (matiereParFormation.formateur) {
+  {{ matiereParFormation.formateur.firstname }}
+  {{ matiereParFormation.formateur.lastname }}
+  }@else {aucun assigné}
+</p>
+<p>
+  Formation : @if (matiereParFormation.formation)
+  {{{ matiereParFormation.formation.nom }}
+  }@else {aucune assignée}
+</p>
+<p>
+  Matière : @if (matiereParFormation.matiere) {
+  {{ matiereParFormation.matiere.libelle }}
+  }@else {aucune assignée}
+</p>
+<p>
+  Salle : @if (matiereParFormation.salle) { Numéro
+  {{ matiereParFormation.salle.numero }}
+  }@else {aucune assignée}
+</p>
+<a
+  routerLink="/matiereparformation"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Retour</a
+>

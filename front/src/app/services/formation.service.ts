@@ -28,6 +28,10 @@ export class FormationService {
     return this.httpClient.get<Formation[]>(this.url);
   }
 
+  public getWithAll(id: number): Observable<Formation> {
+    return this.httpClient.get<Formation>(`${this.url}/${id}/infos`);
+  }
+
   public create(formation: Formation): Observable<Formation> {
     return this.httpClient.post<Formation>(
       this.url,
