@@ -40,6 +40,9 @@ public class CustomJsonViews {
 	public static class SalleWithAll extends Common {
 	}
 
+	public static class FormationWithAll extends Common {
+	}
+
 	public static class FormationWithGestionnaire extends Common {
 	}
 

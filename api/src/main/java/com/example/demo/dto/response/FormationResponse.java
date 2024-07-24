@@ -19,13 +19,13 @@ public class FormationResponse {
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate dateStart;
 
-	@JsonView(CustomJsonViews.FormationWithGestionnaire.class)
+	@JsonView(CustomJsonViews.FormationWithAll.class)
     private GestionnaireResponse gestionnaire;
-	@JsonView(CustomJsonViews.FormationWithStagiaires.class)
+	@JsonView(CustomJsonViews.FormationWithAll.class)
     private List<StagiaireResponse> stagiaires;
-	@JsonView(CustomJsonViews.FormationWithMatieres.class)
+	@JsonView(CustomJsonViews.FormationWithAll.class)
     private List<MatiereParFormationResponse> matiereParFormations;
-	@JsonView(CustomJsonViews.FormationWithFormateur.class)
+	@JsonView(CustomJsonViews.FormationWithAll.class)
     private FormateurResponse formateur;
 
     public FormationResponse() {

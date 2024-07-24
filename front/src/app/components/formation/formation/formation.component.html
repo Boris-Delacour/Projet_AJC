@@ -3,6 +3,11 @@
   >nouvelle formation</a
 >
 <table class="table">
+  <tr>
+    <th>ID</th>
+    <th>NOM</th>
+    <th>DATE DEBUT</th>
+  </tr>
   @for(f of formations;track f.id) {
   <tr>
     <td>{{ f.id }}</td>
@@ -10,6 +15,9 @@
     <td>{{ f.dateStart }}</td>
     <td>{{ f.gestionnaire?.firstName }}</td>
     <td>{{ f.formateur?.firstname }}</td>
+    <td>
+      <a routerLink="/formation/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
+    </td>
     <td>
         <a
         routerLink="/formation/edit/{{ f.id }}"

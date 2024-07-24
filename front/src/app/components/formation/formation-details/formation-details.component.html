@@ -1,0 +1,61 @@
+<h1>Détails de la formation n°{{ formation.id }}</h1>
+<div class="container">
+    <div>
+        <div class="form-group">
+            <label for="nom">nom:</label>
+            <input id="nom" [(ngModel)]="formation.nom" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label for="dateStart">date debut:</label>
+            <input id="dateStart" type="date" [(ngModel)]="formation.dateStart" class="form-control" />
+          </div>
+    </div>
+    <div>
+        <h2>Gestionnaire de la formation n°{{ formation.id }}</h2>
+        <table class="table">
+            <tr>
+                <th>NOM</th>
+                <th>PRENOM</th>
+                <th>E-MAIL</th>
+            </tr>
+            <tr>
+                <td>{{ formation.gestionnaire?.lastName }}</td>
+                <td>{{ formation.gestionnaire?.firstName }}</td>
+                <td>{{ formation.gestionnaire?.email }}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2>Formateur référent de la formation n°{{ formation.id }}</h2>
+        <table class="table">
+            <tr>
+                <th>NOM</th>
+                <th>PRENOM</th>
+                <th>E-MAIL</th>
+            </tr>
+            <tr>
+                <td>{{ formation.formateur?.lastname }}</td>
+                <td>{{ formation.formateur?.firstname }}</td>
+                <td>{{ formation.formateur?.email }}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2>Stagiaires de la formation n°{{ formation.id }}</h2>
+        <table class="table">
+            <tr>
+                <th>NOM</th>
+                <th>PRENOM</th>
+                <th>E-MAIL</th>
+            </tr>
+            @for(s of formation.stagiaires; track s.id) {
+            <tr>
+                <td>{{ s.lastName }}</td>
+                <td>{{ s.firstName }}</td>
+                <td>{{ s.email }}</td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+<a routerLink="/formation" routerLinkActive="active" class="btn btn-outline-warning">retour</a>
