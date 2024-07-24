@@ -15,6 +15,7 @@ export class VideoprojecteurComponent implements OnInit {
   message = '';
   showMessage = false;
   style = '';
+  nbVideoprojecteurDispo: number = 0;
 
   constructor(
     public videoprojecteurSrv: VideoprojecteurService,
@@ -40,9 +41,14 @@ export class VideoprojecteurComponent implements OnInit {
   }
 
   initVideoprojecteurs() {
-    this.videoprojecteurSrv.getAll().subscribe((videoprojecteurs) => {
+    this.videoprojecteurSrv.getAllWithAll().subscribe((videoprojecteurs) => {
       this.videoprojecteurs = videoprojecteurs;
     });
+    this.videoprojecteurSrv
+      .getByDisponible()
+      .subscribe((nbVideoprojecteurs) => {
+        this.nbVideoprojecteurDispo = nbVideoprojecteurs.length;
+      });
   }
 
   delete(id: number) {

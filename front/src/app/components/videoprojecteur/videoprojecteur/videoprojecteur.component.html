@@ -1,30 +1,36 @@
-<h1>liste des videoprojecteur</h1>
-<a
-  routerLink="/videoprojecteur/edit"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Nouveau videoprojecteur</a
->
+<h1>Liste des videoprojecteurs</h1>
+
+<section class="d-flex">
+  <p>Nombre de videoprojecteur : {{ videoprojecteurs.length }}</p>
+  <p class="mx-2">|</p>
+  <p>Videoprojecteur en reserve : {{ nbVideoprojecteurDispo }}</p>
+</section>
+
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
 </div>
 }
-<table class="table">
+<table class="table overflow-auto">
   <thead>
-    <td>Id</td>
-    <td>Marque</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <tr>
+      <th>Id</th>
+      <th>Marque</th>
+      <th>Fonctionnel</th>
+      <th>Disponible</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     @for(o of videoprojecteurs;track o.id) {
     <tr>
       <td>{{ o.id }}</td>
       <td>{{ o.marque }}</td>
-      <td>{{ o.salle?.numero }} {{ o.salle?.numero }}</td>
-      <td>
+      <td>@if (o.fonctionnel) {Oui}@else {Non}</td>
+      <td>@if (o.fonctionnel && !o.salle) {Oui}@else {Non}</td>
+      <td class="text-center">
         <a
           routerLink="/videoprojecteur/{{ o.id }}"
           routerLinkActive="active"
@@ -32,15 +38,15 @@
           >Détail</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/videoprojecteur/edit/{{ o.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Éditer</a
+          class="btn btn-outline-warning"
+          >Modifier</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <button (click)="delete(o.id!)" class="btn btn-outline-danger">
           Supprimer
         </button>
@@ -49,3 +55,9 @@
     }
   </tbody>
 </table>
+<a
+  routerLink="/videoprojecteur/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Nouveau videoprojecteur</a
+>

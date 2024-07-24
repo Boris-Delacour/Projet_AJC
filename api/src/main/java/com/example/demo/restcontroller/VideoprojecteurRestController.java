@@ -46,6 +46,14 @@ public class VideoprojecteurRestController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/all")
+    @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
+    @Operation(summary = "Tout les videoprojecteurs")
+    public List<VideoprojecteurResponse> getAllWithAll() {
+        return videoprojecteurSrv.getAll().stream().map(videoprojecteur -> new VideoprojecteurResponse(videoprojecteur))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.VideoprojecteurWithSalle.class)
     public VideoprojecteurResponse getById(@PathVariable Integer id) {

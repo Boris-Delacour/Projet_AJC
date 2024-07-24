@@ -1,10 +1,4 @@
 <h1>Liste des matieres par formation</h1>
-<a
-  routerLink="/matiereparformation/edit"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Nouvelle matiereParFormation</a
->
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
@@ -12,12 +6,14 @@
 }
 <table class="table">
   <thead>
-    <td>Id</td>
-    <td>Date de début</td>
-    <td>Date de fin</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <tr>
+      <th>Id</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     @for(m of matiereParFormations;track m.id) {
@@ -25,7 +21,7 @@
       <td>{{ m.id }}</td>
       <td>{{ m.start }}</td>
       <td>{{ m.end }}</td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/matiereparformation/{{ m.id }}"
           routerLinkActive="active"
@@ -33,15 +29,15 @@
           >Détail</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/matiereparformation/edit/{{ m.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Éditer</a
+          class="btn btn-outline-warning"
+          >Modifier</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <button (click)="delete(m.id!)" class="btn btn-outline-danger">
           Supprimer
         </button>
@@ -50,3 +46,9 @@
     }
   </tbody>
 </table>
+<a
+  routerLink="/matiereparformation/edit"
+  routerLinkActive="active"
+  class="btn btn-link"
+  >Nouvelle matiereParFormation</a
+>

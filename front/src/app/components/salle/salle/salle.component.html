@@ -1,7 +1,4 @@
-<h1>liste des salle</h1>
-<a routerLink="/salle/edit" routerLinkActive="active" class="btn btn-link"
-  >Nouvelle salle</a
->
+<h1>Liste des salles</h1>
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
@@ -9,12 +6,14 @@
 }
 <table class="table">
   <thead>
-    <td>Id</td>
-    <td>Numéro</td>
-    <td>Nb place</td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <tr>
+      <th>Id</th>
+      <th>Numéro</th>
+      <th>Nb place</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     @for(s of salles;track s.id) {
@@ -22,7 +21,7 @@
       <td>{{ s.id }}</td>
       <td>{{ s.numero }}</td>
       <td>{{ s.nbPlace }}</td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/salle/{{ s.id }}"
           routerLinkActive="active"
@@ -30,15 +29,15 @@
           >Détail</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <a
           routerLink="/salle/edit/{{ s.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Éditer</a
+          class="btn btn-outline-warning"
+          >Modifier</a
         >
       </td>
-      <td>
+      <td class="text-center">
         <button (click)="delete(s.id!)" class="btn btn-outline-danger">
           Supprimer
         </button>
@@ -47,3 +46,9 @@
     }
   </tbody>
 </table>
+<a
+  routerLink="/salle/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Nouvelle salle</a
+>
