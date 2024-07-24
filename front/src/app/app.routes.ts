@@ -27,6 +27,7 @@ import { MatiereParFormationComponent } from './components/matiereParFormation/m
 import { MatiereParFormationEditComponent } from './components/matiereParFormation/matiere-par-formation-edit/matiere-par-formation-edit.component';
 import { MatiereParFormationDetailComponent } from './components/matiereParFormation/matiere-par-formation-detail/matiere-par-formation-detail.component';
 import { FormationDetailsComponent } from './components/formation/formation-details/formation-details.component';
+import { GestionnaireDetailsComponent } from './components/gestionnaire/gestionnaire-details/gestionnaire-details.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
@@ -68,6 +69,7 @@ export const routes: Routes = [
   { path: 'gestionnaire', component: GestionnaireComponent },
   { path: 'gestionnaire/edit', component: GestionnaireEditComponent },
   { path: 'gestionnaire/edit/:id', component: GestionnaireEditComponent },
+  { path: 'gestionnaire/details/:id', component: GestionnaireDetailsComponent },
 
   { path: 'ordinateur', component: OrdinateurComponent },
   { path: 'ordinateur/edit', component: OrdinateurEditComponent },
