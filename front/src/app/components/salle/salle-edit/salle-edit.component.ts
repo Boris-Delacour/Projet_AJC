@@ -24,6 +24,11 @@ export class SalleEditComponent implements OnInit {
   salle: Salle = new Salle();
 
   videoprojecteurObservable!: Observable<Videoprojecteur[]>;
+  videoprojecteurVide: Videoprojecteur = {
+    id: 0,
+    marque: '',
+    fonctionnel: false,
+  };
 
   constructor(
     public videoprojecteurSrv: VideoprojecteurService,
@@ -57,6 +62,10 @@ export class SalleEditComponent implements OnInit {
   }
 
   save() {
+    if (!this.salle.videoprojecteur?.id) {
+      this.salle.videoprojecteur = this.videoprojecteurVide;
+      console.log(this.salle.videoprojecteur!.id);
+    }
     if (this.salle.id) {
       this.salleSrv.update(this.salle).subscribe((salle) => {
         this.router.navigateByUrl('/salle?q=update&id=' + salle.id);
