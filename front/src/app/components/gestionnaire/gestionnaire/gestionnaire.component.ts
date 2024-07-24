@@ -13,6 +13,10 @@ import { GestionnaireService } from '../../../services/gestionnaire.service';
 export class GestionnaireComponent {
   gestionnaires: Gestionnaire[] = [];
 
+  message = '';
+  showMessage = false;
+  style = '';
+
   constructor(
     public gestionnaireSrv: GestionnaireService,
     private activatedRoute: ActivatedRoute
@@ -20,6 +24,21 @@ export class GestionnaireComponent {
 
   ngOnInit(): void {
     this.initGestionnaires();
+    this.initMessage();
+  }
+
+  initMessage() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['q']) {
+        if (params['q'] == 'create') {
+          this.message = `Videoprojecteur ${params['id']} créé `;
+        } else if (params['q'] == 'update') {
+          this.message = `Videoprojecteur ${params['id']} mis à jour `;
+        }
+      }
+      this.showMessage = true;
+      this.style = 'alert-info';
+    });
   }
 
   initGestionnaires() {

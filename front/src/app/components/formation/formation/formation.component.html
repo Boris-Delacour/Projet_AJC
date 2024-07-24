@@ -1,36 +1,47 @@
-<h1>liste des formations</h1>
+<h1>Liste des Formations</h1>
+
+@if(showMessage){
+  <div class="alert {{ style }}">
+    {{ message }}
+  </div>
+}
+
 <table class="table">
-  <tr>
-    <th>ID</th>
-    <th>NOM</th>
-    <th>DATE DEBUT</th>
-  </tr>
-  @for(f of formations;track f.id) {
-  <tr>
-    <td>{{ f.id }}</td>
-    <td>{{ f.nom }}</td>
-    <td>{{ f.dateStart }}</td>
-    <td>{{ f.gestionnaire?.firstName }}</td>
-    <td>{{ f.formateur?.firstname }}</td>
-    <td>
-      <a routerLink="/formation/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">détails</a>
-    </td>
-    <td>
-        <a
-        routerLink="/formation/edit/{{ f.id }}"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >editer</a
-        >
-    </td>
-    <td>
-      <button (click)="delete(f.id!)" class="btn btn-outline-danger">
-        supprimer
-      </button>
-    </td>
-  </tr>
-  }
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NOM</th>
+      <th>DATE DEBUT</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(f of formations;track f.id) {
+    <tr>
+      <td>{{ f.id }}</td>
+      <td>{{ f.nom }}</td>
+      <td>{{ f.dateStart }}</td>
+      <td>{{ f.gestionnaire?.firstName }}</td>
+      <td>{{ f.formateur?.firstname }}</td>
+      <td>
+        <a routerLink="/formation/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
+      </td>
+      <td>
+          <a
+          routerLink="/formation/edit/{{ f.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+          >Editer</a
+          >
+      </td>
+      <td>
+        <button (click)="delete(f.id!)" class="btn btn-outline-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
 </table>
-<a routerLink="/formation/edit" routerLinkActive="active" class="btn btn-outline-primary"
-  >nouvelle formation</a
+<a routerLink="/formation/edit" routerLinkActive="active" class="btn btn-outline-success"
+  >Ajouter</a
 >
