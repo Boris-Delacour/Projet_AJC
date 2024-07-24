@@ -1,0 +1,21 @@
+<h1>Details du stagiaire n°{{ stagiaire.id }} </h1>
+<div class="container">
+  <div>
+    <div class="form-group">
+        <label for="firstName">Prenom : </label>
+        <input id="firstName" [(ngModel)]="stagiaire.firstName" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom : </label>
+      <input id="lastName" [(ngModel)]="stagiaire.lastName" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="email">Email : </label>
+      <input id="email" [(ngModel)]="stagiaire.email" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="login">Login : </label>
+      <input id="login" [(ngModel)]="stagiaire.login" class="form-control" disabled>
+    </div>
+  </div>
+</div>
