@@ -29,6 +29,10 @@ export class GestionnaireService {
     return this.httpClient.get<Gestionnaire[]>(this.url);
   }
 
+  public getWithFormations(id: number): Observable<Gestionnaire> {
+    return this.httpClient.get<Gestionnaire>(`${this.url}/${id}/infos`);
+  }
+
   public create(gestionnaire: Gestionnaire): Observable<Gestionnaire> {
     return this.httpClient.post<Gestionnaire>(
       this.url,
