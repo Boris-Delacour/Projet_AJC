@@ -1,26 +1,26 @@
 <h1>Détails de la matière n°{{ matiere.id }}</h1>
 <div class="d-flex flex-column gap-2">
     <div class="d-flex justify-content-around">
-        <div>
+        <div class="container">
             <div class="form-group">
                 <label for="libelle">libelle:</label>
-                <input id="libelle" [(ngModel)]="matiere.libelle" class="form-control" />
+                <input id="libelle" [(ngModel)]="matiere.libelle" class="form-control" disabled/>
             </div>
             <div class="form-group">
                 <label for="duration">durée:</label>
-                <input id="duration" [(ngModel)]="matiere.duration" class="form-control" />
+                <input id="duration" [(ngModel)]="matiere.duration" class="form-control" disabled/>
             </div>
             <div class="form-group">
                 <label for="objective">objective:</label>
-                <input id="objective" type="objective" [(ngModel)]="matiere.objective" class="form-control" />
+                <input id="objective" type="objective" [(ngModel)]="matiere.objective" class="form-control" disabled/>
             </div>
             <div class="form-group">
                 <label for="prerequisite">prérequis:</label>
-                <input id="prerequisite" type="text" [(ngModel)]="matiere.prerequisite" class="form-control" />
+                <input id="prerequisite" type="text" [(ngModel)]="matiere.prerequisite" class="form-control" disabled/>
             </div>
             <div class="form-group">
                 <label for="content">contenu:</label>
-                <input id="content" type="content" [(ngModel)]="matiere.content" class="form-control" />
+                <input id="content" type="content" [(ngModel)]="matiere.content" class="form-control" disabled/>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                     <tr>
                         <td>{{ f.firstname }}</td>
                         <td>{{ f.lastname }}</td>
-                        <td><button (click)="remove(f.id!)" class="btn btn-outline-danger">Supprimer</button></td>
+                        <td class="text-center"><button (click)="remove(f.id!)" class="btn btn-outline-danger">Supprimer</button></td>
                     </tr>
                     }
                 </tbody>

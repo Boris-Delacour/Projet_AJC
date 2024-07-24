@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-around">
-        <div style="min-width: 25vw;">
+        <div style="min-width: 20vw;">
             <h2>Compétences</h2>
             <table class="table table-bordered">
                 <thead>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ m.libelle }}</td>
                         <td>{{ m.duration }}</td>
-                        <td><button (click)="remove(m.id!)" class="btn btn-outline-danger">Supprimer</button></td>
+                        <td class="text-center"><button (click)="remove(m.id!)" class="btn btn-outline-danger">Supprimer</button></td>
                     </tr>
                     }
                 </tbody>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div style="min-width: 25vw;">
+        <div style="min-width: 20vw;">
             <h2>Formation</h2>
             <table class="table table-bordered">
                 <thead>
@@ -71,7 +71,7 @@
                 </tbody>
             </table>
         </div>
-        <div style="min-width: 25vw;">
+        <div style="min-width: 20vw;">
             <h2>Indisponibilités</h2>
             <table class="table table-bordered">
                 <thead>
