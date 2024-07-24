@@ -12,7 +12,6 @@ import com.example.demo.dao.IDAOMatiere;
 import com.example.demo.dao.IDAOMatiereParFormation;
 import com.example.demo.dao.IDAOSalle;
 import com.example.demo.model.MatiereParFormation;
-import com.example.demo.model.Salle;
 
 @Service
 public class MatiereParFormationService {

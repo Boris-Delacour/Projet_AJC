@@ -22,7 +22,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.FormationRequest;
 import com.example.demo.dto.response.FormationResponse;
-import com.example.demo.dto.response.MatiereResponse;
 import com.example.demo.model.Formation;
 import com.example.demo.service.FormateurService;
 import com.example.demo.service.FormationService;
@@ -127,7 +126,7 @@ public class FormationRestController {
 
         formation.setGestionnaire(gSrv.getById(fr.getIdGestionnaire()));
         formation.setFormateur(fSrv.getById(fr.getIdFormateur()));
-        
+
         return new FormationResponse(foSrv.update(formation), false);
     }
 

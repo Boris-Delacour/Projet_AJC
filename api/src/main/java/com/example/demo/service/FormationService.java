@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +11,7 @@ import com.example.demo.dao.IDAOFormation;
 import com.example.demo.dao.IDAOGestionnaire;
 import com.example.demo.dao.IDAOMatiereParFormation;
 import com.example.demo.dao.IDAOStagiaire;
-import com.example.demo.model.Formateur;
-import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.Formation;
-import com.example.demo.model.Matiere;
 
 @Service
 public class FormationService {
