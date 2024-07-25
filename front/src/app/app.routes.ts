@@ -32,6 +32,7 @@ import { GestionnaireDetailsComponent } from './components/gestionnaire/gestionn
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { anonymousGuard } from './guards/anonymous.guard';
+import { StagiaireDetailsComponent } from './components/stagiaire/stagiaire-details/stagiaire-details.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent, canActivate: [authGuard] },
@@ -66,6 +67,7 @@ export const routes: Routes = [
   { path: 'stagiaire', component: StagiaireComponent, canActivate: [authGuard] },
   { path: 'stagiaire/edit', component: StagiaireEditComponent, canActivate: [authGuard] },
   { path: 'stagiaire/edit/:id', component: StagiaireEditComponent, canActivate: [authGuard] },
+  { path: 'stagiaire/details/:id', component: StagiaireDetailsComponent, canActivate: [authGuard] },
 
   { path: 'technicien', component: TechnicienComponent, canActivate: [authGuard] },
   { path: 'technicien/edit', component: TechnicienEditComponent, canActivate: [authGuard] },
