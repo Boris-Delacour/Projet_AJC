@@ -1,91 +1,118 @@
 <h1>Détails du formateur n°{{ formateur.id }}</h1>
 <div class="d-flex flex-column gap-2">
-    <div class="d-flex justify-content-around">
-        <div class="container">
-            <div class="form-group">
-                <label for="prenom">prenom:</label>
-                <input id="prenom" [(ngModel)]="formateur.firstname" class="form-control" disabled />
-            </div>
-            <div class="form-group">
-                <label for="nom">nom:</label>
-                <input id="nom" [(ngModel)]="formateur.lastname" class="form-control" disabled />
-            </div>
-            <div class="form-group">
-                <label for="email">email:</label>
-                <input id="email" type="email" [(ngModel)]="formateur.email" class="form-control" disabled />
-            </div>
-        </div>
+  <div class="d-flex justify-content-around">
+    <div class="container">
+      <div class="form-group">
+        <label for="prenom">prenom:</label>
+        <input
+          id="prenom"
+          [(ngModel)]="formateur.firstname"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="nom">nom:</label>
+        <input
+          id="nom"
+          [(ngModel)]="formateur.lastname"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">email:</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="formateur.email"
+          class="form-control"
+          disabled
+        />
+      </div>
     </div>
-    <div class="d-flex justify-content-around">
-        <div style="min-width: 20vw;">
-            <h2>Compétences</h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">LIBELLÉ</th>
-                        <th scope="col">DURÉE</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(m of formateur.matieres;track m.id) {
-                    <tr>
-                        <td>{{ m.libelle }}</td>
-                        <td>{{ m.duration }}</td>
-                        <td class="text-center"><button (click)="remove(m.id!)" class="btn btn-outline-danger">Supprimer</button></td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-            <div class="input-group container">
-                <select id="matiere" [(ngModel)]="matiere" class="form-control">
-                    @for (m of matieres; track m.id) {
-                    <option [ngValue]="m">{{ m.libelle }}</option>
-                    }
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" (click)="add()">Ajouter</button>
-                </div>
-            </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <div style="min-width: 20vw">
+      <h2>Compétences</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">LIBELLÉ</th>
+            <th scope="col">DURÉE</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(m of formateur.matieres;track m.id) {
+          <tr>
+            <td>{{ m.libelle }}</td>
+            <td>{{ m.duration }}</td>
+            <td class="text-center">
+              <button (click)="remove(m.id!)" class="btn btn-outline-danger">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <div class="input-group container">
+        <select id="matiere" [(ngModel)]="matiere" class="form-control">
+          @for (m of matieres; track m.id) {
+          <option [ngValue]="m">{{ m.libelle }}</option>
+          }
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" (click)="add()">
+            Ajouter
+          </button>
         </div>
-        <div style="min-width: 20vw;">
-            <h2>Formation</h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>LIBELLÉ</th>
-                        <th>DÉBUT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(f of formateur.formations;track f.id) {
-                    <tr>
-                        <td>{{ f.nom }}</td>
-                        <td>{{ f.dateStart }}</td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div style="min-width: 20vw;">
-            <h2>Indisponibilités</h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">DEBUT</th>
-                        <th scope="col">FIN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(i of formateur.indisponibilites; track i.id) {
-                    <tr>
-                        <td>{{ i.start }}</td>
-                        <td>{{ i.end }}</td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+      </div>
     </div>
+    <div style="min-width: 20vw">
+      <h2>Formation</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>LIBELLÉ</th>
+            <th>DÉBUT</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(f of formateur.formations;track f.id) {
+          <tr>
+            <td>{{ f.nom }}</td>
+            <td>{{ f.dateStart }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div style="min-width: 20vw">
+      <h2>Indisponibilités</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">DEBUT</th>
+            <th scope="col">FIN</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(i of formateur.indisponibilites; track i.id) {
+          <tr>
+            <td>{{ i.start }}</td>
+            <td>{{ i.end }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<a routerLink="/formateur" routerLinkActive="active" class="btn btn-outline-warning m-2">retour</a>
+<a
+  routerLink="/formateur"
+  routerLinkActive="active"
+  class="btn btn-outline-warning m-2"
+  >Retour</a
+>

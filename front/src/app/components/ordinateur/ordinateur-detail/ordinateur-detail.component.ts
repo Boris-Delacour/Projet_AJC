@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { Ordinateur } from '../../../models/ordinateur';
 import { OrdinateurService } from '../../../services/ordinateur.service';
 
 @Component({
   selector: 'app-ordinateur-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './ordinateur-detail.component.html',
   styleUrl: './ordinateur-detail.component.css',
 })

@@ -2,42 +2,58 @@
 
 @if(showMessage){
 <div class="alert alert-info">
-    {{ message }}
+  {{ message }}
 </div>
 }
 
 <table class="table overflow-auto">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>PRÉNOM</th>
-            <th>NOM</th>
-            <th>E-MAIL</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(f of formateurs;track f.id) {
-        <tr>
-            <td>{{ f.id }}</td>
-            <td>{{ f.firstname }}</td>
-            <td>{{ f.lastname }}</td>
-            <td>{{ f.email }}</td>
-            <td class="text-center">
-                <a routerLink="/formateur/details/{{f.id}}" routerLinkActive="active"
-                    class="btn btn-outline-primary">détails</a>
-            </td>
-            <td class="text-center">
-                <a routerLink="/formateur/edit/{{f.id}}" routerLinkActive="active" class="btn btn-outline-warning">modifier</a>
-            </td>
-            <td class="text-center">
-                <button (click)="delete(f.id!)" class="btn btn-outline-danger">suprimer</button>
-            </td>
-        </tr>
-        }
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>PRÉNOM</th>
+      <th>NOM</th>
+      <th>E-MAIL</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(f of formateurs;track f.id) {
+    <tr>
+      <td>{{ f.id }}</td>
+      <td>{{ f.firstname }}</td>
+      <td>{{ f.lastname }}</td>
+      <td>{{ f.email }}</td>
+      <td class="text-center">
+        <a
+          routerLink="/formateur/details/{{ f.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Détails</a
+        >
+      </td>
+      <td class="text-center">
+        <a
+          routerLink="/formateur/edit/{{ f.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+          >Modifier</a
+        >
+      </td>
+      <td class="text-center">
+        <button (click)="delete(f.id!)" class="btn btn-outline-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
 </table>
 
-<a routerLink="/formateur/edit" routerLinkActive="active" class="btn btn-outline-success">Ajouter</a>
+<a
+  routerLink="/formateur/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-success"
+  >Ajouter</a
+>

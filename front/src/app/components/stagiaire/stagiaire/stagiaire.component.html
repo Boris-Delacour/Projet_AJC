@@ -1,7 +1,5 @@
 <h1>Liste des stagiaires :</h1>
-<a routerLink="/stagiaire/edit" routerLinkActive="active" class="btn btn-outline-success my-2"
-  >Création d'un nouveau stagiaire</a
->
+
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
@@ -11,39 +9,50 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Prenom</th>
+      <th>Prénom</th>
       <th>Nom</th>
       <th>Email</th>
-      <th>Login</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-  @for(s of stagiaires;track s.id) {
-  <tr>
-    <td>{{ s.id }}</td>
-    <td>{{ s.firstName }}</td>
-    <td>{{ s.lastName }}</td>
-    <td>{{ s.email }}</td>
-    <td>
-      <a routerLink="/stagiaire/details/{{s.id}}" routerLinkActive="active" class="btn btn-outline-secondary">Détails</a>
-    </td>
-    <td>
-      <a
-        routerLink="/stagiaire/edit/{{ s.id }}"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >Modifier</a
-      >
-    </td>
-    <td>
-      <button (click)="delete(s.id!)" class="btn btn-outline-danger">
-        Supprimer
-      </button>
-    </td>
-  </tr>
-  }
-</tbody>
+    @for(s of stagiaires;track s.id) {
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.firstName }}</td>
+      <td>{{ s.lastName }}</td>
+      <td>{{ s.email }}</td>
+      <td>
+        <a
+          routerLink="/stagiaire/details/{{ s.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Détails</a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/stagiaire/edit/{{ s.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+          >Modifier</a
+        >
+      </td>
+      <td>
+        <button (click)="delete(s.id!)" class="btn btn-outline-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
 </table>
+
+<a
+  routerLink="/stagiaire/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-success"
+  >Ajouter</a
+>

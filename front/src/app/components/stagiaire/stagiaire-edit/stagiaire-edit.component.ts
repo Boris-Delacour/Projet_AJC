@@ -2,7 +2,12 @@ import { StagiaireService } from './../../../services/stagiaire.service';
 import { Component, OnInit } from '@angular/core';
 import { Stagiaire } from '../../../models/stagiaire';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { FormationService } from '../../../services/formation.service';
 import { Formation } from '../../../models/formation';
 import { Ordinateur } from '../../../models/ordinateur';
@@ -21,6 +26,12 @@ import { UtilisateurService } from '../../../services/utilisateur.service';
 })
 export class StagiaireEditComponent implements OnInit {
   stagiaire: Stagiaire = new Stagiaire();
+  ordinateurVide: Ordinateur = {
+    id: 0,
+    marque: '',
+    os: '',
+    fonctionnel: false,
+  };
 
   username: String = '';
   password: String = '';
@@ -41,18 +52,20 @@ export class StagiaireEditComponent implements OnInit {
   ngOnInit(): void {
     this.formationsObservable = this.formationSrv.getAll();
 
-    this.activatedroute.params.pipe(
-      switchMap((params) => {
-        if (params['id']) {
-          return this.stagiaireSrv.getWithAll(params['id']);
-        } else {
-          return of(new Stagiaire());
-        }
-      })
-    ).subscribe((stagiaire) => {
-      this.stagiaire = stagiaire;
-      this.updateAvailableOrdinateurs();
-    });
+    this.activatedroute.params
+      .pipe(
+        switchMap((params) => {
+          if (params['id']) {
+            return this.stagiaireSrv.getWithAll(params['id']);
+          } else {
+            return of(new Stagiaire());
+          }
+        })
+      )
+      .subscribe((stagiaire) => {
+        this.stagiaire = stagiaire;
+        this.updateAvailableOrdinateurs();
+      });
   }
 
   updateAvailableOrdinateurs() {

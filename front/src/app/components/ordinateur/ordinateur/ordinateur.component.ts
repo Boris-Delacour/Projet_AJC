@@ -15,6 +15,7 @@ export class OrdinateurComponent implements OnInit {
   message = '';
   showMessage = false;
   style = '';
+  nbOrdinateurDispo: number = 0;
 
   constructor(
     public ordinateurSrv: OrdinateurService,
@@ -42,6 +43,9 @@ export class OrdinateurComponent implements OnInit {
   initOrdinateurs() {
     this.ordinateurSrv.getAll().subscribe((ordinateurs) => {
       this.ordinateurs = ordinateurs;
+    });
+    this.ordinateurSrv.getAvailable().subscribe((nbOrdinateurs) => {
+      this.nbOrdinateurDispo = nbOrdinateurs.length;
     });
   }
 

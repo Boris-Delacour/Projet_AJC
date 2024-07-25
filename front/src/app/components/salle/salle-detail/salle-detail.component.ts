@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { Salle } from '../../../models/salle';
 import { SalleService } from '../../../services/salle.service';
 
 @Component({
   selector: 'app-salle-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './salle-detail.component.html',
   styleUrl: './salle-detail.component.css',
 })
