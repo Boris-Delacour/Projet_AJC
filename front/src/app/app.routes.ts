@@ -29,6 +29,7 @@ import { MatiereParFormationDetailComponent } from './components/matiereParForma
 import { FormationDetailsComponent } from './components/formation/formation-details/formation-details.component';
 import { MatiereDetailsComponent } from './components/matiere/matiere-details/matiere-details.component';
 import { GestionnaireDetailsComponent } from './components/gestionnaire/gestionnaire-details/gestionnaire-details.component';
+import { StagiaireDetailsComponent } from './components/stagiaire/stagiaire-details/stagiaire-details.component';
 
 export const routes: Routes = [
   { path: 'formateur', component: FormateurComponent },
@@ -63,6 +64,7 @@ export const routes: Routes = [
   { path: 'stagiaire', component: StagiaireComponent },
   { path: 'stagiaire/edit', component: StagiaireEditComponent },
   { path: 'stagiaire/edit/:id', component: StagiaireEditComponent },
+  { path: 'stagiaire/details/:id', component: StagiaireDetailsComponent },
 
   { path: 'technicien', component: TechnicienComponent },
   { path: 'technicien/edit', component: TechnicienEditComponent },
