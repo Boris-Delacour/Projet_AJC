@@ -17,24 +17,24 @@
       class="form-control"
     />
   </div>
-    <div class="form-group">
-      <label for="login">Login:</label>
-      <input
-        id="login"
-        type="login"
-        [(ngModel)]="stagiaire.login"
-        class="form-control"
-      />
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe:</label>
-      <input
-        id="password"
-        type="password"
-        [(ngModel)]="stagiaire.password"
-        class="form-control"
-      />
-    </div>
+  <div class="form-group">
+    <label for="login">Login:</label>
+    <input
+      id="login"
+      type="login"
+      [(ngModel)]="stagiaire.login"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Mot de passe:</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="stagiaire.password"
+      class="form-control"
+    />
+  </div>
   <div class="form-group">
     <label for="formation">formation:</label>
     <select
@@ -55,18 +55,22 @@
         class="form-control"
         [compareWith]="compareOr"
       >
-          @for(o of availableOrdinateurs$ | async ;track o.id ){
-          <option [ngValue]="o">{{ o.id }}</option>
+        <option [ngValue]="ordinateurVide">Aucun</option>
+        @for(o of availableOrdinateurs$ | async ;track o.id ){
+        <option [ngValue]="o">{{ o.id }}</option>
         }
       </select>
-  </div>
-  <div>
-    <button class="btn btn-outline-info" (click)="save()">Enregistrer le profil</button>
-    <a
-      routerLink="/stagiaire"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >Annuler</a
-    >
+    </div>
+    <div>
+      <button class="btn btn-outline-info" (click)="save()">
+        Enregistrer le profil
+      </button>
+      <a
+        routerLink="/stagiaire"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Annuler</a
+      >
+    </div>
   </div>
 </div>
