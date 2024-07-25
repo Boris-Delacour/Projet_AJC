@@ -42,6 +42,12 @@ public class TechnicienRestController {
 		return tSrv.getAll().stream().map(t -> new TechnicienResponse(t)).collect(Collectors.toList());
 	}
 
+	@GetMapping("/{id}")
+	@JsonView(CustomJsonViews.Common.class)
+	public TechnicienResponse getById(@PathVariable("id") Integer id) {
+		return new TechnicienResponse(tSrv.getById(id));
+	}
+
 	@PostMapping("")
 	@JsonView(CustomJsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -61,6 +67,7 @@ public class TechnicienRestController {
 		}
 		Technicien technicien = tSrv.getById(id);
 		BeanUtils.copyProperties(tr, technicien);
+		technicien.setId(id);
 		return new TechnicienResponse(tSrv.update(technicien));
 	}
 
