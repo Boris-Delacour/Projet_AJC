@@ -63,11 +63,44 @@ export class MatiereParFormationEditComponent implements OnInit {
     });
   }
 
+  dateFormatWeek(date: Date) {
+    return formatDate(date, 'w', 'en-US');
+  }
+  dateFormatDay(date: Date) {
+    return formatDate(date, 'E', 'en-US');
+  }
+
+  verifWeekEnd(date: Date): Date {
+    let week = 0;
+    if (
+      this.dateFormatDay(date) == 'Sat' ||
+      this.dateFormatDay(date) == 'Sun'
+    ) {
+      week = 2;
+    }
+    date.setDate(date.getDate() + week);
+    return date;
+  }
+
   addDays(date: Date, days: number): Date {
     var myDate = date;
     var temp = new Date(myDate);
     var dateCalcul = new Date(myDate); // pour se fixer sur la date de base et non sur la date du jour.
     dateCalcul.setDate(temp.getDate() + days);
+    var week = 0;
+    if (
+      this.dateFormatDay(dateCalcul) == 'Sat' ||
+      this.dateFormatDay(dateCalcul) == 'Sun'
+    ) {
+      week = 2;
+    }
+    if (this.dateFormatWeek(dateCalcul) != this.dateFormatWeek(myDate)) {
+      let weekStart = +this.dateFormatWeek(myDate);
+      let weekEnd = +this.dateFormatWeek(dateCalcul);
+      week = week + 2 * (weekEnd - weekStart);
+    }
+    dateCalcul.setDate(dateCalcul.getDate() + week);
+    dateCalcul = this.verifWeekEnd(dateCalcul);
     return new Date(dateCalcul);
   }
 
