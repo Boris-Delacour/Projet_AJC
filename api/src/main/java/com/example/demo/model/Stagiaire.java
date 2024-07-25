@@ -19,8 +19,6 @@ public class Stagiaire {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String login;
-	private String password;
 
 	@ManyToOne
 	@JoinColumn(name = "formation")
@@ -32,24 +30,20 @@ public class Stagiaire {
 	public Stagiaire() {
 	}
 
-	public Stagiaire(Integer id, String firstName, String lastName, String email, String login, String password,
+	public Stagiaire(Integer id, String firstName, String lastName, String email,
 			Formation formation) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.login = login;
-		this.password = password;
 		this.formation = formation;
 	}
 
-	public Stagiaire(String firstName, String lastName, String email, String login, String password,
+	public Stagiaire(String firstName, String lastName, String email,
 			Formation formation) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.login = login;
-		this.password = password;
 		this.formation = formation;
 	}
 
@@ -85,22 +79,6 @@ public class Stagiaire {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Formation getFormation() {
 		return formation;
 	}
@@ -120,8 +98,7 @@ public class Stagiaire {
 	@Override
 	public String toString() {
 		return "Stagiaire [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", login=" + login + ", password=" + password + "formation="
-				+ formation + "]";
+				+ ", login=" + "formation=" + formation + "]";
 	}
 
 }

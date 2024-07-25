@@ -11,38 +11,34 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 public class GestionnaireResponse {
 
-	@JsonView(CustomJsonViews.Common.class)
+    @JsonView(CustomJsonViews.Common.class)
     private Integer id;
-	@JsonView(CustomJsonViews.Common.class)
-	private String lastName;
-	@JsonView(CustomJsonViews.Common.class)
-	private String firstName;
-	@JsonView(CustomJsonViews.Common.class)
-	private String email;
-	@JsonView(CustomJsonViews.Common.class)
-	private String login;
-	@JsonView(CustomJsonViews.Common.class)
-	private String password;
+    @JsonView(CustomJsonViews.Common.class)
+    private String lastName;
+    @JsonView(CustomJsonViews.Common.class)
+    private String firstName;
+    @JsonView(CustomJsonViews.Common.class)
+    private String email;
 
-	@JsonView(CustomJsonViews.GestionnaireWithFormations.class)
-	private List<FormationResponse> formations;
-    
+    @JsonView(CustomJsonViews.GestionnaireWithFormations.class)
+    private List<FormationResponse> formations;
+
     public GestionnaireResponse() {
     }
 
-	public GestionnaireResponse(Gestionnaire gestionnaire) {
-		this(gestionnaire, false);
+    public GestionnaireResponse(Gestionnaire gestionnaire) {
+        this(gestionnaire, false);
     }
 
     public GestionnaireResponse(Gestionnaire gestionnaire, boolean bool) {
         BeanUtils.copyProperties(gestionnaire, this, "formations");
         if (bool) {
             if (gestionnaire.getFormations() != null) {
-				this.setFormations(gestionnaire.getFormations().stream()
-						.map(formation -> new FormationResponse(formation, false))
-						.collect(Collectors.toList()));
-			}
-		}
+                this.setFormations(gestionnaire.getFormations().stream()
+                        .map(formation -> new FormationResponse(formation, false))
+                        .collect(Collectors.toList()));
+            }
+        }
     }
 
     public Integer getId() {
@@ -77,22 +73,6 @@ public class GestionnaireResponse {
         this.email = email;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<FormationResponse> getFormations() {
         return formations;
     }
@@ -101,5 +81,4 @@ public class GestionnaireResponse {
         this.formations = formations;
     }
 
-    
 }

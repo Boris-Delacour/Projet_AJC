@@ -5,8 +5,6 @@ public class StagiaireRequest {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String login;
-	private String password;
 
 	private Integer idFormation;
 
@@ -38,22 +36,6 @@ public class StagiaireRequest {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public Integer getIdFormation() {

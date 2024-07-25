@@ -1,13 +1,11 @@
 package com.example.demo.dto.request;
 
 public class TechnicienRequest {
-	
+
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String login;
-	private String password;
 
 	public TechnicienRequest() {
 
@@ -44,22 +42,4 @@ public class TechnicienRequest {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	
 }
