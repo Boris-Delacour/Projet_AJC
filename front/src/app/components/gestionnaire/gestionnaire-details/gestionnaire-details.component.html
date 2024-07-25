@@ -1,20 +1,20 @@
-<h1>Détails du gestionnaire n°{{ gestionnaire.id }}</h1>
+<h1>Détails du Gestionnaire n°{{ gestionnaire.id }}</h1>
 <div class="container">
     <div>
         <div class="form-group">
-            <label for="prenom">prenom:</label>
+            <label for="prenom">Prénom:</label>
             <input id="prenom" [(ngModel)]="gestionnaire.firstName" class="form-control" disabled />
         </div>
         <div class="form-group">
-            <label for="nom">nom:</label>
+            <label for="nom">Nom:</label>
             <input id="nom" [(ngModel)]="gestionnaire.lastName" class="form-control" disabled />
         </div>
         <div class="form-group">
-            <label for="email">email:</label>
+            <label for="email">E-mail:</label>
             <input id="email" type="email" [(ngModel)]="gestionnaire.email" class="form-control" disabled />
         </div>
         <div class="form-group">
-            <label for="login">login:</label>
+            <label for="login">Login:</label>
             <input id="login" type="text" [(ngModel)]="gestionnaire.login" class="form-control" disabled />
         </div>
     </div>
@@ -34,5 +34,5 @@
         </table>
     </div>
 </div>
-<a routerLink="/gestionnaire" routerLinkActive="active" class="btn btn-outline-warning">retour</a>
+<a routerLink="/gestionnaire" routerLinkActive="active" class="btn btn-outline-warning">Retour</a>
     

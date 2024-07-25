@@ -13,6 +13,10 @@ import { FormationService } from '../../../services/formation.service';
 export class FormationComponent  implements OnInit{
   formations: Formation[] = [];
 
+  message = '';
+  showMessage = false;
+  style = '';
+
   constructor(
     public formationSrv: FormationService,
     private activatedRoute: ActivatedRoute
@@ -20,6 +24,21 @@ export class FormationComponent  implements OnInit{
 
   ngOnInit(): void {
     this.initFormations();
+    this.initMessage();
+  }
+
+  initMessage() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['q']) {
+        if (params['q'] == 'create') {
+          this.message = `Formation ${params['id']} créée `;
+        } else if (params['q'] == 'update') {
+          this.message = `Formation ${params['id']} mise à jour `;
+        }
+      }
+      this.showMessage = true;
+      this.style = 'alert-info';
+    });
   }
 
   initFormations() {

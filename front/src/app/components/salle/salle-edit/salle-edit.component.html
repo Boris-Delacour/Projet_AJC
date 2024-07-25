@@ -38,6 +38,7 @@
       class="form-control"
       [compareWith]="compareVn"
     >
+      <option [ngValue]="videoprojecteurVide">Aucun</option>
       @for(v of videoprojecteurObservable|async ;track v.id ){
       <option [ngValue]="v">{{ v.id }}</option>
       }

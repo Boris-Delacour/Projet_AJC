@@ -1,26 +1,39 @@
 <h1>Liste des indisponibilites</h1>
 
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>DEBUT</th>
-        <th>FIN</th>
-        <th>FORMATEUR</th>
-    </tr>
-    @for(i of indisponibilites;track i.id) {
-    <tr>
-        <td>{{ i.id }}</td>
-        <td>{{ i.start }}</td>
-        <td>{{ i.end }}</td>
-        <td>{{ i.formateur?.firstname }} {{ i.formateur?.lastname }}</td>
-        <td class="text-center">
-            <a routerLink="/indisponibilite/edit/{{i.id}}" routerLinkActive="active" class="btn btn-outline-warning">modifier</a>
-        </td>
-        <td class="text-center">
-            <button (click)="delete(i.id!)" class="btn btn-outline-danger">suprimer</button>
-        </td>
-    </tr>
-    }
+@if(showMessage){
+<div class="alert alert-info">
+    {{ message }}
+</div>
+}
+
+<table class="table overflow-auto">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>DEBUT</th>
+            <th>FIN</th>
+            <th>FORMATEUR</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(i of indisponibilites;track i.id) {
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.start }}</td>
+            <td>{{ i.end }}</td>
+            <td>{{ i.formateur?.firstname }} {{ i.formateur?.lastname }}</td>
+            <td class="text-center">
+                <a routerLink="/indisponibilite/edit/{{i.id}}" routerLinkActive="active"
+                    class="btn btn-outline-warning">modifier</a>
+            </td>
+            <td class="text-center">
+                <button (click)="delete(i.id!)" class="btn btn-outline-danger">suprimer</button>
+            </td>
+        </tr>
+        }
+    </tbody>
 </table>
 
 <a routerLink="/indisponibilite/edit" routerLinkActive="active" class="btn btn-outline-success">Ajouter</a>
