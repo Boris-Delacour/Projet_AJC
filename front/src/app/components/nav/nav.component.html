@@ -1,78 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse">
+<header>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+</header>
+
+<nav class="navbar navbar-expand-lg p-0">
+  <a class="navbar-brand" (click)="toggleNavbar($event)">
+    <img src="../../images/LogoQuest.png" alt="Logo" class="navbar-logo">
+  </a>
+
+  <div class="collapse navbar-collapse" [ngClass]="{'show': !isNavbarCollapsed}" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      @if(logged){
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/formateur" routerLinkActive="active"
-          >Formateur</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/formateur" routerLinkActive="active">Formateur</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/formation" routerLinkActive="active"
-          >Formation</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/formation" routerLinkActive="active">Formation</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/matiere" routerLinkActive="active"
-          >Matiere</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/matiere" routerLinkActive="active">Matiere</a>
       </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/matiereparformation"
-          routerLinkActive="active"
-          >Matiere par formation</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/matiereparformation" routerLinkActive="active">Matiere Par Formation</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/stagiaire" routerLinkActive="active"
-          >Stagiaire</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/stagiaire" routerLinkActive="active">Stagiaire</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/technicien" routerLinkActive="active"
-          >Technicien</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/technicien" routerLinkActive="active">Technicien</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/gestionnaire" routerLinkActive="active"
-          >Gestionnaire</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/gestionnaire" routerLinkActive="active">Gestionnaire</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/ordinateur" routerLinkActive="active"
-          >Ordinateur</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/ordinateur" routerLinkActive="active">Ordinateur</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/salle" routerLinkActive="active"
-          >Salle</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/salle" routerLinkActive="active">Salle</a>
       </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/videoprojecteur"
-          routerLinkActive="active"
-          >Videoprojecteur</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/videoprojecteur" routerLinkActive="active">Videoprojecteur</a>
       </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/indisponibilite"
-          routerLinkActive="active"
-          >Indisponibilite</a
-        >
+      <li class="nav-item" *ngIf="logged">
+        <a class="nav-link" routerLink="/indisponibilite" routerLinkActive="active">Indisponibilite</a>
       </li>
-      <li class="nav-item">
-        <button (click)="logout()" class="nav-link">deconnexion</button>
-      </li>
-    }
-    @else {
-      <a routerLink="/login" routerLinkActive="active" class="nav-link">login</a>
-    }
     </ul>
   </div>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item" *ngIf="logged">
+      <button (click)="logout()" class="nav-link">Deconnexion</button>
+    </li>
+    <li class="nav-item" *ngIf="!logged">
+      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+    </li>
+  </ul>
 </nav>

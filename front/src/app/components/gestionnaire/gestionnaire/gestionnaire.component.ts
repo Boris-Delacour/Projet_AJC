@@ -31,9 +31,9 @@ export class GestionnaireComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
         if (params['q'] == 'create') {
-          this.message = `Videoprojecteur ${params['id']} créé `;
+          this.message = `Gestionnaire ${params['id']} créé `;
         } else if (params['q'] == 'update') {
-          this.message = `Videoprojecteur ${params['id']} mis à jour `;
+          this.message = `Gestionnaire ${params['id']} mis à jour `;
         }
       }
       this.showMessage = true;
@@ -50,6 +50,8 @@ export class GestionnaireComponent {
   delete(id: number) {
     this.gestionnaireSrv.delete(id).subscribe(() => {
       this.initGestionnaires();
+      this.message = `Gestionnaire ${id} supprimé `;
+    this.style = 'alert-warning';
     });
   }
 }
