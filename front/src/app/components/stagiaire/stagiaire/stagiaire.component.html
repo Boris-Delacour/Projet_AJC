@@ -16,6 +16,9 @@
     <td>{{ s.email }}</td>
     <td>{{ s.login }}</td>
     <td>
+      <a routerLink="/stagiaire/details/{{s.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
+    </td>
+    <td>
       <a
         routerLink="/stagiaire/edit/{{ s.id }}"
         routerLinkActive="active"

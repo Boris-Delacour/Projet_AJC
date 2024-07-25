@@ -1,0 +1,48 @@
+<h1>Details du stagiaire n°{{ stagiaire.id }} </h1>
+<div class="container">
+  <div>
+    <div class="form-group">
+        <label for="firstName">Prenom : </label>
+        <input id="firstName" [(ngModel)]="stagiaire.firstName" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nom : </label>
+      <input id="lastName" [(ngModel)]="stagiaire.lastName" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="email">Email : </label>
+      <input id="email" [(ngModel)]="stagiaire.email" class="form-control" disabled>
+    </div>
+    <div class="form-group">
+      <label for="login">Login : </label>
+      <input id="login" [(ngModel)]="stagiaire.login" class="form-control" disabled>
+    </div>
+  </div>
+  <div>
+    <h2>Formation</h2>
+    <table class="table">
+      <tr>
+        <th>Nom</th>
+        <th>Date de début</th>
+      </tr>
+      <tr>
+        <td>{{stagiaire.formation?.nom}}</td>
+        <td>{{stagiaire.formation?.dateStart}}</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <h2>Ordinateur</h2>
+    <table class="table">
+      <tr>
+        <th>Marque</th>
+        <th>OS</th>
+      </tr>
+      <tr>
+        <td>{{stagiaire.ordinateur?.marque}}</td>
+        <td>{{stagiaire.ordinateur?.os}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<a routerLink="/stagiaire" routerLinkActive="active" class="btn btn-outline-warning">Retour</a>
