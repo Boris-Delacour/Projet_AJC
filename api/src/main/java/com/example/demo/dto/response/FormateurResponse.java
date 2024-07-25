@@ -19,10 +19,6 @@ public class FormateurResponse {
 	private String firstname;
 	@JsonView(CustomJsonViews.Common.class)
 	private String email;
-	@JsonView(CustomJsonViews.Common.class)
-	private String login;
-	@JsonView(CustomJsonViews.Common.class)
-	private String password;
 
 	@JsonView(CustomJsonViews.FormateurWithAll.class)
 	private List<FormationResponse> formations;
@@ -101,22 +97,6 @@ public class FormateurResponse {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public List<IndisponibiliteResponse> getIndisponibilites() {

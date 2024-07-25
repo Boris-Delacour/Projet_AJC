@@ -1,0 +1,27 @@
+<h1>connexion</h1>
+@if(error){
+<div class="alert alert-danger">probleme connexion</div>
+}
+<form (ngSubmit)="connect()" #form="ngForm">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input id="username" class="form-control" name="username" [(ngModel)]="username" required #usernameCtrl="ngModel" />
+        @if(usernameCtrl.invalid&&usernameCtrl.dirty){
+        <div>*obligatoire</div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="password">Mot de passe:</label>
+        <input id="password" name="password" type="password" class="form-control" [(ngModel)]="password" required
+            #passwordCtrl="ngModel" />
+        @if(passwordCtrl.invalid&&passwordCtrl.dirty){
+        <div>*obligatoire</div>
+        }
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-info" [disabled]="form.invalid">
+            connexion
+        </button>
+    </div>
+</form>

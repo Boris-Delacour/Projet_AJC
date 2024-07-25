@@ -14,18 +14,14 @@ public class Technicien {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String login;
-	private String password;
 
 	public Technicien() {
 	}
 
-	public Technicien(String firstName, String lastName, String email, String login, String password) {
+	public Technicien(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.login = login;
-		this.password = password;
 	}
 
 	public Integer getId() {
@@ -60,26 +56,10 @@ public class Technicien {
 		this.email = email;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	@Override
 	public String toString() {
 		return "Technicien [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", login=" + login + ", password=" + password + "]";
+				+ "]";
 	}
 
 }

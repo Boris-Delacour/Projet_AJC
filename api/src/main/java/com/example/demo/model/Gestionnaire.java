@@ -20,8 +20,7 @@ public class Gestionnaire {
 	private String lastName;
 	private String firstName;
 	private String email;
-	private String login;
-	private String password;
+
 	@OneToMany(mappedBy = "gestionnaire", fetch = FetchType.LAZY)
 	private List<Formation> formations;
 
@@ -29,14 +28,10 @@ public class Gestionnaire {
 
 	}
 
-	public Gestionnaire(String lastName, String firstName, String email, String login, String password,
-			List<Formation> formations) {
+	public Gestionnaire(String lastName, String firstName, String email) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
-		this.login = login;
-		this.password = password;
-		this.formations = formations;
 	}
 
 	public Integer getId() {
@@ -69,22 +64,6 @@ public class Gestionnaire {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public List<Formation> getFormations() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,4 +8,16 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
-export class NavComponent {}
+export class NavComponent {
+
+  constructor(private router: Router) {}
+
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/');
+  }
+
+  get logged(): boolean {
+    return localStorage.getItem('token') != null;
+  }
+}

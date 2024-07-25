@@ -7,7 +7,7 @@ import com.example.demo.model.Stagiaire;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class StagiaireResponse {
-	
+
 	@JsonView(CustomJsonViews.Common.class)
 	private Integer id;
 	@JsonView(CustomJsonViews.Common.class)
@@ -16,17 +16,13 @@ public class StagiaireResponse {
 	private String lastName;
 	@JsonView(CustomJsonViews.Common.class)
 	private String email;
-	@JsonView(CustomJsonViews.Common.class)
-	private String login;
-	@JsonView(CustomJsonViews.Common.class)
-	private String password;
 
 	@JsonView(CustomJsonViews.StagiaireWithAll.class)
 	private FormationResponse formation;
 
 	@JsonView(CustomJsonViews.StagiaireWithAll.class)
 	private OrdinateurResponse ordinateur;
-	
+
 	public StagiaireResponse() {
 
 	}
@@ -37,11 +33,11 @@ public class StagiaireResponse {
 
 	public StagiaireResponse(Stagiaire stagiaire, boolean bool) {
 		BeanUtils.copyProperties(stagiaire, this, "formation, ordinateur");
-		if(bool) {
-			if(stagiaire.getFormation() != null) {
+		if (bool) {
+			if (stagiaire.getFormation() != null) {
 				this.setFormation(new FormationResponse(stagiaire.getFormation()));
 			}
-			if(stagiaire.getOrdinateur() != null) {
+			if (stagiaire.getOrdinateur() != null) {
 				this.setOrdinateur(new OrdinateurResponse(stagiaire.getOrdinateur()));
 			}
 		}
@@ -77,22 +73,6 @@ public class StagiaireResponse {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public FormationResponse getFormation() {
