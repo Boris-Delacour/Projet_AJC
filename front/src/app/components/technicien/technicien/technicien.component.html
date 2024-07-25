@@ -1,19 +1,28 @@
+<h1>Liste des techniciens</h1>
+
 <!-- <div>
   prenom:<input [(ngModel)]="technicien.firstName" /> nom<input
     [(ngModel)]="technicien.lastName"
   />
   <button (click)="ok()">ok</button>
-</div>
-<div>
-  {{ message }}
 </div> -->
 
-<h1>Liste des techniciens</h1>
-
+@if(showMessage){
+<div class="alert {{ style }}">
+  {{ message }}
+</div>
+}
 <table class="table">
-  @if (techniciens.length==0) {
-  <p>ok</p>
-  } @for (t of techniciens; track t.id) {
+  @for (t of techniciens; track t.id) {
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>PRÉNOM</th>
+      <th>NOM</th>
+      <th>E-MAIL</th>
+      <th>LOGIN</th>
+    </tr>
+  </thead>
   <tr>
     <td>{{ t.id }}</td>
     <td>{{ t.firstName }}</td>
@@ -36,7 +45,9 @@
   </tr>
   }
 </table>
-
-<a routerLink="/technicien/edit" routerLinkActive="active" class="btn btn-outline-primary"
-  >Nouveau technicien</a
+<a
+  routerLink="/technicien/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-primary"
+  >Ajouter un technicien</a
 >
