@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -23,7 +26,9 @@ public class SecurityRestConfig {
 
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/**").permitAll()
-                    .anyRequest().permitAll();
+                    .requestMatchers(HttpMethod.POST, "/api/utilisateur/inscription").anonymous()
+                    .requestMatchers(HttpMethod.GET).authenticated()
+                    .anyRequest().hasAnyAuthority("ROLE_ADMIN");
         });
 
         // desactivation de la session utilisateur
@@ -44,5 +49,10 @@ public class SecurityRestConfig {
         http.httpBasic(Customizer.withDefaults());
 
         return http.build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

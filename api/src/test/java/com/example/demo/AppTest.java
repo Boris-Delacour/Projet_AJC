@@ -70,8 +70,8 @@ class AppTest {
 
 	@Test
 	void testCrudFormateur() {
-		Formateur f = new Formateur("John", "Doe", "bsbsrb", "jd", "mdp");
-		Formateur f2 = new Formateur("Jane", "Doe", "bsbsrb", "jd", "mdp");
+		Formateur f = new Formateur("John", "Doe", "bsbsrb");
+		Formateur f2 = new Formateur("Jane", "Doe", "bsbsrb");
 
 		fSrv.insert(f);
 		fSrv.insert(f2);
@@ -108,8 +108,8 @@ class AppTest {
 
 	@Test
 	void testCrudFormateurMatiere() {
-		Formateur f = new Formateur("John", "Doe", "bsbsrb", "jd", "mdp");
-		Formateur f2 = new Formateur("Jane", "Doe", "bsbsrb", "jd", "mdp");
+		Formateur f = new Formateur("John", "Doe", "bsbsrb");
+		Formateur f2 = new Formateur("Jane", "Doe", "bsbsrb");
 		Matiere m = new Matiere("Java Avance", 3, "Apprendre Java", "Connaitre les bases de Java",
 				"Les fonctions avancé de Java");
 		Matiere m2 = new Matiere("Java BDD", 3, "Apprenddre a lier Java a une BDD", "Maitriser Java Avancer",
@@ -161,8 +161,8 @@ class AppTest {
 
 	@Test
 	void testCrudGestionnaire() {
-		Gestionnaire g = new Gestionnaire("John", "Doe", "bsbsrb", "jd", "mdp", null);
-		Gestionnaire g2 = new Gestionnaire("Jane", "Doe", "erqgv", "jd", "mdp", null);
+		Gestionnaire g = new Gestionnaire("John", "Doe", "bsbsrb");
+		Gestionnaire g2 = new Gestionnaire("Jane", "Doe", "erqgv");
 
 		gSrv.insert(g);
 		gSrv.insert(g2);
@@ -231,8 +231,8 @@ class AppTest {
 
 	@Test
 	void testCrudStagiaire() {
-		Stagiaire s = new Stagiaire("John", "Cena", "wololo", "cenation", "test", null);
-		Stagiaire s2 = new Stagiaire("Johnny", "Hallyday", "wololo", "allumer", "lefeu", null);
+		Stagiaire s = new Stagiaire("John", "Cena", "wololo", null);
+		Stagiaire s2 = new Stagiaire("Johnny", "Hallyday", "wololo", null);
 		Formation f = new Formation("formation", LocalDate.now(), null, null, null, null);
 
 		s = stSrv.insert(s);
@@ -251,8 +251,8 @@ class AppTest {
 
 	@Test
 	void testCrudTechnicien() {
-		Technicien t = new Technicien("John", "Doe", "bsbsrb", "jd", "mdp");
-		Technicien t2 = new Technicien("Jane", "Doe", "bsbsrb", "jd", "mdp");
+		Technicien t = new Technicien("John", "Doe", "bsbsrb");
+		Technicien t2 = new Technicien("Jane", "Doe", "bsbsrb");
 
 		tSrv.insert(t);
 		tSrv.insert(t2);
