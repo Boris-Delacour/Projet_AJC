@@ -33,41 +33,45 @@ import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { anonymousGuard } from './guards/anonymous.guard';
 import { StagiaireDetailsComponent } from './components/stagiaire/stagiaire-details/stagiaire-details.component';
+import { formateurGuard } from './guards/formateur.guard';
+import { gestionnaireGuard } from './guards/gestionnaire.guard';
+import { stagiaireGuard } from './guards/stagiaire.guard';
+import { technicienGuard } from './guards/technicien.guard';
 
 export const routes: Routes = [
-  { path: 'formateur', component: FormateurComponent, canActivate: [authGuard] },
-  { path: 'formateur/edit', component: FormateurEditComponent, canActivate: [authGuard] },
-  { path: 'formateur/edit/:id', component: FormateurEditComponent, canActivate: [authGuard] },
-  { path: 'formateur/details/:id', component: FormateurDetailsComponent, canActivate: [authGuard] },
+  { path: 'formateur', component: FormateurComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formateur/edit', component: FormateurEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formateur/edit/:id', component: FormateurEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formateur/details/:id', component: FormateurDetailsComponent, canActivate: [formateurGuard] },
 
-  { path: 'matiere', component: MatiereComponent, canActivate: [authGuard] },
-  { path: 'matiere/edit', component: MatiereEditComponent, canActivate: [authGuard] },
-  { path: 'matiere/edit/:id', component: MatiereEditComponent, canActivate: [authGuard] },
-  { path: 'matiere/details/:id', component: MatiereDetailsComponent, canActivate: [authGuard] },
+  { path: 'matiere', component: MatiereComponent, canActivate: [gestionnaireGuard] },
+  { path: 'matiere/edit', component: MatiereEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'matiere/edit/:id', component: MatiereEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'matiere/details/:id', component: MatiereDetailsComponent, canActivate: [gestionnaireGuard] },
 
-  { path: 'formation', component: FormationComponent, canActivate: [authGuard] },
-  { path: 'formation/edit', component: FormationEditComponent, canActivate: [authGuard] },
-  { path: 'formation/edit/:id', component: FormationEditComponent, canActivate: [authGuard] },
-  { path: 'formation/details/:id', component: FormationDetailsComponent, canActivate: [authGuard] },
+  { path: 'formation', component: FormationComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formation/edit', component: FormationEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formation/edit/:id', component: FormationEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'formation/details/:id', component: FormationDetailsComponent, canActivate: [gestionnaireGuard] },
 
-  { path: 'matiereparformation', component: MatiereParFormationComponent, canActivate: [authGuard] },
+  { path: 'matiereparformation', component: MatiereParFormationComponent, canActivate: [gestionnaireGuard] },
   {
     path: 'matiereparformation/edit',
-    component: MatiereParFormationEditComponent, canActivate: [authGuard]
+    component: MatiereParFormationEditComponent, canActivate: [gestionnaireGuard]
   },
   {
     path: 'matiereparformation/edit/:id',
-    component: MatiereParFormationEditComponent, canActivate: [authGuard]
+    component: MatiereParFormationEditComponent, canActivate: [gestionnaireGuard]
   },
   {
     path: 'matiereparformation/:id',
-    component: MatiereParFormationDetailComponent, canActivate: [authGuard]
+    component: MatiereParFormationDetailComponent, canActivate: [gestionnaireGuard]
   },
 
-  { path: 'stagiaire', component: StagiaireComponent, canActivate: [authGuard] },
-  { path: 'stagiaire/edit', component: StagiaireEditComponent, canActivate: [authGuard] },
-  { path: 'stagiaire/edit/:id', component: StagiaireEditComponent, canActivate: [authGuard] },
-  { path: 'stagiaire/details/:id', component: StagiaireDetailsComponent, canActivate: [authGuard] },
+  { path: 'stagiaire', component: StagiaireComponent, canActivate: [gestionnaireGuard] },
+  { path: 'stagiaire/edit', component: StagiaireEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'stagiaire/edit/:id', component: StagiaireEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'stagiaire/details/:id', component: StagiaireDetailsComponent, canActivate: [stagiaireGuard] },
 
   { path: 'technicien', component: TechnicienComponent, canActivate: [authGuard] },
   { path: 'technicien/edit', component: TechnicienEditComponent, canActivate: [authGuard] },
@@ -76,26 +80,26 @@ export const routes: Routes = [
   { path: 'gestionnaire', component: GestionnaireComponent, canActivate: [authGuard] },
   { path: 'gestionnaire/edit', component: GestionnaireEditComponent, canActivate: [authGuard] },
   { path: 'gestionnaire/edit/:id', component: GestionnaireEditComponent, canActivate: [authGuard] },
-  { path: 'gestionnaire/details/:id', component: GestionnaireDetailsComponent, canActivate: [authGuard] },
+  { path: 'gestionnaire/details/:id', component: GestionnaireDetailsComponent, canActivate: [gestionnaireGuard] },
 
-  { path: 'ordinateur', component: OrdinateurComponent, canActivate: [authGuard] },
-  { path: 'ordinateur/edit', component: OrdinateurEditComponent, canActivate: [authGuard] },
-  { path: 'ordinateur/edit/:id', component: OrdinateurEditComponent, canActivate: [authGuard] },
-  { path: 'ordinateur/:id', component: OrdinateurDetailComponent, canActivate: [authGuard] },
+  { path: 'ordinateur', component: OrdinateurComponent, canActivate: [technicienGuard] },
+  { path: 'ordinateur/edit', component: OrdinateurEditComponent, canActivate: [technicienGuard] },
+  { path: 'ordinateur/edit/:id', component: OrdinateurEditComponent, canActivate: [technicienGuard] },
+  { path: 'ordinateur/:id', component: OrdinateurDetailComponent, canActivate: [technicienGuard] },
 
-  { path: 'salle', component: SalleComponent, canActivate: [authGuard] },
-  { path: 'salle/edit', component: SalleEditComponent, canActivate: [authGuard] },
-  { path: 'salle/edit/:id', component: SalleEditComponent, canActivate: [authGuard] },
-  { path: 'salle/:id', component: SalleDetailComponent, canActivate: [authGuard] },
+  { path: 'salle', component: SalleComponent, canActivate: [gestionnaireGuard] },
+  { path: 'salle/edit', component: SalleEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'salle/edit/:id', component: SalleEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'salle/:id', component: SalleDetailComponent, canActivate: [gestionnaireGuard] },
 
-  { path: 'videoprojecteur', component: VideoprojecteurComponent, canActivate: [authGuard] },
-  { path: 'videoprojecteur/edit', component: VideoprojecteurEditComponent, canActivate: [authGuard] },
-  { path: 'videoprojecteur/edit/:id', component: VideoprojecteurEditComponent, canActivate: [authGuard] },
-  { path: 'videoprojecteur/:id', component: VideoprojecteurDetailComponent, canActivate: [authGuard] },
+  { path: 'videoprojecteur', component: VideoprojecteurComponent, canActivate: [technicienGuard] },
+  { path: 'videoprojecteur/edit', component: VideoprojecteurEditComponent, canActivate: [technicienGuard] },
+  { path: 'videoprojecteur/edit/:id', component: VideoprojecteurEditComponent, canActivate: [technicienGuard] },
+  { path: 'videoprojecteur/:id', component: VideoprojecteurDetailComponent, canActivate: [technicienGuard] },
 
-  { path: 'indisponibilite', component: IndisponibiliteComponent, canActivate: [authGuard] },
-  { path: 'indisponibilite/edit', component: IndisponibiliteEditComponent, canActivate: [authGuard] },
-  { path: 'indisponibilite/edit/:id', component: IndisponibiliteEditComponent, canActivate: [authGuard] },
+  { path: 'indisponibilite', component: IndisponibiliteComponent, canActivate: [gestionnaireGuard] },
+  { path: 'indisponibilite/edit', component: IndisponibiliteEditComponent, canActivate: [gestionnaireGuard] },
+  { path: 'indisponibilite/edit/:id', component: IndisponibiliteEditComponent, canActivate: [gestionnaireGuard] },
 
   { path: 'login', component: LoginComponent, canActivate: [anonymousGuard] },
 ];

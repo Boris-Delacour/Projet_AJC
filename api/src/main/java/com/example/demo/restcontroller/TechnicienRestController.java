@@ -26,10 +26,12 @@ import com.example.demo.model.Technicien;
 import com.example.demo.service.TechnicienService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/technicien")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class TechnicienRestController {
 

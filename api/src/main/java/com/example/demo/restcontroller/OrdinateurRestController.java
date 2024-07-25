@@ -27,11 +27,12 @@ import com.example.demo.service.OrdinateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/ordinateur")
-// @SecurityRequirement(name="basicAuth")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class OrdinateurRestController {
 
@@ -85,7 +86,7 @@ public class OrdinateurRestController {
     public OrdinateurResponse getWithStagiaire(@PathVariable Integer id) {
         return new OrdinateurResponse(ordinateurSrv.getWithStagiaire(id), true);
     }
-    
+
     @GetMapping("/available")
     @JsonView(CustomJsonViews.Common.class)
     public List<OrdinateurResponse> getAvailableAndFonctionnel() {

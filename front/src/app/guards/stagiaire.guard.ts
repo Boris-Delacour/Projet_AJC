@@ -2,10 +2,10 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Utilisateur } from '../models/utilisateur';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const stagiaireGuard: CanActivateFn = (route, state) => {
   if (localStorage.getItem('utilisateur') != null) {
     let user: Utilisateur = JSON.parse(localStorage.getItem('utilisateur')!);
-    if(user.role!.match("ROLE_ADMIN")) {
+    if(user.role!.match("ROLE_ADMIN") || user.role!.match("ROLE_STAGIAIRE")) {
       return true;
     }
   }
