@@ -103,7 +103,6 @@ public class OrdinateurRestController {
         }
         Ordinateur ordinateur = new Ordinateur();
         BeanUtils.copyProperties(ordinateurRequest, ordinateur);
-        System.out.println(ordinateurRequest.getMarque());
         return new OrdinateurResponse(ordinateurSrv.insert(ordinateur), false);
     }
 

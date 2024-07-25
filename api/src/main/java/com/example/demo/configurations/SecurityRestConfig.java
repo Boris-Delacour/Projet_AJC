@@ -28,6 +28,9 @@ public class SecurityRestConfig {
             auth.requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/utilisateur/inscription").anonymous()
                     .requestMatchers(HttpMethod.GET).authenticated()
+                    .requestMatchers(HttpMethod.POST).authenticated()
+                    .requestMatchers(HttpMethod.PUT).authenticated()
+                    .requestMatchers(HttpMethod.DELETE).authenticated()
                     .anyRequest().hasAnyAuthority("ROLE_ADMIN");
         });
 
