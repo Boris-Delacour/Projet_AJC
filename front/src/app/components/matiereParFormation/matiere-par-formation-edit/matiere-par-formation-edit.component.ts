@@ -22,13 +22,14 @@ import { MatiereParFormation } from '../../../models/matiere-par-formation';
 @Component({
   selector: 'app-matiere-par-formation-edit',
   standalone: true,
-  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe, DatePipe],
+  imports: [FormsModule, RouterLink, RouterLinkActive, AsyncPipe],
   templateUrl: './matiere-par-formation-edit.component.html',
   styleUrl: './matiere-par-formation-edit.component.css',
 })
 export class MatiereParFormationEditComponent implements OnInit {
   matiereParFormation: MatiereParFormation = new MatiereParFormation();
   response: any = {};
+  formateurParMatiere: Formateur[] = [];
 
   formateurObservable!: Observable<Formateur[]>;
   formationObservable!: Observable<Formation[]>;
@@ -52,6 +53,7 @@ export class MatiereParFormationEditComponent implements OnInit {
           .getByIdWithAll(params['id'])
           .subscribe((matiereParFormation) => {
             this.matiereParFormation = matiereParFormation;
+            this.matiereWithFormateur(matiereParFormation.matiere!);
           });
       }
       this.formateurObservable = this.formateurSrv.getAll();
@@ -63,10 +65,25 @@ export class MatiereParFormationEditComponent implements OnInit {
 
   addDays(date: Date, days: number): Date {
     var myDate = date;
-    var youpi = new Date(myDate);
-    var dat = new Date(myDate); // pour se fixer sur la date de base et non sur la date du jour.
-    dat.setDate(youpi.getDate() + days);
-    return new Date(dat);
+    var temp = new Date(myDate);
+    var dateCalcul = new Date(myDate); // pour se fixer sur la date de base et non sur la date du jour.
+    dateCalcul.setDate(temp.getDate() + days);
+    return new Date(dateCalcul);
+  }
+
+  verifHidden(formateur: Formateur): boolean {
+    for (let f of this.formateurParMatiere) {
+      if (f.id == formateur.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  matiereWithFormateur(matiere: Matiere) {
+    this.matiereSrv.getWithFormateur(matiere.id!).subscribe((matiere) => {
+      this.formateurParMatiere = matiere.formateurs!;
+    });
   }
 
   save() {

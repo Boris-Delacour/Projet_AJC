@@ -62,13 +62,13 @@ public class MatiereRestController {
 	}
 
 	@GetMapping("/{id}/formateur")
-	@JsonView(CustomJsonViews.MatiereWithFormateur.class)
+	@JsonView(CustomJsonViews.MatiereWithAll.class)
 	public MatiereResponse getWithFormateur(@PathVariable Integer id) {
 		return new MatiereResponse(mSrv.getWithFormateurs(id), true);
 	}
 
 	@GetMapping("/{id}/matiereParFormation")
-	@JsonView(CustomJsonViews.MatiereWithMatiereParFormation.class)
+	@JsonView(CustomJsonViews.MatiereWithAll.class)
 	public MatiereResponse getWithMatiereParFormation(@PathVariable Integer id) {
 		return new MatiereResponse(mSrv.getWithMatiereParFormation(id), true);
 	}
