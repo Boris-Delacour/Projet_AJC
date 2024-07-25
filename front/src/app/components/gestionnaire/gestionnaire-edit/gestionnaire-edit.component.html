@@ -2,15 +2,28 @@
 <div>
   <div class="form-group">
     <label for="lastName">Prénom:</label>
-    <input id="lastName" [(ngModel)]="gestionnaire.lastName" class="form-control" />
+    <input
+      id="lastName"
+      [(ngModel)]="gestionnaire.lastName"
+      class="form-control"
+    />
   </div>
   <div class="form-group">
     <label for="firstName">Nom:</label>
-    <input id="firstName" [(ngModel)]="gestionnaire.firstName" class="form-control" />
+    <input
+      id="firstName"
+      [(ngModel)]="gestionnaire.firstName"
+      class="form-control"
+    />
   </div>
   <div class="form-group">
     <label for="email">E-mail:</label>
-    <input type="email" id="email" [(ngModel)]="gestionnaire.email" class="form-control" />
+    <input
+      type="email"
+      id="email"
+      [(ngModel)]="gestionnaire.email"
+      class="form-control"
+    />
   </div>
   <div class="form-group">
     <label for="login">Login:</label>
@@ -18,16 +31,24 @@
   </div>
   <div class="form-group">
     <label for="password">password:</label>
-    <input type="password" id="password" [(ngModel)]="gestionnaire.password" class="form-control" />
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="gestionnaire.password"
+      class="form-control"
+    />
   </div>
   <div class="form-group">
-  <div>
-    <button class="btn btn-outline-info" (click)="save()">enregistrer</button>
-    <a
-      routerLink="/gestionnaire"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
-    >
+    <div>
+      <button class="btn btn-outline-success" (click)="save()">
+        Enregistrer
+      </button>
+      <a
+        routerLink="/gestionnaire"
+        routerLinkActive="active"
+        class="btn btn-outline-danger mx-2"
+        >Annuler</a
+      >
+    </div>
   </div>
 </div>

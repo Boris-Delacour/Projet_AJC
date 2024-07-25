@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { Videoprojecteur } from '../../../models/videoprojecteur';
 import { VideoprojecteurService } from '../../../services/videoprojecteur.service';
 
 @Component({
   selector: 'app-videoprojecteur-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './videoprojecteur-detail.component.html',
   styleUrl: './videoprojecteur-detail.component.css',
 })

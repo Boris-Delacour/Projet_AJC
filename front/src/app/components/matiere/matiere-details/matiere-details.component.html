@@ -1,61 +1,102 @@
 <h1>Détails de la matière n°{{ matiere.id }}</h1>
 <div class="d-flex flex-column gap-2">
-    <div class="d-flex justify-content-around">
-        <div class="container">
-            <div class="form-group">
-                <label for="libelle">libelle:</label>
-                <input id="libelle" [(ngModel)]="matiere.libelle" class="form-control" disabled/>
-            </div>
-            <div class="form-group">
-                <label for="duration">durée:</label>
-                <input id="duration" [(ngModel)]="matiere.duration" class="form-control" disabled/>
-            </div>
-            <div class="form-group">
-                <label for="objective">objective:</label>
-                <input id="objective" type="objective" [(ngModel)]="matiere.objective" class="form-control" disabled/>
-            </div>
-            <div class="form-group">
-                <label for="prerequisite">prérequis:</label>
-                <input id="prerequisite" type="text" [(ngModel)]="matiere.prerequisite" class="form-control" disabled/>
-            </div>
-            <div class="form-group">
-                <label for="content">contenu:</label>
-                <input id="content" type="content" [(ngModel)]="matiere.content" class="form-control" disabled/>
-            </div>
-        </div>
+  <div class="d-flex justify-content-around">
+    <div class="container">
+      <div class="form-group">
+        <label for="libelle">libelle:</label>
+        <input
+          id="libelle"
+          [(ngModel)]="matiere.libelle"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="duration">durée:</label>
+        <input
+          id="duration"
+          [(ngModel)]="matiere.duration"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="objective">objective:</label>
+        <input
+          id="objective"
+          type="objective"
+          [(ngModel)]="matiere.objective"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="prerequisite">prérequis:</label>
+        <input
+          id="prerequisite"
+          type="text"
+          [(ngModel)]="matiere.prerequisite"
+          class="form-control"
+          disabled
+        />
+      </div>
+      <div class="form-group">
+        <label for="content">contenu:</label>
+        <input
+          id="content"
+          type="content"
+          [(ngModel)]="matiere.content"
+          class="form-control"
+          disabled
+        />
+      </div>
     </div>
-    <div class="d-flex justify-content-around">
-        <div style="min-width: 25vw;">
-            <h2>Formateur</h2>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">NOM</th>
-                        <th scope="col">PRÉNOM</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(f of matiere.formateurs;track f.id) {
-                    <tr>
-                        <td>{{ f.firstname }}</td>
-                        <td>{{ f.lastname }}</td>
-                        <td class="text-center"><button (click)="remove(f.id!)" class="btn btn-outline-danger">Supprimer</button></td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-            <div class="input-group container">
-                <select id="formateur" [(ngModel)]="formateur" class="form-control">
-                    @for (f of formateurs; track f.id) {
-                    <option [ngValue]="f">{{ f.id }} {{ f.firstname }} {{ f.lastname }}</option>
-                    }
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" (click)="add()">Ajouter</button>
-                </div>
-            </div>
+  </div>
+  <div class="d-flex justify-content-around">
+    <div style="min-width: 25vw">
+      <h2>Formateur</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">NOM</th>
+            <th scope="col">PRÉNOM</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(f of matiere.formateurs;track f.id) {
+          <tr>
+            <td>{{ f.firstname }}</td>
+            <td>{{ f.lastname }}</td>
+            <td class="text-center">
+              <button (click)="remove(f.id!)" class="btn btn-outline-danger">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <div class="input-group container">
+        <select id="formateur" [(ngModel)]="formateur" class="form-control">
+          @for (f of formateurs; track f.id) {
+          <option [ngValue]="f">
+            {{ f.id }} {{ f.firstname }} {{ f.lastname }}
+          </option>
+          }
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" (click)="add()">
+            Ajouter
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<a routerLink="/matiere" routerLinkActive="active" class="btn btn-outline-warning m-2">retour</a>
+<a
+  routerLink="/matiere"
+  routerLinkActive="active"
+  class="btn btn-outline-warning m-2"
+  >Retour</a
+>
