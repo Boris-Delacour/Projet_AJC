@@ -13,12 +13,12 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
 })
 export class TechnicienComponent implements OnInit {
-  // technicien: Technicien;
-  // message: string;
+  techniciens: Technicien[] = [];
+
   message = '';
   showMessage = false;
   style = '';
-  techniciens: Technicien[] = [];
+
   constructor(
     public technicienSrv: TechnicienService,
     private activatedRoute: ActivatedRoute
@@ -26,12 +26,23 @@ export class TechnicienComponent implements OnInit {
     // this.technicien = new Technicien();
     // this.message = '';
   }
+  ngOnInit(): void {
+    this.initTechniciens();
+    this.initMessage();
+    // this.ok();
+  }
 
-  delete(id: number) {
-    this.technicienSrv.delete(id).subscribe(() => {
-      this.initTechniciens();
-      this.message = `Technicien ${id} supprimé `;
-      this.style = 'alert-warning';
+  initMessage() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['q']) {
+        if (params['q'] == 'create') {
+          this.message = `Technicien ${params['id']} créé `;
+        } else if (params['q'] == 'update') {
+          this.message = `Technicien ${params['id']} mis à jour `;
+        }
+      }
+      this.showMessage = true;
+      this.style = 'alert-info';
     });
   }
 
@@ -43,12 +54,17 @@ export class TechnicienComponent implements OnInit {
   //   }
   // }
 
-  ngOnInit(): void {
-    this.initTechniciens();
-  }
   initTechniciens() {
     this.technicienSrv.getAll().subscribe((techniciens) => {
       this.techniciens = techniciens;
+    });
+  }
+
+  delete(id: number) {
+    this.technicienSrv.delete(id).subscribe(() => {
+      this.initTechniciens();
+      this.message = `Technicien ${id} supprimé `;
+      this.style = 'alert-warning';
     });
   }
 }
