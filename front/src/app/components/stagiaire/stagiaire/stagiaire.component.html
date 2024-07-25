@@ -1,5 +1,5 @@
 <h1>Liste des stagiaires :</h1>
-<a routerLink="/stagiaire/edit" routerLinkActive="active" class="btn btn-link"
+<a routerLink="/stagiaire/edit" routerLinkActive="active" class="btn btn-outline-success my-2"
   >Création d'un nouveau stagiaire</a
 >
 @if(showMessage){
@@ -8,6 +8,19 @@
 </div>
 }
 <table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Prenom</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Login</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
   @for(s of stagiaires;track s.id) {
   <tr>
     <td>{{ s.id }}</td>
@@ -15,7 +28,7 @@
     <td>{{ s.lastName }}</td>
     <td>{{ s.email }}</td>
     <td>
-      <a routerLink="/stagiaire/details/{{s.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
+      <a routerLink="/stagiaire/details/{{s.id}}" routerLinkActive="active" class="btn btn-outline-secondary">Détails</a>
     </td>
     <td>
       <a
@@ -32,4 +45,5 @@
     </td>
   </tr>
   }
+</tbody>
 </table>
