@@ -51,5 +51,7 @@ export class FormationComponent  implements OnInit{
     this.formationSrv.delete(id).subscribe(() => {
       this.initFormations();
     });
+    this.message = `Formation ${id} supprimée `;
+    this.style = 'alert-warning';
   }
 }
