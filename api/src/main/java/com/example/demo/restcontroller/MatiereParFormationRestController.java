@@ -30,10 +30,12 @@ import com.example.demo.service.MatiereService;
 import com.example.demo.service.SalleService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/matiereparformation")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class MatiereParFormationRestController {
 

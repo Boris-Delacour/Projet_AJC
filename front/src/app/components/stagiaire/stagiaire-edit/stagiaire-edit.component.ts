@@ -10,6 +10,7 @@ import { Observable, of } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { OrdinateurService } from '../../../services/ordinateur.service';
 import { switchMap } from 'rxjs/operators';
+import { UtilisateurService } from '../../../services/utilisateur.service';
 
 @Component({
   selector: 'app-stagiaire-edit',
@@ -21,12 +22,17 @@ import { switchMap } from 'rxjs/operators';
 export class StagiaireEditComponent implements OnInit {
   stagiaire: Stagiaire = new Stagiaire();
 
+  username: String = '';
+  password: String = '';
+  role: String = "ROLE_STAGIAIRE";
+
   formationsObservable!: Observable<Formation[]>;
   availableOrdinateurs$!: Observable<Ordinateur[]>;
 
   constructor(
     public formationSrv: FormationService,
     public ordinateurSrv: OrdinateurService,
+    public uSrv: UtilisateurService,
     private router: Router,
     public stagiaireSrv: StagiaireService,
     public activatedroute: ActivatedRoute
@@ -69,6 +75,15 @@ export class StagiaireEditComponent implements OnInit {
       });
     } else {
       this.stagiaireSrv.create(this.stagiaire).subscribe((stagiaire) => {
+        let user = {
+          username: this.username,
+          password: this.password,
+          role: this.role,
+          idRole: stagiaire.id
+        }
+        this.uSrv.inscription(user).subscribe((user) => {
+          console.log(user);
+        });
         this.router.navigateByUrl('/stagiaire?q=create&id=' + stagiaire.id);
         this.updateAvailableOrdinateurs(); // Met à jour les ordinateurs disponibles après création
       });

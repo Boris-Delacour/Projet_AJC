@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { Technicien } from '../../../models/technicien';
 import { TechnicienService } from '../../../services/technicien.service';
+import { UtilisateurService } from '../../../services/utilisateur.service';
 
 @Component({
   selector: 'app-technicien-edit',
@@ -19,9 +20,13 @@ import { TechnicienService } from '../../../services/technicien.service';
 })
 export class TechnicienEditComponent {
   technicien: Technicien = new Technicien();
+  username: String = '';
+  password: String = '';
+  role: String = "ROLE_TECHNICIEN";
 
   constructor(
     public technicienSrv: TechnicienService,
+    public uSrv: UtilisateurService,
     private router: Router,
     public activatedRoute: ActivatedRoute
   ) {}
@@ -33,6 +38,15 @@ export class TechnicienEditComponent {
       });
     } else {
       this.technicienSrv.create(this.technicien).subscribe((technicien) => {
+        let user = {
+          username: this.username,
+          password: this.password,
+          role: this.role,
+          idRole: technicien.id
+        }
+        this.uSrv.inscription(user).subscribe((user) => {
+          console.log(user);
+        });
         this.router.navigateByUrl('/technicien?q=create&id=' + technicien.id);
       });
     }

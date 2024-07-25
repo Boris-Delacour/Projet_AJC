@@ -27,11 +27,12 @@ import com.example.demo.service.VideoprojecteurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/videoprojecteur")
-// @SecurityRequirement(name="basicAuth")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class VideoprojecteurRestController {
 

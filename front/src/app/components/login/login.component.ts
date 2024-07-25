@@ -31,23 +31,21 @@ export class LoginComponent {
         localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
         this.error = false;
         
-        this.authSrv.getByUsername(utilisateur.username!).subscribe((u) => {
-          if(u.role?.match("ROLE_GESTIONNAIRE")) {
-            this.router.navigateByUrl(`/gestionnaire/details/${u.idRole}`);
-          }
-          else if(u.role?.match("ROLE_TECHNICIEN")) {
-            this.router.navigateByUrl(`/technicien/details/${u.idRole}`);
-          }
-          else if(u.role?.match("ROLE_FORMATEUR")) {
-            this.router.navigateByUrl(`/formateur/details/${u.idRole}`);
-          }
-          else if(u.role?.match("ROLE_STAGIAIRE")) {
-            this.router.navigateByUrl(`/stagiaire/details/${u.idRole}`);
-          }
-          else {
-            this.router.navigateByUrl(`/`);
-          }
-        });
+        if(utilisateur.role?.match("ROLE_GESTIONNAIRE")) {
+          this.router.navigateByUrl(`/gestionnaire/details/${utilisateur.idRole}`);
+        }
+        else if(utilisateur.role?.match("ROLE_TECHNICIEN")) {
+          this.router.navigateByUrl(`/technicien/details/${utilisateur.idRole}`);
+        }
+        else if(utilisateur.role?.match("ROLE_FORMATEUR")) {
+          this.router.navigateByUrl(`/formateur/details/${utilisateur.idRole}`);
+        }
+        else if(utilisateur.role?.match("ROLE_STAGIAIRE")) {
+          this.router.navigateByUrl(`/stagiaire/details/${utilisateur.idRole}`);
+        }
+        else {
+          this.router.navigateByUrl(`/`);
+        }
       },
       //on a une erreur
       error: (err) => {

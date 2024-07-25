@@ -5,6 +5,8 @@ import { Formateur } from '../../../models/formateur';
 import { FormsModule } from '@angular/forms';
 import { Matiere } from '../../../models/matiere';
 import { MatiereService } from '../../../services/matiere.service';
+import { Utilisateur } from '../../../models/utilisateur';
+import { UtilisateurService } from '../../../services/utilisateur.service';
 
 @Component({
   selector: 'app-formateur-edit',
@@ -15,12 +17,15 @@ import { MatiereService } from '../../../services/matiere.service';
 })
 export class FormateurEditComponent {
   formateur: Formateur = new Formateur();
+  username: String = '';
+  password: String = '';
+  role: String = "ROLE_FORMATEUR";
   matieres: Matiere[] = [];
 
   constructor(
     private router: Router,
     public fSrv: FormateurService,
-    public mSrv: MatiereService,
+    public uSrv: UtilisateurService,
     public activatedroute: ActivatedRoute
   ) {}
 
@@ -41,6 +46,15 @@ export class FormateurEditComponent {
       });
     } else {
       this.fSrv.create(this.formateur).subscribe((formateur) => {
+        let user = {
+          username: this.username,
+          password: this.password,
+          role: this.role,
+          idRole: formateur.id
+        }
+        this.uSrv.inscription(user).subscribe((user) => {
+          console.log(user);
+        });
         this.router.navigateByUrl('/formateur?q=create&id=' + formateur.id);
       });
     }

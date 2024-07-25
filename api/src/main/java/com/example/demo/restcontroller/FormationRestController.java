@@ -28,11 +28,12 @@ import com.example.demo.service.FormationService;
 import com.example.demo.service.GestionnaireService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/formation")
-// @SecurityRequirement(name="basicAuth")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class FormationRestController {
 

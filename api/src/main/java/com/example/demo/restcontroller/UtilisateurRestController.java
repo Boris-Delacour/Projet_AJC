@@ -26,10 +26,12 @@ import com.example.demo.service.TechnicienService;
 import com.example.demo.service.UtilisateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/utilisateur")
+@SecurityRequirement(name = "basicAuth")
 @CrossOrigin(origins = "*")
 public class UtilisateurRestController {
 
@@ -84,6 +86,13 @@ public class UtilisateurRestController {
     @JsonView(CustomJsonViews.StagiaireWithAll.class)
     public UtilisateurResponse getByUsername(@PathVariable String username) {
         return new UtilisateurResponse(this.uSrv.getByUsername(username));
+    }
+
+    @PostMapping("/create")
+    public UtilisateurResponse create(@Valid @RequestBody UtilisateurRequest ur) {
+        Utilisateur utilisateur = new Utilisateur();
+        BeanUtils.copyProperties(ur, utilisateur, "role");
+        return new UtilisateurResponse(this.uSrv.create(utilisateur, Role.valueOf(ur.getRole())));
     }
 
     @PostMapping("/inscription")

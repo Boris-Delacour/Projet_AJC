@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Gestionnaire } from '../../../models/gestionnaire';
 import { GestionnaireService } from '../../../services/gestionnaire.service';
+import { UtilisateurService } from '../../../services/utilisateur.service';
 
 @Component({
   selector: 'app-gestionnaire-edit',
@@ -16,8 +17,13 @@ export class GestionnaireEditComponent {
 
   gestionnaire: Gestionnaire = new Gestionnaire();
 
+  username: String = '';
+  password: String = '';
+  role: String = "ROLE_GESTIONNAIRE";
+
   constructor(
     public gestionnaireSrv: GestionnaireService,
+    public uSrv: UtilisateurService,
     private router: Router,
     public activatedroute: ActivatedRoute
 
@@ -40,6 +46,15 @@ export class GestionnaireEditComponent {
       });
     } else {
       this.gestionnaireSrv.create(this.gestionnaire).subscribe((gestionnaire) => {
+        let user = {
+          username: this.username,
+          password: this.password,
+          role: this.role,
+          idRole: gestionnaire.id
+        }
+        this.uSrv.inscription(user).subscribe((user) => {
+          console.log(user);
+        });
         this.router.navigateByUrl('/gestionnaire?q=create&id=' + gestionnaire.id);
       });
     }
