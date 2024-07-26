@@ -1,4 +1,4 @@
-<h1>Liste des videoprojecteurs</h1>
+<h1 class="title-page">Liste des videoprojecteurs</h1>
 
 <section class="d-flex">
   <p>Nombre de videoprojecteur : {{ videoprojecteurs.length }}</p>
@@ -11,53 +11,52 @@
   {{ message }}
 </div>
 }
-<table class="table overflow-auto">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Marque</th>
-      <th>Fonctionnel</th>
-      <th>Disponible</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(o of videoprojecteurs;track o.id) {
-    <tr>
-      <td>{{ o.id }}</td>
-      <td>{{ o.marque }}</td>
-      <td>@if (o.fonctionnel) {Oui}@else {Non}</td>
-      <td>@if (o.fonctionnel && !o.salle) {Oui}@else {Non}</td>
-      <td class="text-center">
-        <a
-          routerLink="/videoprojecteur/{{ o.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Détail</a
-        >
-      </td>
-      <td class="text-center">
-        <a
-          routerLink="/videoprojecteur/edit/{{ o.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Modifier</a
-        >
-      </td>
-      <td class="text-center">
-        <button (click)="delete(o.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-person-video2"></i> MARQUE</div>
+    <div class="header-item"><i class="bi bi-person-vcard"></i> OS</div>
+    <div class="header-item">ACTIONS</div>
+  </div>
+
+  @for(v of videoprojecteurs;track v.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ v.id }}</div>
+    <div class="row-item">{{ v.marque }}</div>
+    <div class="row-item actions">
+      <a
+        routerLink="/videoprojecteur/{{ v.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary btn-animated"
+      >
+        <span class="btn-text">Détails</span>
+        <span class="btn-icon"><i class="bi bi-info-circle"></i></span>
+      </a>
+      <a
+        routerLink="/videoprojecteur/edit/{{ v.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-warning btn-animated"
+      >
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button
+        (click)="delete(v.id!)"
+        class="btn btn-outline-danger btn-animated"
+      >
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
 <a
   routerLink="/videoprojecteur/edit"
   routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
+  class="btn btn-outline-success btn-animated"
 >
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>

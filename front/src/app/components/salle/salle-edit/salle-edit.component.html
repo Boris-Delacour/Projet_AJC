@@ -1,7 +1,9 @@
-<h1>Édition de la salle {{ salle.numero }}</h1>
-<div>
+<h1 class="title-page">Édition de salle</h1>
+<div class="detail-container">
   <div class="form-group">
-    <label for="numero">Numéro de salle:</label>
+    <label for="numero"
+      ><i class="bi bi-person-vcard"></i>Numéro de salle :</label
+    >
     <input
       type="number"
       id="numero"
@@ -10,7 +12,9 @@
     />
   </div>
   <div class="form-group">
-    <label for="nbPlace">Nombre de place:</label>
+    <label for="nbPlace"
+      ><i class="bi bi-person-vcard"></i>Nombre de place :</label
+    >
     <input
       type="number"
       id="nbPlace"
@@ -19,10 +23,17 @@
     />
   </div>
   <div class="form-group">
-    <label for="occuper">Disponible ? :</label>
-    <input type="radio" id="true" [value]="true" [(ngModel)]="salle.occuper" />
+    <label for="occuper"><i class="bi bi-person-vcard"></i>Occuper ? :</label>
+    <input
+      class="mx-2"
+      type="radio"
+      id="true"
+      [value]="true"
+      [(ngModel)]="salle.occuper"
+    />
     <label for="true">Oui</label>
     <input
+      class="mx-2"
       type="radio"
       id="false"
       [value]="false"
@@ -44,15 +55,15 @@
       }
     </select>
   </div>
-  <div>
+  <div class="button-container">
     <button class="btn btn-outline-success" (click)="save()">
-      Enregistrer
+      <i class="bi bi-floppy2"></i> Enregistrer
     </button>
     <a
       routerLink="/salle"
       routerLinkActive="active"
       class="btn btn-outline-danger mx-2"
-      >Annuler</a
+      ><i class="bi bi-arrow-return-left"></i> Annuler</a
     >
   </div>
 </div>
