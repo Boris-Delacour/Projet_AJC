@@ -1,58 +1,55 @@
 <h1>Liste des stagiaires :</h1>
 
 @if(showMessage){
-<div class="alert {{ style }}">
+<div id="message" class="alert {{ style }}">
   {{ message }}
 </div>
 }
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Prénom</th>
-      <th>Nom</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="tableau-container">
+  <div class="tableau-header">
+      <div class="header-item"><i class="bi bi-list-ol"></i>Id</div>
+      <div class="header-item"><i class="bi bi-card-text"></i>Prénom</div>
+      <div class="header-item"><i class="bi bi-card-text"></i>Nom</div>
+      <div class="header-item"><i class="bi bi-card-text"></i>Email</div>
+      <div class="header-item">Actions</div>
+  </div>
+  
     @for(s of stagiaires;track s.id) {
-    <tr>
-      <td>{{ s.id }}</td>
-      <td>{{ s.firstName }}</td>
-      <td>{{ s.lastName }}</td>
-      <td>{{ s.email }}</td>
-      <td>
+    <div class="tableau-row">
+      <div class="row-item">{{ s.id }}</div>
+      <div class="row-item">{{ s.firstName }}</div>
+      <div class="row-item">{{ s.lastName }}</div>
+      <div class="row-item">{{ s.email }}</div>
+      <div class="row-item actions">
         <a
           routerLink="/stagiaire/details/{{ s.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Détails</a
+          class="btn btn-outline-primary btn-animated"
+          >
+          <span class="btn-text">Détails</span>
+          <span class="btn-icon"><i class="bi bi-info-circle"></i></span></a
         >
-      </td>
-      <td>
         <a
           routerLink="/stagiaire/edit/{{ s.id }}"
           routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Modifier</a
+          class="btn btn-outline-warning btn-animated"
+          ><span class="btn-text">Modifier</span>
+          <span class="btn-icon"><i class="bi bi-pencil-square"></i></span></a
         >
-      </td>
-      <td>
-        <button (click)="delete(s.id!)" class="btn btn-outline-danger">
-          Supprimer
+        <button (click)="delete(s.id!)" class="btn btn-outline-danger btn-animated">
+          <span class="btn-text">Supprimer</span>
+          <span class="btn-icon"><i class="bi bi-trash3"></i></span>
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
     }
-  </tbody>
-</table>
+</div>
 
 <a
   routerLink="/stagiaire/edit"
   routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
+  class="btn btn-outline-success btn-animated"
+  >
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span></a
 >

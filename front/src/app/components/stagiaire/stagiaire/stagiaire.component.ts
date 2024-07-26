@@ -13,13 +13,14 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 export class StagiaireComponent implements OnInit {
   stagiaires: Stagiaire[] = [];
   message = '';
-  showMessage = false;
+  showMessage: boolean = false;
   style = '';
 
   constructor(
     public stagiaireSrv: StagiaireService,
     private activatedRoute: ActivatedRoute
   ) {}
+
   ngOnInit(): void {
     this.initStagiaires();
     this.initMessage();
@@ -30,12 +31,18 @@ export class StagiaireComponent implements OnInit {
       if (params['q']) {
         if (params['q'] == 'create') {
           this.message = `Stagiaire ${params['id']} créé `;
+          this.style = 'alert-success';
         } else if (params['q'] == 'update') {
           this.message = `Stagiaire ${params['id']} mis à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 
@@ -50,6 +57,10 @@ export class StagiaireComponent implements OnInit {
       this.initStagiaires();
       this.message = `Stagiaire ${id} supprimé `;
       this.style = 'alert-warning';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }
