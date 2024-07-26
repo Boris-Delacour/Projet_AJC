@@ -1,48 +1,52 @@
-<h1>Details du stagiaire n°{{ stagiaire.id }} </h1>
-<div class="container">
-  <div>
+<h1 class="title-page">Details du stagiaire n°{{ stagiaire.id }} </h1>
+<div class="block-container">
+  <div class="detail-container">
     <div class="form-group">
-        <label for="firstName">Prenom : </label>
-        <input id="firstName" [(ngModel)]="stagiaire.firstName" class="form-control" disabled>
+        <label for="firstName"><i class="bi bi-person-vcard"></i> Prenom : </label>
+        <span id="firstName" class="form-control">
+          {{stagiaire.firstName}}
+        </span>
     </div>
     <div class="form-group">
-      <label for="lastName">Nom : </label>
-      <input id="lastName" [(ngModel)]="stagiaire.lastName" class="form-control" disabled>
+      <label for="lastName"><i class="bi bi-person-vcard"></i> Nom : </label>
+      <span id="lastName" class="form-control">
+        {{stagiaire.lastName}}
+      </span>
     </div>
     <div class="form-group">
-      <label for="email">Email : </label>
-      <input id="email" [(ngModel)]="stagiaire.email" class="form-control" disabled>
-    </div>
-    <div class="form-group">
-      <label for="login">Login : </label>
-      <input id="login" [(ngModel)]="stagiaire.login" class="form-control" disabled>
+      <label for="email"><i class="bi bi-envelope-at"></i> Email : </label>
+      <span id="email" class="form-control">
+        {{stagiaire.email}}
+      </span>
     </div>
   </div>
-  <div>
-    <h2>Formation</h2>
-    <table class="table">
-      <tr>
-        <th>Nom</th>
-        <th>Date de début</th>
-      </tr>
-      <tr>
-        <td>{{stagiaire.formation?.nom}}</td>
-        <td>{{stagiaire.formation?.dateStart}}</td>
-      </tr>
-    </table>
-  </div>
-  <div>
-    <h2>Ordinateur</h2>
-    <table class="table">
-      <tr>
-        <th>Marque</th>
-        <th>OS</th>
-      </tr>
-      <tr>
-        <td>{{stagiaire.ordinateur?.marque}}</td>
-        <td>{{stagiaire.ordinateur?.os}}</td>
-      </tr>
-    </table>
+  <div class="secondaires-container">
+    <h2 class="title-tableau">Formation</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">Nom</div>
+        <div class="header-item">Date de début</div>
+      </div>
+      <div class="tableau-body">
+        <div class="tableau-row">
+          <div class="row-item">{{stagiaire.formation?.nom}}</div>
+          <div class="row-item">{{stagiaire.formation?.dateStart}}</div>
+        </div>
+      </div>
+    </div>
+    <h2 class="title-tableau">Ordinateur</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">Marque</div>
+        <div class="header-item">OS</div>
+      </div>
+      <div class="tableau-body">
+        <div class="tableau-row">
+          <div class="row-item">{{stagiaire.ordinateur?.marque}}</div>
+          <div class="row-item">{{stagiaire.ordinateur?.os}}</div>
+        </div>        
+      </div>
+    </div>
   </div>
 </div>
 <a routerLink="/stagiaire" routerLinkActive="active" class="btn btn-outline-warning">Retour</a>
