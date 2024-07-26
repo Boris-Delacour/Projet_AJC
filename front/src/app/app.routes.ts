@@ -37,69 +37,239 @@ import { formateurGuard } from './guards/formateur.guard';
 import { gestionnaireGuard } from './guards/gestionnaire.guard';
 import { stagiaireGuard } from './guards/stagiaire.guard';
 import { technicienGuard } from './guards/technicien.guard';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
 export const routes: Routes = [
-  { path: 'formateur', component: FormateurComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formateur/edit', component: FormateurEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formateur/edit/:id', component: FormateurEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formateur/details/:id', component: FormateurDetailsComponent, canActivate: [formateurGuard] },
+  {
+    path: 'formateur',
+    component: FormateurComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formateur/edit',
+    component: FormateurEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formateur/edit/:id',
+    component: FormateurEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formateur/details/:id',
+    component: FormateurDetailsComponent,
+    canActivate: [formateurGuard],
+  },
 
-  { path: 'matiere', component: MatiereComponent, canActivate: [gestionnaireGuard] },
-  { path: 'matiere/edit', component: MatiereEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'matiere/edit/:id', component: MatiereEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'matiere/details/:id', component: MatiereDetailsComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'matiere',
+    component: MatiereComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'matiere/edit',
+    component: MatiereEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'matiere/edit/:id',
+    component: MatiereEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'matiere/details/:id',
+    component: MatiereDetailsComponent,
+    canActivate: [gestionnaireGuard],
+  },
 
-  { path: 'formation', component: FormationComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formation/edit', component: FormationEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formation/edit/:id', component: FormationEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'formation/details/:id', component: FormationDetailsComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'formation',
+    component: FormationComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formation/edit',
+    component: FormationEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formation/edit/:id',
+    component: FormationEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'formation/details/:id',
+    component: FormationDetailsComponent,
+    canActivate: [gestionnaireGuard],
+  },
 
-  { path: 'matiereparformation', component: MatiereParFormationComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'matiereparformation',
+    component: MatiereParFormationComponent,
+    canActivate: [gestionnaireGuard],
+  },
   {
     path: 'matiereparformation/edit',
-    component: MatiereParFormationEditComponent, canActivate: [gestionnaireGuard]
+    component: MatiereParFormationEditComponent,
+    canActivate: [gestionnaireGuard],
   },
   {
     path: 'matiereparformation/edit/:id',
-    component: MatiereParFormationEditComponent, canActivate: [gestionnaireGuard]
+    component: MatiereParFormationEditComponent,
+    canActivate: [gestionnaireGuard],
   },
   {
     path: 'matiereparformation/:id',
-    component: MatiereParFormationDetailComponent, canActivate: [gestionnaireGuard]
+    component: MatiereParFormationDetailComponent,
+    canActivate: [gestionnaireGuard],
   },
 
-  { path: 'stagiaire', component: StagiaireComponent, canActivate: [gestionnaireGuard] },
-  { path: 'stagiaire/edit', component: StagiaireEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'stagiaire/edit/:id', component: StagiaireEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'stagiaire/details/:id', component: StagiaireDetailsComponent, canActivate: [stagiaireGuard] },
+  {
+    path: 'stagiaire',
+    component: StagiaireComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'stagiaire/edit',
+    component: StagiaireEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'stagiaire/edit/:id',
+    component: StagiaireEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'stagiaire/details/:id',
+    component: StagiaireDetailsComponent,
+    canActivate: [stagiaireGuard],
+  },
 
-  { path: 'technicien', component: TechnicienComponent, canActivate: [authGuard] },
-  { path: 'technicien/edit', component: TechnicienEditComponent, canActivate: [authGuard] },
-  { path: 'technicien/edit/:id', component: TechnicienEditComponent, canActivate: [authGuard] },
+  {
+    path: 'technicien',
+    component: TechnicienComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'technicien/edit',
+    component: TechnicienEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'technicien/edit/:id',
+    component: TechnicienEditComponent,
+    canActivate: [authGuard],
+  },
 
-  { path: 'gestionnaire', component: GestionnaireComponent, canActivate: [authGuard] },
-  { path: 'gestionnaire/edit', component: GestionnaireEditComponent, canActivate: [authGuard] },
-  { path: 'gestionnaire/edit/:id', component: GestionnaireEditComponent, canActivate: [authGuard] },
-  { path: 'gestionnaire/details/:id', component: GestionnaireDetailsComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'gestionnaire',
+    component: GestionnaireComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire/edit',
+    component: GestionnaireEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire/edit/:id',
+    component: GestionnaireEditComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'gestionnaire/details/:id',
+    component: GestionnaireDetailsComponent,
+    canActivate: [gestionnaireGuard],
+  },
 
-  { path: 'ordinateur', component: OrdinateurComponent, canActivate: [technicienGuard] },
-  { path: 'ordinateur/edit', component: OrdinateurEditComponent, canActivate: [technicienGuard] },
-  { path: 'ordinateur/edit/:id', component: OrdinateurEditComponent, canActivate: [technicienGuard] },
-  { path: 'ordinateur/:id', component: OrdinateurDetailComponent, canActivate: [technicienGuard] },
+  {
+    path: 'ordinateur',
+    component: OrdinateurComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'ordinateur/edit',
+    component: OrdinateurEditComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'ordinateur/edit/:id',
+    component: OrdinateurEditComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'ordinateur/:id',
+    component: OrdinateurDetailComponent,
+    canActivate: [technicienGuard],
+  },
 
-  { path: 'salle', component: SalleComponent, canActivate: [gestionnaireGuard] },
-  { path: 'salle/edit', component: SalleEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'salle/edit/:id', component: SalleEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'salle/:id', component: SalleDetailComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'salle',
+    component: SalleComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'salle/edit',
+    component: SalleEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'salle/edit/:id',
+    component: SalleEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'salle/:id',
+    component: SalleDetailComponent,
+    canActivate: [gestionnaireGuard],
+  },
 
-  { path: 'videoprojecteur', component: VideoprojecteurComponent, canActivate: [technicienGuard] },
-  { path: 'videoprojecteur/edit', component: VideoprojecteurEditComponent, canActivate: [technicienGuard] },
-  { path: 'videoprojecteur/edit/:id', component: VideoprojecteurEditComponent, canActivate: [technicienGuard] },
-  { path: 'videoprojecteur/:id', component: VideoprojecteurDetailComponent, canActivate: [technicienGuard] },
+  {
+    path: 'videoprojecteur',
+    component: VideoprojecteurComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'videoprojecteur/edit',
+    component: VideoprojecteurEditComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'videoprojecteur/edit/:id',
+    component: VideoprojecteurEditComponent,
+    canActivate: [technicienGuard],
+  },
+  {
+    path: 'videoprojecteur/:id',
+    component: VideoprojecteurDetailComponent,
+    canActivate: [technicienGuard],
+  },
 
-  { path: 'indisponibilite', component: IndisponibiliteComponent, canActivate: [gestionnaireGuard] },
-  { path: 'indisponibilite/edit', component: IndisponibiliteEditComponent, canActivate: [gestionnaireGuard] },
-  { path: 'indisponibilite/edit/:id', component: IndisponibiliteEditComponent, canActivate: [gestionnaireGuard] },
+  {
+    path: 'indisponibilite',
+    component: IndisponibiliteComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'indisponibilite/edit',
+    component: IndisponibiliteEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
+  {
+    path: 'indisponibilite/edit/:id',
+    component: IndisponibiliteEditComponent,
+    canActivate: [gestionnaireGuard],
+  },
 
   { path: 'login', component: LoginComponent, canActivate: [anonymousGuard] },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+    canActivate: [anonymousGuard],
+  },
+  {
+    path: '',
+    redirectTo: '/accueil',
+    pathMatch: 'full',
+  },
 ];

@@ -1,15 +1,15 @@
-<h1>Édition de formateur</h1>
-<div>
+<h1 class="title-page">Édition de formateur</h1>
+<div class="detail-container">
   <div class="form-group">
-    <label for="prenom">prenom:</label>
+    <label for="prenom"><i class="bi bi-person-video2"></i> Prénom :</label>
     <input id="prenom" [(ngModel)]="formateur.firstname" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="nom">nom:</label>
+    <label for="nom"><i class="bi bi-person-vcard"></i> Nom :</label>
     <input id="nom" [(ngModel)]="formateur.lastname" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="email">email:</label>
+    <label for="email"><i class="bi bi-envelope-at"></i> E-mail :</label>
     <input
       id="email"
       type="email"
@@ -18,11 +18,11 @@
     />
   </div>
   <div class="form-group">
-    <label for="login">username:</label>
+    <label for="login"><i class="bi bi-person-badge"></i> Login :</label>
     <input id="login" type="text" [(ngModel)]="username" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="password">Mot de passe:</label>
+    <label for="password"><i class="bi bi-lock"></i> Mot de passe :</label>
     <input
       id="password"
       type="password"
@@ -30,15 +30,15 @@
       class="form-control"
     />
   </div>
-  <div>
+  <div class="button-container">
     <button class="btn btn-outline-success" (click)="save()">
-      Enregistrer
+      <i class="bi bi-floppy2"></i> Enregistrer
     </button>
     <a
       routerLink="/formateur"
       routerLinkActive="active"
       class="btn btn-outline-danger mx-2"
-      >Annuler</a
+      ><i class="bi bi-arrow-return-left"></i> Annuler</a
     >
   </div>
 </div>
