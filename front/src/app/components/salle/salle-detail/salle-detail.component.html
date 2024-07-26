@@ -1,13 +1,49 @@
-<h2>Détail de la salle {{ salle.numero }}</h2>
+<h2 class="title-page">Détail de la salle n°{{ salle.numero }}</h2>
+<div class="block-container">
+  <div class="detail-container">
+    <div class="form-group">
+      <label for="marque"
+        ><i class="bi bi-person-video2"></i> Numéro de la salle :</label
+      >
+      <span id="marque" class="form-control">
+        {{ salle.numero }}
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="os"
+        ><i class="bi bi-person-vcard"></i> Nombre de place :</label
+      >
+      <span id="os" class="form-control">
+        {{ salle.nbPlace }}
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="fonctionnel"
+        ><i class="bi bi-person-vcard"></i> Salle occupée ?:</label
+      >
+      <span id="fonctionnel" class="form-control">
+        @if (salle.occuper) {Oui}@else {Non}
+      </span>
+    </div>
 
-<p>Numéro de la salle : {{ salle.numero }}</p>
-<p>Nombre de place : {{ salle.nbPlace }}</p>
-<p>Salle occuper ? @if (salle.occuper) {Oui}@else {Non}</p>
-<p>
-  Videoprojecteur en place : @if (salle.videoprojecteur) { Numéro
-  {{ salle.videoprojecteur.id }} de marque {{ salle.videoprojecteur.marque }}
-  }@else {aucun présent}
-</p>
-<a routerLink="/salle" routerLinkActive="active" class="btn btn-outline-warning"
-  >Retour</a
->
+    <div class="form-group">
+      <label for="stagiaire"
+        ><i class="bi bi-person-vcard"></i> Videoprojecteur en place ::</label
+      >
+      <span id="stagiaire" class="form-control">
+        Videoprojecteur en place : @if (salle.videoprojecteur) { Numéro
+        {{ salle.videoprojecteur.id }} de marque
+        {{ salle.videoprojecteur.marque }}
+        }@else {aucun présent}
+      </span>
+    </div>
+  </div>
+  <div class="btn-retour">
+    <a
+      routerLink="/salle"
+      routerLinkActive="active"
+      class="btn btn-outline-warning m-2"
+      >Retour au Menu</a
+    >
+  </div>
+</div>
