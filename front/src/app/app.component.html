@@ -1,4 +1,24 @@
-<app-nav></app-nav>
+
+@if (logged) {
+  @if(role.match("ROLE_FORMATEUR")) {
+    <app-formateur-nav></app-formateur-nav>
+  }
+  @else if (role.match("ROLE_GESTIONNAIRE")) {
+    <app-gestionnaire-nav></app-gestionnaire-nav>
+  }
+  @else if (role.match("ROLE_TECHNICIEN")) {
+    <app-technicien-nav></app-technicien-nav>
+  }
+  @else if (role.match("ROLE_STAGIAIRE")) {
+    <app-stagiaire-nav></app-stagiaire-nav>
+  }
+  @else {
+    <app-nav></app-nav>
+  }
+}
+@else {
+  <app-anonymous-nav></app-anonymous-nav>
+}
 <div class="screen">
   <div class="container">
     <router-outlet></router-outlet>
