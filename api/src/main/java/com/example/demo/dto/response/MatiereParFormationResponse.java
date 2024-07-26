@@ -16,9 +16,9 @@ public class MatiereParFormationResponse {
 	private LocalDate start;
 	@JsonView(CustomJsonViews.Common.class)
 	private LocalDate end;
-	@JsonView(CustomJsonViews.MatiereParFormationWithAll.class)
+	@JsonView(CustomJsonViews.MatiereParFormationWithFormationAndMatiere.class)
 	private MatiereResponse matiere;
-	@JsonView(CustomJsonViews.MatiereParFormationWithAll.class)
+	@JsonView(CustomJsonViews.MatiereParFormationWithFormationAndMatiere.class)
 	private FormationResponse formation;
 	@JsonView(CustomJsonViews.MatiereParFormationWithAll.class)
 	private SalleResponse salle;

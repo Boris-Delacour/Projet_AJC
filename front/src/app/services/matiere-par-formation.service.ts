@@ -14,6 +14,10 @@ export class MatiereParFormationService {
     return this.httpClient.get<MatiereParFormation[]>(this.url);
   }
 
+  public getAllWithFormation(): Observable<MatiereParFormation[]> {
+    return this.httpClient.get<MatiereParFormation[]>(`${this.url}/formation`);
+  }
+
   public create(
     matiereParFormation: MatiereParFormation
   ): Observable<MatiereParFormation> {

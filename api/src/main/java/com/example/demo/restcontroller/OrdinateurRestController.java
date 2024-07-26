@@ -47,6 +47,14 @@ public class OrdinateurRestController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/all")
+    @JsonView(CustomJsonViews.OrdinateurWithStagiaire.class)
+    @Operation(summary = "Tout les ordinateurs")
+    public List<OrdinateurResponse> getAllWithAll() {
+        return ordinateurSrv.getAll().stream().map(ordinateur -> new OrdinateurResponse(ordinateur))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
     public OrdinateurResponse getById(@PathVariable Integer id) {

@@ -1,4 +1,4 @@
-<h1>Liste des ordinateurs</h1>
+<h1 class="title-page">Liste des ordinateurs</h1>
 
 <section class="d-flex">
   <p>Nombre d'ordinateur : {{ ordinateurs.length }}</p>
@@ -11,52 +11,64 @@
   {{ message }}
 </div>
 }
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Marque</th>
-      <th>OS</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(o of ordinateurs;track o.id) {
-    <tr>
-      <td>{{ o.id }}</td>
-      <td>{{ o.marque }}</td>
-      <td>{{ o.os }}</td>
-      <td>{{ o.stagiaire?.firstName }} {{ o.stagiaire?.lastName }}</td>
-      <td class="text-center">
-        <a
-          routerLink="/ordinateur/{{ o.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Détail</a
-        >
-      </td>
-      <td class="text-center">
-        <a
-          routerLink="/ordinateur/edit/{{ o.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Modifier</a
-        >
-      </td>
-      <td class="text-center">
-        <button (click)="delete(o.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-person-video2"></i> MARQUE</div>
+    <div class="header-item"><i class="bi bi-person-vcard"></i> OS</div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> FONCTIONNEL
+    </div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> DISPONIBLE
+    </div>
+    <div class="header-item">ACTIONS</div>
+  </div>
+
+  @for(o of ordinateurs;track o.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ o.id }}</div>
+    <div class="row-item">{{ o.marque }}</div>
+    <div class="row-item">{{ o.os }}</div>
+    <div class="row-item">@if (o.fonctionnel) {Oui}@else {Non}</div>
+    <div class="row-item">
+      @if (o.fonctionnel && !o.stagiaire) {Oui}@else {Non}
+    </div>
+    <div class="row-item actions">
+      <a
+        routerLink="/ordinateur/{{ o.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary btn-animated"
+      >
+        <span class="btn-text">Détails</span>
+        <span class="btn-icon"><i class="bi bi-info-circle"></i></span>
+      </a>
+      <a
+        routerLink="/ordinateur/edit/{{ o.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-warning btn-animated"
+      >
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button
+        (click)="delete(o.id!)"
+        class="btn btn-outline-danger btn-animated"
+      >
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
 <a
   routerLink="/ordinateur/edit"
   routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
+  class="btn btn-outline-success btn-animated"
 >
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>
