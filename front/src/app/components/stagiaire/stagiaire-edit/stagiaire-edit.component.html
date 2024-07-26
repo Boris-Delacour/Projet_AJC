@@ -1,15 +1,15 @@
-<h1>Edition d'un profil stagiaire</h1>
-<div>
+<h1 class="title-page">Edition d'un profil stagiaire</h1>
+<div class="detail-container">
   <div class="form-group">
-    <label for="prenom">Prenom:</label>
+    <label for="prenom"><i class="bi bi-person-video2"></i> Prenom :</label>
     <input id="prenom" [(ngModel)]="stagiaire.firstName" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="nom">Nom:</label>
+    <label for="nom"><i class="bi bi-person-vcard"></i> Nom:</label>
     <input id="nom" [(ngModel)]="stagiaire.lastName" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="email">Email:</label>
+    <label for="email"><i class="bi bi-envelope-at"></i> Email:</label>
     <input
       id="email"
       type="email"
@@ -18,16 +18,16 @@
     />
   </div>
   <div class="form-group">
-    <label for="username">Username:</label>
+    <label for="login"><i class="bi bi-person-badge"></i> Login:</label>
     <input
-      id="username"
-      type="username"
+      id="login"
+      type="login"
       [(ngModel)]="username"
       class="form-control"
     />
   </div>
   <div class="form-group">
-    <label for="password">Mot de passe:</label>
+    <label for="password"><i class="bi bi-lock"></i> Mot de passe:</label>
     <input
       id="password"
       type="password"
@@ -36,7 +36,7 @@
     />
   </div>
   <div class="form-group">
-    <label for="formation">formation:</label>
+    <label for="formation">Formation:</label>
     <select
       id="formation"
       [(ngModel)]="stagiaire.formation"
@@ -47,8 +47,9 @@
       <option [ngValue]="f">{{ f.nom }}</option>
       }
     </select>
+  </div>
     <div class="form-group">
-      <label for="ordinateur">ordinateur:</label>
+      <label for="ordinateur">Ordinateur:</label>
       <select
         id="ordinateur"
         [(ngModel)]="stagiaire.ordinateur"
@@ -61,16 +62,19 @@
         }
       </select>
     </div>
-    <div>
-      <button class="btn btn-outline-success" (click)="save()">
-        Enregistrer
-      </button>
-      <a
-        routerLink="/stagiaire"
-        routerLinkActive="active"
-        class="btn btn-outline-danger mx-2"
-        >Annuler</a
-      >
+    <div class="form-group">
+      <div class="button-container">
+            <button class="btn btn-outline-success" (click)="save()">
+              <i class="bi bi-floppy2"></i> Enregistrer
+            </button>
+            <a
+              routerLink="/stagiaire"
+              routerLinkActive="active"
+              class="btn btn-outline-danger mx-2"
+              ><i class="bi bi-arrow-return-left"></i> Annuler</a
+            >
+      </div>
     </div>
-  </div>
+    
+  
 </div>
