@@ -1,34 +1,52 @@
-<h1>Détails du Gestionnaire n°{{ gestionnaire.id }}</h1>
-<div class="container">
-    <div>
+<h1 class="title-page">Détails du Gestionnaire n°{{ gestionnaire.id }}</h1>
+<div class="block-container">
+    <div class="detail-container">
         <div class="form-group">
             <label for="prenom">Prénom:</label>
-            <input id="prenom" [(ngModel)]="gestionnaire.firstName" class="form-control" disabled />
+            <span id="prenom" class="form-control">
+                {{ gestionnaire.firstName }}
+              </span>
         </div>
         <div class="form-group">
             <label for="nom">Nom:</label>
-            <input id="nom" [(ngModel)]="gestionnaire.lastName" class="form-control" disabled />
+            <span id="nom" class="form-control">
+                {{ gestionnaire.lastName }}
+              </span>
         </div>
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input id="email" type="email" [(ngModel)]="gestionnaire.email" class="form-control" disabled />
+            <span id="email" class="form-control">
+                {{ gestionnaire.email }}
+              </span>
         </div>
     </div>
-    <div>
-        <h2>Formations</h2>
-        <table class="table">
-            <tr>
-                <th>NOM</th>
-                <th>DATE DEBUT</th>
-            </tr>
-            @for(f of gestionnaire.formations; track f.id) {
-                <tr>
-                    <td>{{ f.nom }}</td>
-                    <td>{{ f.dateStart }}</td>
-                </tr>
-            }
-        </table>
+    <div class="secondaires-container">
+        <div style="min-width: 20vw">
+            <h2 class="title-tableau">Formations</h2>
+            <div class="table table-bordered">
+                <div class="tableau-header">
+                  <div class="header-item">LIBELLÉ</div>
+                  <div class="header-item">DÉBUT</div>
+                </div>
+                <div class="tableau-body">
+                  @for(f of gestionnaire.formations;track f.id) {
+                  <div class="tableau-row">
+                    <div class="row-item">{{ f.nom }}</div>
+                    <div class="row-item">{{ f.dateStart }}</div>
+                  </div>
+                  }
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="btn-retour">
+        <a
+          routerLink="/gestionnaire"
+          routerLinkActive="active"
+          class="btn btn-outline-warning m-2"
+          >Retour au Menu</a
+        >
     </div>
 </div>
-<a routerLink="/gestionnaire" routerLinkActive="active" class="btn btn-outline-warning">Retour</a>
+
     
