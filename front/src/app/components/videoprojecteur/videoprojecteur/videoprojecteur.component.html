@@ -15,7 +15,12 @@
   <div class="tableau-header">
     <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
     <div class="header-item"><i class="bi bi-person-video2"></i> MARQUE</div>
-    <div class="header-item"><i class="bi bi-person-vcard"></i> OS</div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> FONCTIONNEL
+    </div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> DISPONIBLE
+    </div>
     <div class="header-item">ACTIONS</div>
   </div>
 
@@ -23,6 +28,8 @@
   <div class="tableau-row">
     <div class="row-item">{{ v.id }}</div>
     <div class="row-item">{{ v.marque }}</div>
+    <div class="row-item">@if (v.fonctionnel) {Oui}@else {Non}</div>
+    <div class="row-item">@if (v.fonctionnel && !v.salle) {Oui}@else {Non}</div>
     <div class="row-item actions">
       <a
         routerLink="/videoprojecteur/{{ v.id }}"
