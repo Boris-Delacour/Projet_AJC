@@ -32,12 +32,18 @@ export class GestionnaireComponent {
       if (params['q']) {
         if (params['q'] == 'create') {
           this.message = `Gestionnaire ${params['id']} créé `;
+          this.style = 'alert-success';
         } else if (params['q'] == 'update') {
           this.message = `Gestionnaire ${params['id']} mis à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 
@@ -50,8 +56,12 @@ export class GestionnaireComponent {
   delete(id: number) {
     this.gestionnaireSrv.delete(id).subscribe(() => {
       this.initGestionnaires();
-      this.message = `Gestionnaire ${id} supprimé `;
-    this.style = 'alert-warning';
+      this.message = `Formation ` + id + ` supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }

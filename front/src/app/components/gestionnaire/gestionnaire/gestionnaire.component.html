@@ -1,47 +1,60 @@
-<h1>Liste des Gestionnaires</h1>
+<h1 class="title-page">Liste des Gestionnaires</h1>
 
 @if(showMessage){
-  <div class="alert {{ style }}">
+  <div id="message" class="alert {{ style }}">
     {{ message }}
   </div>
 }
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>PRÉNOM</th>
-      <th>NOM</th>
-      <th>E-MAIL</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(g of gestionnaires;track g.id) {
-    <tr>
-      <td>{{ g.id }}</td>
-      <td>{{ g.lastName }}</td>
-      <td>{{ g.firstName }}</td>
-      <td>{{ g.email }}</td>
-      <td>
-        <a routerLink="/gestionnaire/details/{{g.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
-      </td>
-      <td>
-          <a
-          routerLink="/gestionnaire/edit/{{ g.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Editer</a
-          >
-      </td>
-      <td>
-        <button (click)="delete(g.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-</tbody>
-</table>
-<a routerLink="/gestionnaire/edit" routerLinkActive="active" class="btn btn-outline-success"
-  >Ajouter</a
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-person-video2"></i> PRÉNOM</div>
+    <div class="header-item"><i class="bi bi-person-vcard"></i> NOM</div>
+    <div class="header-item"><i class="bi bi-envelope-at"></i> E-MAIL</div>
+    <div class="header-item">ACTIONS</div>
+  </div>
+
+  @for(g of gestionnaires;track g.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ g.id }}</div>
+    <div class="row-item">{{ g.firstName }}</div>
+    <div class="row-item">{{ g.lastName }}</div>
+    <div class="row-item">{{ g.email }}</div>
+    <div class="row-item actions">
+      <a
+        routerLink="/gestionnaire/details/{{ g.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary btn-animated"
+      >
+        <span class="btn-text">Détails</span>
+        <span class="btn-icon"><i class="bi bi-info-circle"></i></span>
+      </a>
+      <a
+        routerLink="/gestionnaire/edit/{{ g.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-warning btn-animated"
+      >
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button
+        (click)="delete(g.id!)"
+        class="btn btn-outline-danger btn-animated"
+      >
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
+<a
+  routerLink="/gestionnaire/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-success btn-animated"
 >
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>
