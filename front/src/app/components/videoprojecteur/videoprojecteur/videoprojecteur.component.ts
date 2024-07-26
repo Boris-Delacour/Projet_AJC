@@ -34,9 +34,13 @@ export class VideoprojecteurComponent implements OnInit {
         } else if (params['q'] == 'update') {
           this.message = `Videoprojecteur ${params['id']} mis à jour `;
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 

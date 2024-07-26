@@ -1,55 +1,46 @@
-<h1>Liste des techniciens</h1>
-
-<!-- <div>
-  prenom:<input [(ngModel)]="technicien.firstName" /> nom<input
-    [(ngModel)]="technicien.lastName"
-  />
-  <button (click)="ok()">ok</button>
-</div> -->
+<h1 class="title-page">Liste des Techniciens</h1>
 
 @if(showMessage){
 <div class="alert {{ style }}">
   {{ message }}
 </div>
 }
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>PRÉNOM</th>
-      <th>NOM</th>
-      <th>E-MAIL</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (t of techniciens; track t.id) {
-    <tr>
-      <td>{{ t.id }}</td>
-      <td>{{ t.firstName }}</td>
-      <td>{{ t.lastName }}</td>
-      <td>{{ t.email }}</td>
-      <td>
-        <a
-          routerLink="/technicien/edit/{{ t.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Modifier</a
-        >
-      </td>
-      <td>
-        <button (click)="delete(t.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
-<a
-  routerLink="/technicien/edit"
-  routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
->
+
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-person-video2"></i> PRÉNOM</div>
+    <div class="header-item"><i class="bi bi-person-vcard"></i> NOM</div>
+    <div class="header-item"><i class="bi bi-envelope-at"></i> E-MAIL</div>
+    <div class="header-item">ACTIONS</div>
+  </div>
+
+  @for(t of techniciens;track t.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ t.id }}</div>
+    <div class="row-item">{{ t.firstName }}</div>
+    <div class="row-item">{{ t.lastName }}</div>
+    <div class="row-item">{{ t.email }}</div>
+    <div class="row-item actions">
+      <a routerLink="/technicien/details/{{ t.id }}" routerLinkActive="active"
+          class="btn btn-outline-primary btn-animated">
+        <span class="btn-text">Détails</span>
+        <span class="btn-icon"><i class="bi bi-info-circle"></i></span>
+      </a>
+      <a routerLink="/technicien/edit/{{ t.id }}" routerLinkActive="active" class="btn btn-outline-warning btn-animated">
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button (click)="delete(t.id!)" class="btn btn-outline-danger btn-animated">
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
+<a routerLink="/technicien/edit" routerLinkActive="active" class="btn btn-outline-success btn-animated">
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>
