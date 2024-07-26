@@ -32,6 +32,12 @@
     font-size: large;
     background-color: #ecf5febd;
   }
+
+  select.form-control {
+    text-align: center;
+    font-size: large;
+    background-color: #ecf5febd;
+  }
   
   .button-container {
     margin-top: 2%;
