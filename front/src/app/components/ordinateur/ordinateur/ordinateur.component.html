@@ -17,6 +17,12 @@
     <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
     <div class="header-item"><i class="bi bi-person-video2"></i> MARQUE</div>
     <div class="header-item"><i class="bi bi-person-vcard"></i> OS</div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> FONCTIONNEL
+    </div>
+    <div class="header-item">
+      <i class="bi bi-person-video2"></i> DISPONIBLE
+    </div>
     <div class="header-item">ACTIONS</div>
   </div>
 
@@ -25,6 +31,10 @@
     <div class="row-item">{{ o.id }}</div>
     <div class="row-item">{{ o.marque }}</div>
     <div class="row-item">{{ o.os }}</div>
+    <div class="row-item">@if (o.fonctionnel) {Oui}@else {Non}</div>
+    <div class="row-item">
+      @if (o.fonctionnel && !o.stagiaire) {Oui}@else {Non}
+    </div>
     <div class="row-item actions">
       <a
         routerLink="/ordinateur/{{ o.id }}"

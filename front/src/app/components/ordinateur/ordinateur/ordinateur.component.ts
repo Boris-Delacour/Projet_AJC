@@ -41,7 +41,7 @@ export class OrdinateurComponent implements OnInit {
   }
 
   initOrdinateurs() {
-    this.ordinateurSrv.getAll().subscribe((ordinateurs) => {
+    this.ordinateurSrv.getAllWithAll().subscribe((ordinateurs) => {
       this.ordinateurs = ordinateurs;
     });
     this.ordinateurSrv.getAvailable().subscribe((nbOrdinateurs) => {
