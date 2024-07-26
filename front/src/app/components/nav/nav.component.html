@@ -16,23 +16,24 @@
     [ngClass]="{ show: !isNavbarCollapsed }"
     id="navbarCollapse"
   >
+    @if(logged){
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/formateur" routerLinkActive="active"
           >Formateur</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/formation" routerLinkActive="active"
           >Formation</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/matiere" routerLinkActive="active"
           >Matiere</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/matiereparformation"
@@ -40,32 +41,32 @@
           >Matiere Par Formation</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/stagiaire" routerLinkActive="active"
           >Stagiaire</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/technicien" routerLinkActive="active"
           >Technicien</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/gestionnaire" routerLinkActive="active"
           >Gestionnaire</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/ordinateur" routerLinkActive="active"
           >Ordinateur</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/salle" routerLinkActive="active"
           >Salle</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/videoprojecteur"
@@ -73,7 +74,7 @@
           >Videoprojecteur</a
         >
       </li>
-      <li class="nav-item" *ngIf="logged">
+      <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/indisponibilite"
@@ -82,15 +83,20 @@
         >
       </li>
     </ul>
+    }
   </div>
+
   <ul class="navbar-nav ml-auto buttonLog">
-    <li class="nav-item" *ngIf="logged">
+    @if(logged){
+    <li class="nav-item">
       <button (click)="logout()" class="nav-link">Deconnexion</button>
     </li>
-    <li class="nav-item" *ngIf="!logged">
+    } @else {
+    <li class="nav-item">
       <a routerLink="/login" routerLinkActive="active" class="nav-link"
         >Login</a
       >
     </li>
+    }
   </ul>
 </nav>

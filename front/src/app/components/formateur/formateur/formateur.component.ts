@@ -8,15 +8,18 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './formateur.component.html',
-  styleUrl: './formateur.component.css'
+  styleUrl: './formateur.component.css',
 })
 export class FormateurComponent implements OnInit {
-  
   formateurs: Formateur[] = [];
   message = '';
   showMessage: boolean = false;
+  style = '';
 
-  constructor(public fSrv: FormateurService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    public fSrv: FormateurService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.initFormateurs();
@@ -25,26 +28,38 @@ export class FormateurComponent implements OnInit {
 
   initFormateurs() {
     this.fSrv.getAll().subscribe((formateurs) => {
-      this.formateurs = formateurs
+      this.formateurs = formateurs;
     });
   }
 
   initMessage() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
-        if (params['q'] == 'create') {
+        if (params['q'] === 'create') {
           this.message = `Formateur ${params['id']} créé `;
-        } else if (params['q'] == 'update') {
+          this.style = 'alert-success';
+        } else if (params['q'] === 'update') {
           this.message = `Formateur ${params['id']} mis à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
     });
   }
-
   delete(id: number) {
     this.fSrv.delete(id).subscribe(() => {
       this.initFormateurs();
+      this.message = `Formateur ` + id + ` supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }

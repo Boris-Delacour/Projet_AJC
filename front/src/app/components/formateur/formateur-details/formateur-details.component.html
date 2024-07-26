@@ -1,62 +1,48 @@
-<h1>Détails du formateur n°{{ formateur.id }}</h1>
-<div class="d-flex flex-column gap-2">
-  <div class="d-flex justify-content-around">
-    <div class="container">
-      <div class="form-group">
-        <label for="prenom">prenom:</label>
-        <input
-          id="prenom"
-          [(ngModel)]="formateur.firstname"
-          class="form-control"
-          disabled
-        />
-      </div>
-      <div class="form-group">
-        <label for="nom">nom:</label>
-        <input
-          id="nom"
-          [(ngModel)]="formateur.lastname"
-          class="form-control"
-          disabled
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">email:</label>
-        <input
-          id="email"
-          type="email"
-          [(ngModel)]="formateur.email"
-          class="form-control"
-          disabled
-        />
-      </div>
+<h1 class="title-page">Détails du formateur n°{{ formateur.id }}</h1>
+<div class="block-container">
+  <div class="detail-container">
+    <div class="form-group">
+      <label for="prenom"><i class="bi bi-person-video2"></i> Prénom :</label>
+      <span id="prenom" class="form-control">
+        {{ formateur.firstname }}
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="nom"><i class="bi bi-person-vcard"></i> Nom :</label>
+      <span id="nom" class="form-control">
+        {{ formateur.lastname }}
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="email"><i class="bi bi-envelope-at"></i> E-mail :</label>
+      <span id="email" class="form-control">
+        {{ formateur.email }}
+      </span>
     </div>
   </div>
-  <div class="d-flex justify-content-around">
+  <div class="secondaires-container">
     <div style="min-width: 20vw">
-      <h2>Compétences</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">LIBELLÉ</th>
-            <th scope="col">DURÉE</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
+      <h2 class="title-tableau">Compétences</h2>
+      <div class="table table-bordered">
+        <div class="tableau-header">
+          <div class="header-item">LIBELLÉ</div>
+          <div class="header-item">DURÉE</div>
+          <div class="header-item">ACTION</div>
+        </div>
+        <div class="tableau-body">
           @for(m of formateur.matieres;track m.id) {
-          <tr>
-            <td>{{ m.libelle }}</td>
-            <td>{{ m.duration }}</td>
-            <td class="text-center">
+          <div class="tableau-row">
+            <div class="row-item">{{ m.libelle }}</div>
+            <div class="row-item">{{ m.duration }}</div>
+            <div class="row-item text-center">
               <button (click)="remove(m.id!)" class="btn btn-outline-danger">
-                Supprimer
+                <i class="bi bi-trash3-fill"></i>
               </button>
-            </td>
-          </tr>
+            </div>
+          </div>
           }
-        </tbody>
-      </table>
+        </div>
+      </div>
       <div class="input-group container">
         <select id="matiere" [(ngModel)]="matiere" class="form-control">
           @for (m of matieres; track m.id) {
@@ -65,54 +51,52 @@
         </select>
         <div class="input-group-append">
           <button class="btn btn-outline-success" (click)="add()">
-            Ajouter
+            <i class="bi bi-plus-circle-fill"></i>
           </button>
         </div>
       </div>
     </div>
     <div style="min-width: 20vw">
-      <h2>Formation</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>LIBELLÉ</th>
-            <th>DÉBUT</th>
-          </tr>
-        </thead>
-        <tbody>
+      <h2 class="title-tableau">Formation</h2>
+      <div class="table table-bordered">
+        <div class="tableau-header">
+          <div class="header-item">LIBELLÉ</div>
+          <div class="header-item">DÉBUT</div>
+        </div>
+        <div class="tableau-body">
           @for(f of formateur.formations;track f.id) {
-          <tr>
-            <td>{{ f.nom }}</td>
-            <td>{{ f.dateStart }}</td>
-          </tr>
+          <div class="tableau-row">
+            <div class="row-item">{{ f.nom }}</div>
+            <div class="row-item">{{ f.dateStart }}</div>
+          </div>
           }
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
     <div style="min-width: 20vw">
-      <h2>Indisponibilités</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">DEBUT</th>
-            <th scope="col">FIN</th>
-          </tr>
-        </thead>
-        <tbody>
+      <h2 class="title-tableau">Indisponibilités</h2>
+      <div class="table table-bordered">
+        <div class="tableau-header">
+          <div class="header-item">DEBUT</div>
+          <div class="header-item">FIN</div>
+        </div>
+        <div class="tableau-body">
           @for(i of formateur.indisponibilites; track i.id) {
-          <tr>
-            <td>{{ i.start }}</td>
-            <td>{{ i.end }}</td>
-          </tr>
+          <div class="tableau-row">
+            <div class="row-item">{{ i.start }}</div>
+            <div class="row-item">{{ i.end }}</div>
+          </div>
           }
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="btn-retour">
+    <a
+      routerLink="/formateur"
+      routerLinkActive="active"
+      class="btn btn-outline-warning m-2"
+      >Retour au Menu</a
+    >
+  </div>
 </div>
-<a
-  routerLink="/formateur"
-  routerLinkActive="active"
-  class="btn btn-outline-warning m-2"
-  >Retour</a
->

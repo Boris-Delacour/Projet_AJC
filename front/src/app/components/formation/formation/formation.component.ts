@@ -8,9 +8,9 @@ import { FormationService } from '../../../services/formation.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './formation.component.html',
-  styleUrl: './formation.component.css'
+  styleUrl: './formation.component.css',
 })
-export class FormationComponent  implements OnInit{
+export class FormationComponent implements OnInit {
   formations: Formation[] = [];
 
   message = '';
@@ -20,7 +20,7 @@ export class FormationComponent  implements OnInit{
   constructor(
     public formationSrv: FormationService,
     private activatedRoute: ActivatedRoute
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.initFormations();
@@ -32,12 +32,15 @@ export class FormationComponent  implements OnInit{
       if (params['q']) {
         if (params['q'] == 'create') {
           this.message = `Formation ${params['id']} créée `;
+          this.style = 'alert-success';
         } else if (params['q'] == 'update') {
           this.message = `Formation ${params['id']} mise à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 

@@ -1,17 +1,17 @@
 <h1>Liste des Formations</h1>
 
 @if(showMessage){
-  <div id="message" class="alert {{ style }}">
-    {{ message }}
-  </div>
+<div id="message" class="alert {{ style }}">
+  {{ message }}
+</div>
 }
 
 <table class="table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>NOM</th>
-      <th>DATE DEBUT</th>
+      <th><i class="bi bi-list-ol"></i> ID</th>
+      <th><i class="bi bi-card-text"></i> NOM</th>
+      <th><i class="bi bi-calendar-date"></i> DATE DEBUT</th>
     </tr>
   </thead>
   <tbody>
@@ -23,15 +23,20 @@
       <td>{{ f.gestionnaire?.firstName }}</td>
       <td>{{ f.formateur?.firstname }}</td>
       <td>
-        <a routerLink="/formation/details/{{f.id}}" routerLinkActive="active" class="btn btn-outline-primary">Détails</a>
+        <a
+          routerLink="/formation/details/{{ f.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Détails</a
+        >
       </td>
       <td>
-          <a
+        <a
           routerLink="/formation/edit/{{ f.id }}"
           routerLinkActive="active"
           class="btn btn-outline-warning"
           >Editer</a
-          >
+        >
       </td>
       <td>
         <button (click)="delete(f.id!)" class="btn btn-outline-danger">
@@ -42,6 +47,9 @@
     }
   </tbody>
 </table>
-<a routerLink="/formation/edit" routerLinkActive="active" class="btn btn-outline-success"
+<a
+  routerLink="/formation/edit"
+  routerLinkActive="active"
+  class="btn btn-outline-success"
   >Ajouter</a
 >
