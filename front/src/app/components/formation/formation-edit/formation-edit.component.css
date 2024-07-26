@@ -37,3 +37,9 @@ input.form-control {
 .button-container {
   margin-top: 2%;
 }
+
+select.form-control {
+  text-align: center;
+  font-size: large;
+  background-color: #ecf5febd;
+}
