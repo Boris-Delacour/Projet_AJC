@@ -6,50 +6,55 @@
 </div>
 }
 
-<table class="table">
-  <thead>
-    <tr>
-      <th><i class="bi bi-list-ol"></i> ID</th>
-      <th><i class="bi bi-card-text"></i> NOM</th>
-      <th><i class="bi bi-calendar-date"></i> DATE DEBUT</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(f of formations;track f.id) {
-    <tr>
-      <td>{{ f.id }}</td>
-      <td>{{ f.nom }}</td>
-      <td>{{ f.dateStart }}</td>
-      <td>{{ f.gestionnaire?.firstName }}</td>
-      <td>{{ f.formateur?.firstname }}</td>
-      <td>
-        <a
-          routerLink="/formation/details/{{ f.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Détails</a
-        >
-      </td>
-      <td>
-        <a
-          routerLink="/formation/edit/{{ f.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Editer</a
-        >
-      </td>
-      <td>
-        <button (click)="delete(f.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-card-text"></i> NOM</div>
+    <div class="header-item">
+      <i class="bi bi-calendar-date"></i> DATE DEBUT
+    </div>
+    <div class="header-item">ACTIONS</div>
+  </div>
+
+  @for(f of formations;track f.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ f.id }}</div>
+    <div class="row-item">{{ f.nom }}</div>
+    <div class="row-item">{{ f.dateStart }}</div>
+    <div class="row-item actions">
+      <a
+        routerLink="/formation/details/{{ f.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-primary btn-animated"
+      >
+        <span class="btn-text">Détails</span>
+        <span class="btn-icon"><i class="bi bi-info-circle"></i></span>
+      </a>
+      <a
+        routerLink="/formation/edit/{{ f.id }}"
+        routerLinkActive="active"
+        class="btn btn-outline-warning btn-animated"
+      >
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button
+        (click)="delete(f.id!)"
+        class="btn btn-outline-danger btn-animated"
+      >
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
 <a
   routerLink="/formation/edit"
   routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
+  class="btn btn-outline-success btn-animated"
 >
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>

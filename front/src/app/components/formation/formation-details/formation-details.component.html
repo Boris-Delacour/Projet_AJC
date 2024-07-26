@@ -1,76 +1,93 @@
-<h1>Détails de la formation n°{{ formation.id }}</h1>
-<div class="container">
-    <div>
-        <div class="form-group">
-            <label for="nom">Nom:</label>
-            <input id="nom" [(ngModel)]="formation.nom" class="form-control" disabled />
+<h1 class="title-page">Détails de la formation n°{{ formation.id }}</h1>
+<div class="block-container">
+  <div class="detail-container">
+    <div class="form-group">
+      <label for="nom"><i class="bi bi-person-vcard"></i> Nom :</label>
+      <span id="nom" class="form-control">
+        {{ formation.nom }}
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="dateStart"
+        ><i class="bi bi-calendar-date"></i> Date de début:</label
+      >
+      <span id="dateStart" class="form-control">
+        {{ formation.dateStart }}
+      </span>
+    </div>
+  </div>
+  <div class="secondaires-container">
+    <h2 class="title-tableau">Gestionnaire</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">NOM</div>
+        <div class="header-item">PRENOM</div>
+        <div class="header-item">E-MAIL</div>
+      </div>
+      <div class="tableau-body">
+        <div class="tableau-row">
+          <div class="row-item">{{ formation.gestionnaire?.lastName }}</div>
+          <div class="row-item">{{ formation.gestionnaire?.firstName }}</div>
+          <div class="row-item">{{ formation.gestionnaire?.email }}</div>
         </div>
-        <div class="form-group">
-            <label for="dateStart">Date de début:</label>
-            <input id="dateStart" type="date" [(ngModel)]="formation.dateStart" class="form-control" disabled />
-          </div>
+      </div>
     </div>
-    <div>
-        <h2>Gestionnaire</h2>
-        <table class="table">
-            <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
-                <th>E-MAIL</th>
-            </tr>
-            <tr>
-                <td>{{ formation.gestionnaire?.lastName }}</td>
-                <td>{{ formation.gestionnaire?.firstName }}</td>
-                <td>{{ formation.gestionnaire?.email }}</td>
-            </tr>
-        </table>
+
+    <h2 class="title-tableau">Formateur référent</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">NOM</div>
+        <div class="header-item">PRENOM</div>
+        <div class="header-item">E-MAIL</div>
+      </div>
+      <div class="tableau-body">
+        <div class="tableau-row">
+          <div class="row-item">{{ formation.gestionnaire?.lastName }}</div>
+          <div class="row-item">{{ formation.gestionnaire?.firstName }}</div>
+          <div class="row-item">{{ formation.gestionnaire?.email }}</div>
+        </div>
+      </div>
     </div>
-    <div>
-        <h2>Formateur référent</h2>
-        <table class="table">
-            <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
-                <th>E-MAIL</th>
-            </tr>
-            <tr>
-                <td>{{ formation.formateur?.lastname }}</td>
-                <td>{{ formation.formateur?.firstname }}</td>
-                <td>{{ formation.formateur?.email }}</td>
-            </tr>
-        </table>
+
+    <h2 class="title-tableau">Stagiaires</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">NOM</div>
+        <div class="header-item">PRENOM</div>
+        <div class="header-item">E-MAIL</div>
+      </div>
+      <div class="tableau-body">
+        @for(s of formation.stagiaires; track s.id) {
+        <div class="tableau-row">
+          <div class="row-item">{{ s.lastName }}</div>
+          <div class="row-item">{{ s.firstName }}</div>
+          <div class="row-item">{{ s.email }}</div>
+        </div>
+        }
+      </div>
     </div>
-    <div>
-        <h2>Stagiaires</h2>
-        <table class="table">
-            <tr>
-                <th>NOM</th>
-                <th>PRENOM</th>
-                <th>E-MAIL</th>
-            </tr>
-            @for(s of formation.stagiaires; track s.id) {
-            <tr>
-                <td>{{ s.lastName }}</td>
-                <td>{{ s.firstName }}</td>
-                <td>{{ s.email }}</td>
-            </tr>
-            }
-        </table>
+
+    <h2 class="title-tableau">Matieres</h2>
+    <div class="table table-bordered">
+      <div class="tableau-header">
+        <div class="header-item">LIBELLÉ</div>
+        <div class="header-item">DURÉE</div>
+        <div class="header-item">ACTION</div>
+      </div>
+      <div class="tableau-body">
+        @for(m of formation.matieres;track m.id) {
+        <div class="tableau-row">
+          <div class="row-item">{{ m.libelle }}</div>
+          <div class="row-item">{{ m.duration }}</div>
+        </div>
+        }
+      </div>
     </div>
-    <div>
-        <h2>Matieres</h2>
-        <table class="table">
-            <tr>
-                <th>LIBELLE</th>
-                <th>DUREE</th>
-            </tr>
-            @for(m of formation.matieres; track m.id) {
-            <tr>
-                <td>{{ m.libelle }}</td>
-                <td>{{ m.duration }}</td>
-            </tr>
-            }
-        </table>
-    </div>
+  </div>
+  <a
+    routerLink="/formation"
+    routerLinkActive="active"
+    class="btn btn-outline-warning"
+    >Retour au Menu</a
+  >
 </div>
-<a routerLink="/formation" routerLinkActive="active" class="btn btn-outline-warning">Retour</a>

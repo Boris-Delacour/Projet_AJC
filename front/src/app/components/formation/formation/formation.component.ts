@@ -38,6 +38,9 @@ export class FormationComponent implements OnInit {
           this.style = 'alert-warning';
         }
         this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
       } else {
         this.showMessage = false;
       }
@@ -53,8 +56,12 @@ export class FormationComponent implements OnInit {
   delete(id: number) {
     this.formationSrv.delete(id).subscribe(() => {
       this.initFormations();
+      this.message = `Formation ` + id + ` supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
-    this.message = `Formation ${id} supprimée `;
-    this.style = 'alert-warning';
   }
 }

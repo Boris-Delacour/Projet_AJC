@@ -8,14 +8,18 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './matiere.component.html',
-  styleUrl: './matiere.component.css'
+  styleUrl: './matiere.component.css',
 })
 export class MatiereComponent {
   matieres: Matiere[] = [];
   message = '';
   showMessage: boolean = false;
+  style = '';
 
-  constructor(public mSrv: MatiereService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    public mSrv: MatiereService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.initMatieres();
@@ -24,7 +28,7 @@ export class MatiereComponent {
 
   initMatieres() {
     this.mSrv.getAll().subscribe((matieres) => {
-      this.matieres = matieres
+      this.matieres = matieres;
     });
   }
 
@@ -33,17 +37,30 @@ export class MatiereComponent {
       if (params['q']) {
         if (params['q'] == 'create') {
           this.message = `Matière ${params['id']} créé `;
+          this.style = 'alert-success';
         } else if (params['q'] == 'update') {
           this.message = `Matière ${params['id']} mis à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
     });
   }
 
   delete(id: number) {
     this.mSrv.delete(id).subscribe(() => {
       this.initMatieres();
+      this.message = `Formateur ` + id + ` supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }
