@@ -62,6 +62,14 @@ export class GestionnaireComponent {
       setTimeout(() => {
         this.showMessage = false;
       }, 5000);
+    },
+    err => {
+      this.message = `Gestionnaire ` + id + ` ne peut pas être supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }

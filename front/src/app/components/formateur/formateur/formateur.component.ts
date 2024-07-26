@@ -61,6 +61,14 @@ export class FormateurComponent implements OnInit {
       setTimeout(() => {
         this.showMessage = false;
       }, 5000);
+    },
+    err => {
+      this.message = `Formateur ` + id + ` ne peut pas être supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }

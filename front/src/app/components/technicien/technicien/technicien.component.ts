@@ -69,6 +69,14 @@ export class TechnicienComponent implements OnInit {
       this.initTechniciens();
       this.message = `Technicien ${id} supprimé `;
       this.style = 'alert-warning';
+    },
+    err => {
+      this.message = `Technicien ` + id + ` ne peut pas être supprimé `;
+      this.style = 'alert-danger';
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 5000);
     });
   }
 }
