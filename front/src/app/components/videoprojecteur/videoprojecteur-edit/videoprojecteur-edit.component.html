@@ -1,7 +1,7 @@
-<h1>Édition du videoprojecteur {{ videoprojecteur.id }}</h1>
-<div>
+<h1 class="title-page">Édition de videoprojecteur</h1>
+<div class="detail-container">
   <div class="form-group">
-    <label for="marque">Marque :</label>
+    <label for="marque"><i class="bi bi-person-vcard"></i>Marque :</label>
     <input
       id="marque"
       [(ngModel)]="videoprojecteur.marque"
@@ -9,7 +9,9 @@
     />
   </div>
   <div class="form-group">
-    <label for="fonctionnel">Fonctionnel ? :</label>
+    <label for="fonctionnel"
+      ><i class="bi bi-person-vcard"></i>Fonctionnel ? :</label
+    >
     <input
       class="mx-2"
       type="radio"
@@ -27,15 +29,15 @@
     />
     <label for="false">Non</label>
   </div>
-  <div>
+  <div class="button-container">
     <button class="btn btn-outline-success" (click)="save()">
-      Enregistrer
+      <i class="bi bi-floppy2"></i> Enregistrer
     </button>
     <a
       routerLink="/videoprojecteur"
       routerLinkActive="active"
       class="btn btn-outline-danger mx-2"
-      >Annuler</a
+      ><i class="bi bi-arrow-return-left"></i> Annuler</a
     >
   </div>
 </div>
