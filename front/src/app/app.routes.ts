@@ -38,6 +38,7 @@ import { gestionnaireGuard } from './guards/gestionnaire.guard';
 import { stagiaireGuard } from './guards/stagiaire.guard';
 import { technicienGuard } from './guards/technicien.guard';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -148,33 +149,33 @@ export const routes: Routes = [
   {
     path: 'technicien',
     component: TechnicienComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'technicien/edit',
     component: TechnicienEditComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'technicien/edit/:id',
     component: TechnicienEditComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
 
   {
     path: 'gestionnaire',
     component: GestionnaireComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'gestionnaire/edit',
     component: GestionnaireEditComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'gestionnaire/edit/:id',
     component: GestionnaireEditComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
   },
   {
     path: 'gestionnaire/details/:id',
@@ -265,7 +266,7 @@ export const routes: Routes = [
   {
     path: 'accueil',
     component: AccueilComponent,
-    canActivate: [anonymousGuard],
+    canActivate: [authGuard],
   },
   {
     path: '',

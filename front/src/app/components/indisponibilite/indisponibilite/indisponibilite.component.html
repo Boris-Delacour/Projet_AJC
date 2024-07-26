@@ -1,50 +1,41 @@
-<h1>Liste des indisponibilites</h1>
+<h1 class="title-page">Liste des indisponibilites</h1>
 
 @if(showMessage){
-<div class="alert alert-info">
+<div class="alert {{ style }}">
   {{ message }}
 </div>
 }
 
-<table class="table overflow-auto">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>DEBUT</th>
-      <th>FIN</th>
-      <th>FORMATEUR</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(i of indisponibilites;track i.id) {
-    <tr>
-      <td>{{ i.id }}</td>
-      <td>{{ i.start }}</td>
-      <td>{{ i.end }}</td>
-      <td>{{ i.formateur?.firstname }} {{ i.formateur?.lastname }}</td>
-      <td class="text-center">
-        <a
-          routerLink="/indisponibilite/edit/{{ i.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-warning"
-          >Modifier</a
-        >
-      </td>
-      <td class="text-center">
-        <button (click)="delete(i.id!)" class="btn btn-outline-danger">
-          Supprimer
-        </button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<div class="tableau-container">
+  <div class="tableau-header">
+    <div class="header-item"><i class="bi bi-list-ol"></i> ID</div>
+    <div class="header-item"><i class="bi bi-person-video2"></i> DEBUT</div>
+    <div class="header-item"><i class="bi bi-person-vcard"></i> FIN</div>
+    <div class="header-item"><i class="bi bi-envelope-at"></i> FORMATEUR</div>
+    <div class="header-item">ACTIONS</div>
+  </div>
 
-<a
-  routerLink="/indisponibilite/edit"
-  routerLinkActive="active"
-  class="btn btn-outline-success"
-  >Ajouter</a
->
+  @for(i of indisponibilites;track i.id) {
+  <div class="tableau-row">
+    <div class="row-item">{{ i.id }}</div>
+    <div class="row-item">{{ i.start }}</div>
+    <div class="row-item">{{ i.end }}</div>
+    <div class="row-item">{{ i.formateur?.firstname }} {{ i.formateur?.lastname }}</div>
+    <div class="row-item actions">
+      <a routerLink="/indisponibilite/edit/{{ i.id }}" routerLinkActive="active" class="btn btn-outline-warning btn-animated">
+        <span class="btn-text">Modifier</span>
+        <span class="btn-icon"><i class="bi bi-pencil-square"></i></span>
+      </a>
+      <button (click)="delete(i.id!)" class="btn btn-outline-danger btn-animated">
+        <span class="btn-text">Supprimer</span>
+        <span class="btn-icon"><i class="bi bi-trash3"></i></span>
+      </button>
+    </div>
+  </div>
+  }
+</div>
+
+<a routerLink="/indisponibilite/edit" routerLinkActive="active" class="btn btn-outline-success btn-animated">
+  <span class="btn-text">Ajouter</span>
+  <span class="btn-icon"><i class="bi bi-person-add"></i></span>
+</a>
