@@ -40,9 +40,13 @@ export class TechnicienComponent implements OnInit {
         } else if (params['q'] == 'update') {
           this.message = `Technicien ${params['id']} mis à jour `;
         }
-      }
       this.showMessage = true;
-      this.style = 'alert-info';
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
+      }
     });
   }
 

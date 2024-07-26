@@ -1,7 +1,7 @@
-<h1>Edition techniciens</h1>
-<div>
+<h1 class="title-page">Édition de technicien</h1>
+<div class="detail-container">
   <div class="form-group">
-    <label for="firstName">Prénom</label>
+    <label for="firstName"><i class="bi bi-person-video2"></i> Prénom</label>
     <input
       id="firstName"
       [(ngModel)]="technicien.firstName"
@@ -9,7 +9,7 @@
     />
   </div>
   <div class="form-group">
-    <label for="lastName">Nom</label>
+    <label for="lastName"><i class="bi bi-person-vcard"></i> Nom</label>
     <input
       id="lastName"
       [(ngModel)]="technicien.lastName"
@@ -17,15 +17,15 @@
     />
   </div>
   <div class="form-group">
-    <label for="email">e-mail</label>
+    <label for="email"><i class="bi bi-envelope-at"></i> E-mail</label>
     <input id="email" [(ngModel)]="technicien.email" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="username">username</label>
+    <label for="username"><i class="bi bi-person-badge"></i> Username</label>
     <input id="username" [(ngModel)]="username" class="form-control" />
   </div>
   <div class="form-group">
-    <label for="password">Mot de passe</label>
+    <label for="password"><i class="bi bi-lock"></i> Mot de passe</label>
     <input
       id="password"
       type="password"
@@ -35,13 +35,13 @@
   </div>
   <div>
     <button class="btn btn-outline-success" (click)="save()">
-      Sauvegarder
+      <i class="bi bi-floppy2"></i> Enregistrer
     </button>
     <a
       routerLink="/technicien"
       routerLinkActive="active"
       class="btn btn-outline-danger mx-2"
-      >Annuler</a
+      ><i class="bi bi-arrow-return-left"></i> Annuler</a
     >
   </div>
 </div>
