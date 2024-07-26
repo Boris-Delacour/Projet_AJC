@@ -22,8 +22,11 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.TechnicienRequest;
 import com.example.demo.dto.response.TechnicienResponse;
+import com.example.demo.model.Role;
 import com.example.demo.model.Technicien;
+import com.example.demo.model.Utilisateur;
 import com.example.demo.service.TechnicienService;
+import com.example.demo.service.UtilisateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -37,6 +40,9 @@ public class TechnicienRestController {
 
 	@Autowired
 	private TechnicienService tSrv;
+
+	@Autowired
+	private UtilisateurService uSrv;
 
 	@GetMapping("")
 	@JsonView(CustomJsonViews.Common.class)
@@ -77,6 +83,10 @@ public class TechnicienRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable("id") Integer id) {
 		tSrv.deleteById(id);
+		if (this.getById(id) == null) {
+			Utilisateur utilisateur = uSrv.getByRoleAndIdRole(Role.ROLE_TECHNICIEN, id);
+			uSrv.delete(utilisateur);
+		}
 	}
 
 }

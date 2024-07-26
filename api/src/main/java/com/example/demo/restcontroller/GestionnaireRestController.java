@@ -23,7 +23,10 @@ import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.GestionnaireRequest;
 import com.example.demo.dto.response.GestionnaireResponse;
 import com.example.demo.model.Gestionnaire;
+import com.example.demo.model.Role;
+import com.example.demo.model.Utilisateur;
 import com.example.demo.service.GestionnaireService;
+import com.example.demo.service.UtilisateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -37,6 +40,9 @@ public class GestionnaireRestController {
 
     @Autowired
     private GestionnaireService gSrv;
+
+    @Autowired
+    private UtilisateurService uSrv;
 
     @GetMapping("/{id}")
     @JsonView(CustomJsonViews.Common.class)
@@ -85,5 +91,9 @@ public class GestionnaireRestController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id) {
         gSrv.deleteById(id);
+        if (gSrv.getById(id) == null) {
+            Utilisateur utilisateur = uSrv.getByRoleAndIdRole(Role.ROLE_GESTIONNAIRE, id);
+            uSrv.delete(utilisateur);
+        }
     }
 }

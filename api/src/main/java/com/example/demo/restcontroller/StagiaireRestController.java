@@ -22,10 +22,13 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.dto.jsonview.CustomJsonViews;
 import com.example.demo.dto.request.StagiaireRequest;
 import com.example.demo.dto.response.StagiaireResponse;
+import com.example.demo.model.Role;
 import com.example.demo.model.Stagiaire;
+import com.example.demo.model.Utilisateur;
 import com.example.demo.service.FormationService;
 import com.example.demo.service.OrdinateurService;
 import com.example.demo.service.StagiaireService;
+import com.example.demo.service.UtilisateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -39,6 +42,10 @@ public class StagiaireRestController {
 
 	@Autowired
 	private StagiaireService stagiaireSrv;
+
+	@Autowired
+	private UtilisateurService uSrv;
+
 	@Autowired
 	private FormationService formationSrv;
 
@@ -67,7 +74,7 @@ public class StagiaireRestController {
 	public StagiaireResponse getWithOrdinateur(@PathVariable Integer id) {
 		return new StagiaireResponse(stagiaireSrv.getWithOrdinateur(id));
 	}
-	
+
 	@GetMapping("/{id}/all")
 	@JsonView(CustomJsonViews.StagiaireWithAll.class)
 	public StagiaireResponse getWithAll(@PathVariable Integer id) {
@@ -107,5 +114,9 @@ public class StagiaireRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Integer id) {
 		stagiaireSrv.deleteById(id);
+		if (stagiaireSrv.getById(id) == null) {
+			Utilisateur utilisateur = uSrv.getByRoleAndIdRole(Role.ROLE_STAGIAIRE, id);
+			uSrv.delete(utilisateur);
+		}
 	}
 }

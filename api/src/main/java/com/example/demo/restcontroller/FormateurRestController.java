@@ -27,9 +27,12 @@ import com.example.demo.model.Formateur;
 import com.example.demo.model.FormateurMatiere;
 import com.example.demo.model.FormateurMatiereKey;
 import com.example.demo.model.Matiere;
+import com.example.demo.model.Role;
+import com.example.demo.model.Utilisateur;
 import com.example.demo.service.FormateurMatiereService;
 import com.example.demo.service.FormateurService;
 import com.example.demo.service.MatiereService;
+import com.example.demo.service.UtilisateurService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -43,6 +46,9 @@ public class FormateurRestController {
 
     @Autowired
     private FormateurService fSrv;
+
+    @Autowired
+    private UtilisateurService uSrv;
 
     @Autowired
     private MatiereService mSrv;
@@ -143,6 +149,10 @@ public class FormateurRestController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") Integer id) {
         fSrv.deleteById(id);
+        if (fSrv.getById(id) == null) {
+            Utilisateur utilisateur = uSrv.getByRoleAndIdRole(Role.ROLE_FORMATEUR, id);
+            uSrv.delete(utilisateur);
+        }
     }
 
     @DeleteMapping("/{id_f}/{id_m}")

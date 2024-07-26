@@ -52,6 +52,14 @@ public class UtilisateurService implements UserDetailsService {
         return null;
     }
 
+    public Utilisateur getByRoleAndIdRole(Role role, Integer idRole) {
+        Optional<Utilisateur> opt = daoUtilisateur.findByRoleAndIdRole(role, idRole);
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+        return null;
+    }
+
     public Utilisateur create(Utilisateur utilisateur, Role role) {
         if (utilisateur.getUsername() == null || utilisateur.getUsername().isBlank()
                 || daoUtilisateur.findByUsername(utilisateur.getUsername()).isPresent()) {
@@ -64,5 +72,9 @@ public class UtilisateurService implements UserDetailsService {
         utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         utilisateur.setRole(role);
         return daoUtilisateur.save(utilisateur);
+    }
+
+    public void delete(Utilisateur utilisateur) {
+        daoUtilisateur.deleteById(utilisateur.getId());
     }
 }
