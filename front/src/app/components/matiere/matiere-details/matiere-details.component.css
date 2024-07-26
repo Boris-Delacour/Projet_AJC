@@ -34,6 +34,12 @@ span.form-control {
   background-color: #c4e3ff28;
 }
 
+select.form-control {
+  text-align: center;
+  font-size: large;
+  background-color: #c4e3ff28;
+}
+
 /* Mise ne forme des Tableaux Secondaires */
 
 .secondaires-container {
@@ -77,6 +83,7 @@ span.form-control {
   flex: 1;
   padding: 0.75rem;
   text-align: center;
+  background: transparent;
 }
 
 .header-item {
