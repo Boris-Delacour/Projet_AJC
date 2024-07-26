@@ -38,9 +38,10 @@
       [(ngModel)]="matiereParFormation.matiere"
       class="form-control"
       [compareWith]="compareMn"
+      (change)="matiereWithFormateur(matiereParFormation.matiere!)"
     >
       @for(m of matiereObservable|async ;track m.id ){
-      <option (click)="matiereWithFormateur(m)" [ngValue]="m">
+      <option [ngValue]="m">
         {{ m.libelle }}
       </option>
       }
