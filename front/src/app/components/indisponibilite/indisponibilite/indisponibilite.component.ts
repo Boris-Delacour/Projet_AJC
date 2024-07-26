@@ -30,16 +30,22 @@ export class IndisponibiliteComponent {
   }
 
   initMessage() {
-    this.activatedRoute.queryParams.subscribe((params) => {
+      this.activatedRoute.queryParams.subscribe((params) => {
       if (params['q']) {
-        if (params['q'] == 'create') {
+        if (params['q'] === 'create') {
           this.message = `Indisponibilité ${params['id']} créé `;
-        } else if (params['q'] == 'update') {
+          this.style = 'alert-success';
+        } else if (params['q'] === 'update') {
           this.message = `Indisponibilité ${params['id']} mis à jour `;
+          this.style = 'alert-warning';
         }
+        this.showMessage = true;
+        setTimeout(() => {
+          this.showMessage = false;
+        }, 5000);
+      } else {
+        this.showMessage = false;
       }
-      this.showMessage = true;
-      this.style = 'alert-info';
     });
   }
 

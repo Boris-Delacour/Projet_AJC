@@ -51,6 +51,7 @@ export class FormateurComponent implements OnInit {
       }
     });
   }
+  
   delete(id: number) {
     this.fSrv.delete(id).subscribe(() => {
       this.initFormateurs();
