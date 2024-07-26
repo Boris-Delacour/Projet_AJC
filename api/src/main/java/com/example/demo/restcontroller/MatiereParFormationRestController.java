@@ -58,6 +58,14 @@ public class MatiereParFormationRestController {
 				.collect(Collectors.toList());
 	}
 
+	@GetMapping("/formation")
+	@JsonView(CustomJsonViews.MatiereParFormationWithFormationAndMatiere.class)
+	public List<MatiereParFormationResponse> getAllWithFormation() {
+		return matiereparformationSrv.getAll().stream()
+				.map(matiereparformation -> new MatiereParFormationResponse(matiereparformation, true))
+				.collect(Collectors.toList());
+	}
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(CustomJsonViews.Common.class)

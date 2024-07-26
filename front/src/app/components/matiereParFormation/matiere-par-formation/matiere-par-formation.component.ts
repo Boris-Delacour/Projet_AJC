@@ -40,9 +40,11 @@ export class MatiereParFormationComponent implements OnInit {
   }
 
   initMatiereParFormations() {
-    this.matiereParFormationSrv.getAll().subscribe((matiereParFormations) => {
-      this.matiereParFormations = matiereParFormations;
-    });
+    this.matiereParFormationSrv
+      .getAllWithFormation()
+      .subscribe((matiereParFormations) => {
+        this.matiereParFormations = matiereParFormations;
+      });
   }
 
   delete(id: number) {
