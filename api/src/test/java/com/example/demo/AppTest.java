@@ -3,8 +3,6 @@ package com.example.demo;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -201,9 +199,6 @@ class AppTest {
 		oSrv.insert(t2);
 
 		t = oSrv.getById(t.getId());
-		List<Ordinateur> ordis = oSrv.getByMarque(t.getMarque());
-		List<Ordinateur> ordi2s = oSrv.getByOs(t.getOs());
-
 		t.setFonctionnel(false);
 		;
 
@@ -275,7 +270,6 @@ class AppTest {
 		vpSrv.insert(v2);
 
 		v = vpSrv.getById(v.getId());
-		List<Videoprojecteur> vs = vpSrv.getByMarque(v.getMarque());
 		v.setFonctionnel(false);
 		;
 
